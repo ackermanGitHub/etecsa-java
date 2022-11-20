@@ -3,6 +3,7 @@ package logic;
 import java.util.ArrayList;
 
 public class Sistema {
+	
 	private ArrayList<Usuario> listaDeUsuario = new ArrayList<Usuario>();
 	private ArrayList<Telefono> listaDeTelefonos = new ArrayList<Telefono>();
 
@@ -24,16 +25,15 @@ public class Sistema {
 	}
 	public void addUsuario(Usuario usuario) {
 		Usuario resultado = this.getUsuario(usuario.getUserName());
-		if(resultado == null){
+		if(resultado == null)
 			this.listaDeUsuario.add(usuario);
-		} else {
+		else
 			throw new IllegalArgumentException("El usuario introducido ya existe, inicie sesión");
-		}
 	}
 	public ArrayList<Usuario> getListaDeUsuarios(){
 		return this.listaDeUsuario;
 	}
-	
+
 	public Telefono getTelefono(String numero){
 		Telefono resultado = null;
 		boolean encontrado = false;
@@ -52,13 +52,22 @@ public class Sistema {
 	}
 	public void addTelefono(Telefono telefono) {
 		Telefono resultado = this.getTelefono(telefono.getNumero());
-		if(resultado == null){
+		if(resultado == null)
 			this.listaDeTelefonos.add(telefono);
-		} else {
+		else
 			throw new IllegalArgumentException("El télefono introducido ya existe");
-		}
 	}
 	public ArrayList<Telefono> getListaDeTelefonos(){
 		return this.listaDeTelefonos;
 	}
+	
+	public ArrayList<Llamada> getListaLlamadas(){
+		ArrayList<Llamada> result = new ArrayList<Llamada>();
+		for(Telefono telefono : this.getListaDeTelefonos()){
+			if(telefono.getLlamadas() != null)
+			result.addAll(telefono.getLlamadas());
+		}
+		return result;
+	}
+
 }

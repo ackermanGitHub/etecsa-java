@@ -95,9 +95,8 @@ public class Login extends JFrame {
 					Principal p = new Principal(usuario, sistem);
 					p.setVisible(true);					
 					dispose();
-				} else {
+				} else
 					errorMessage.setVisible(true);
-				}
 			}
 		});
 		btnIniciarSecion.setBounds(67, 169, 141, 31);
@@ -118,7 +117,6 @@ public class Login extends JFrame {
 		JLabel lblCrearCuenta = new JLabel("Crear Cuenta");
 		lblCrearCuenta.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
-
 				CrearCuenta dialog = new CrearCuenta(sistem);
 				dialog.setVisible(true);
 				dispose();
@@ -129,4 +127,5 @@ public class Login extends JFrame {
 		lblCrearCuenta.setBounds(181, 119, 94, 23);
 		contentPane.add(lblCrearCuenta);
 	}
+
 }

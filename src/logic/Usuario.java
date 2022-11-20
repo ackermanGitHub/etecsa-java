@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import auxiliar.Utils;
 
 public abstract class Usuario {
+	
 	protected String userName;
 	protected String password;
 	protected String nombre;
@@ -40,8 +41,9 @@ public abstract class Usuario {
 		}
 		return resultado;
 	}
-	public void addTelefonoFijo(TelefonoFijo telefonoMovil) {
-		this.telefonosFijos.add(telefonoMovil);
+	public void addTelefonoFijo(Sistema sistem, TelefonoFijo telefonoFijo) {
+		sistem.addTelefono(telefonoFijo);
+		this.telefonosFijos.add(telefonoFijo);
 	}
 	public ArrayList<TelefonoFijo> getTelefonosFijos() {
 		return this.telefonosFijos;
@@ -125,4 +127,5 @@ public abstract class Usuario {
 		this.setDireccionPostal(direccionPostal);
 		this.setRepresentante(representante);		
 	}
+	
 }

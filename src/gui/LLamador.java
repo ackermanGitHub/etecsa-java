@@ -12,7 +12,6 @@ import javax.swing.JTextField;
 
 import java.awt.Font;
 
-import logic.Llamada;
 import logic.Sistema;
 import logic.Telefono;
 import logic.Usuario;
@@ -163,14 +162,13 @@ public class LLamador extends JFrame {
 		JButton btnLlamar = new JButton("LLamar");
 		btnLlamar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				String numero = txtTelefono.getText();
-				
+
 				Telefono telefonoLlamado = sistema.getTelefono(numero);
-				if(telefonoLlamado == null){
+				if(telefonoLlamado == null)
 					throw new IllegalArgumentException("El telefono llamado no se encuentra registrado en el sistema");
-				}
-				
+
 				LlamadaEnProceso llamadaEnProceso = new LlamadaEnProceso(sistema, usuario, telefono, numero);
 				llamadaEnProceso.setVisible(true);
 				llamadaEnProceso.setAlwaysOnTop(true);
@@ -194,14 +192,13 @@ public class LLamador extends JFrame {
 		JButton btnDel = new JButton("Del");
 		btnDel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(!txtTelefono.getText().isEmpty()){
-					String number = txtTelefono.getText();
-					txtTelefono.setText(number.substring(0, number.length() - 1));
-				}
+				if(!txtTelefono.getText().isEmpty())
+					txtTelefono.setText(txtTelefono.getText().substring(0, txtTelefono.getText().length() - 1));
 			}
 		});
 		btnDel.setFont(new Font("Arial", Font.PLAIN, 12));
 		btnDel.setBounds(163, 25, 57, 40);
 		contentPane.add(btnDel);
 	}
+
 }

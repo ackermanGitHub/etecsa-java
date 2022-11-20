@@ -16,4 +16,5 @@ public class TelefonoFijo extends Telefono{
 	public void setNumero(String numero) {
 		this.numero = numero;
 	}
+
 }

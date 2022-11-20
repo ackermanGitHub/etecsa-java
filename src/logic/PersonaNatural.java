@@ -47,13 +47,12 @@ public class PersonaNatural extends Usuario{
 		this.direccionParticular = direccionParticular;
 	}
 
-
-
 	public PersonaNatural(String userName, String password, String nombre, String apellido1, String apellido2, String ID, String direccionParticular, String municipio, String provincia) {
-		super(userName, password, nombre, municipio, provincia, "undefined", null);
+		super(userName, password, nombre, municipio, provincia, null, null);
 		this.setApellido1(apellido1);
 		this.setApellido2(apellido2);
 		this.setID(ID);
 		this.setDireccionParticular(direccionParticular);
 	}
+	
 }

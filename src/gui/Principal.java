@@ -21,6 +21,7 @@ import java.awt.Color;
 
 import javax.swing.JLabel;
 
+import datos.DatosDeLlamada;
 import datos.DatosDeTelefono;
 import datos.DatosDeUsuario;
 
@@ -28,11 +29,8 @@ import datos.DatosDeUsuario;
 public class Principal extends JFrame {
 
 	JPanel contentPane;
-	@SuppressWarnings("unused")
-	private Usuario usuario;
 
 	public Principal(final Usuario user, final Sistema sistem) {
-		usuario = user;
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -70,11 +68,11 @@ public class Principal extends JFrame {
 			}
 		});
 		mnArchivo.add(mntmSalir);
-		
+
 		JMenu mnSistema = new JMenu("Sistema");
 		mnSistema.setFont(new Font("Arial", Font.PLAIN, 12));
 		menuBar.add(mnSistema);
-		
+
 		JMenuItem mntmDatosUsuarios = new JMenuItem("Datos de Usuarios");
 		mntmDatosUsuarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -84,7 +82,7 @@ public class Principal extends JFrame {
 		});
 		mntmDatosUsuarios.setFont(new Font("Arial", Font.PLAIN, 12));
 		mnSistema.add(mntmDatosUsuarios);
-		
+
 		JMenuItem mntmDatosTelefonos = new JMenuItem("Datos de Tel\u00E9fonos");
 		mntmDatosTelefonos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -94,8 +92,14 @@ public class Principal extends JFrame {
 		});
 		mntmDatosTelefonos.setFont(new Font("Arial", Font.PLAIN, 12));
 		mnSistema.add(mntmDatosTelefonos);
-		
+
 		JMenuItem mntmDatosLlamadas = new JMenuItem("Datos Llamadas");
+		mntmDatosLlamadas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DatosDeLlamada datos = new DatosDeLlamada(sistem);
+				datos.setVisible(true);
+			}
+		});
 		mntmDatosLlamadas.setFont(new Font("Arial", Font.PLAIN, 12));
 		mnSistema.add(mntmDatosLlamadas);
 
@@ -124,7 +128,7 @@ public class Principal extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				if(user.getTelefonosFijos().size() == 0)
 					throw new IllegalArgumentException("Usted no cuenta con un teléfono fijo");
-				
+
 				LLamador llamador = new LLamador(sistem, user, user.getTelefonosFijos().get(0));
 				llamador.setVisible(true);
 				llamador.setAlwaysOnTop(true);
@@ -156,8 +160,8 @@ public class Principal extends JFrame {
 		mntmLlamador.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(user.getTelefonosMoviles().size() == 0)
-					throw new IllegalArgumentException("Usted no cuenta con un teléfono fijo");
-				
+					throw new IllegalArgumentException("Usted no cuenta con un teléfono móvil");
+
 				LLamador llamador = new LLamador(sistem, user, user.getTelefonosMoviles().get(0));
 				llamador.setVisible(true);
 				llamador.setAlwaysOnTop(true);
@@ -184,7 +188,6 @@ public class Principal extends JFrame {
 		JMenuItem mntmCrearCuenta = new JMenuItem("Crear Cuenta");
 		mntmCrearCuenta.setFont(new Font("Arial", Font.PLAIN, 12));
 		mntmCrearCuenta.addActionListener(new ActionListener() {
-
 			public void actionPerformed(ActionEvent arg0) {
 				CrearCuenta cuentaNueva = new CrearCuenta(sistem);
 				cuentaNueva.setVisible(true);
@@ -222,10 +225,11 @@ public class Principal extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblTipoDeCuenta = new JLabel("Bienvenido " + user.getUserName());
+		JLabel lblTipoDeCuenta = new JLabel("Bienvenido: " + user.getNombre());
 		lblTipoDeCuenta.setForeground(Color.WHITE);
 		lblTipoDeCuenta.setFont(new Font("Microsoft Sans Serif", Font.BOLD, 35));
 		lblTipoDeCuenta.setBounds(10, 0, 440, 49);
 		contentPane.add(lblTipoDeCuenta);
 	}
+
 }

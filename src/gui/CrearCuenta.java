@@ -137,20 +137,17 @@ public class CrearCuenta extends JDialog {
 						@SuppressWarnings("deprecation")
 						String password2 = passwordField_1.getText();
 
-						if( !password1.equals(password2) ){
+						if(!password1.equals(password2))
 							throw new IllegalArgumentException("Las contraseñas no coinciden");
-						}
 
-						if( sistem.getUsuario(userName) != null ) {
-							throw new IllegalArgumentException("El usuario ya está creado, inicie sesión");
-						}
+						if(sistem.getUsuario(userName) != null) 
+							throw new IllegalArgumentException("El nombre de usuario ya está tomado");						
 
-						if(!Utils.validarNombreUsuario(userName)){
+						if(!Utils.validarNombreUsuario(userName))
 							throw new IllegalArgumentException("Nombre de usuario no válido");
-						}
-						if(!Utils.validarNombreUsuario(password1)){
-							throw new IllegalArgumentException("Contraseña de usuario no válida");
-						}
+
+						if(!Utils.validarNombreUsuario(password1))
+							throw new IllegalArgumentException("Contraseña no válida");						
 
 						if(rdbtnPersonaNatural.isSelected()){
 							CrearPersonaNatural datosPersonaNatural = new CrearPersonaNatural(userName, password1, sistem);
@@ -190,4 +187,5 @@ public class CrearCuenta extends JDialog {
 			}
 		}
 	}
+
 }

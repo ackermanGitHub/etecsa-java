@@ -10,9 +10,9 @@ import logic.Usuario;
 
 @SuppressWarnings("serial")
 public class UsuarioTableModel extends DefaultTableModel{
+
 	public UsuarioTableModel(Sistema sistem){
-		String[] columnNames = {
-				"Tipo", "Nombre", "Municipio", "Provincia"};
+		String[] columnNames = {"Tipo", "Nombre", "Municipio", "Provincia"};
 		this.setColumnIdentifiers(columnNames);
 		String tipo = "Undefined";
 		for (int i = 0; i < sistem.getListaDeUsuarios().size(); i++) {
@@ -27,4 +27,5 @@ public class UsuarioTableModel extends DefaultTableModel{
 			addRow(newRow);
 		}
 	}
+
 }

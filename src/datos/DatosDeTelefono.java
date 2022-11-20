@@ -10,10 +10,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-
-
 import logic.Sistema;
-//import java.util.ArrayList;
 
 @SuppressWarnings("serial")
 public class DatosDeTelefono extends JFrame {
@@ -22,7 +19,7 @@ public class DatosDeTelefono extends JFrame {
 	private JTable table;
 	private TelefonoTableModel tableModel;
 	private JMenuBar menuBar;
-	
+
 	public DatosDeTelefono(Sistema sistem) {
 		setBounds(100, 100, 524, 350);
 		contentPane = new JPanel();
@@ -36,7 +33,6 @@ public class DatosDeTelefono extends JFrame {
 		menuBar.setBounds(0, 0, 528, 24);
 		contentPane.add(menuBar);
 
-
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 35, 488, 264);
 		contentPane.add(scrollPane);
@@ -45,7 +41,6 @@ public class DatosDeTelefono extends JFrame {
 		tableModel = new TelefonoTableModel(sistem);
 		table.setModel(tableModel);
 		scrollPane.setViewportView(table);
-		
 	}
 
 }

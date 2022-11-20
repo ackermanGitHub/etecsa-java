@@ -9,9 +9,9 @@ import logic.TelefonoMovil;
 
 @SuppressWarnings("serial")
 public class TelefonoTableModel extends DefaultTableModel{
+
 	public TelefonoTableModel(Sistema sistem){
-		String[] columnNames = {
-				"Tipo", "Numero", "Nombre"};
+		String[] columnNames = {"Tipo", "Numero", "Nombre"};
 		this.setColumnIdentifiers(columnNames);
 		String tipo = "Undefined";
 		for (int i = 0; i < sistem.getListaDeTelefonos().size(); i++) {
@@ -24,4 +24,5 @@ public class TelefonoTableModel extends DefaultTableModel{
 			addRow(newRow);
 		}
 	}
+
 }

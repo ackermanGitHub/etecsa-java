@@ -3,14 +3,15 @@ package logic;
 import java.util.ArrayList;
 
 public class FacturaMensual {
-	private double tarifaFija;
+
+	private double tarifaFija = 10;
 	private ArrayList<Llamada> llamadas = new ArrayList<Llamada>();
 	private double atrasoDePago;
 
-	public FacturaMensual(double tarifaFija) {
-		this.tarifaFija = tarifaFija;
+	public FacturaMensual(double atrasoDePago) {
+		this.atrasoDePago = atrasoDePago;
 	}
-	
+
 	public double montoLocal(){
 		double monto = 0;
 		return monto;
@@ -23,7 +24,7 @@ public class FacturaMensual {
 		double monto = 0;
 		return monto;
 	}
-	
+
 	public ArrayList<Llamada> getLlamadas() {
 		return llamadas;
 	}
@@ -37,4 +38,5 @@ public class FacturaMensual {
 	public void setAtrasoDePago(double atrasoDePago) {
 		this.atrasoDePago = atrasoDePago;
 	}
+
 }

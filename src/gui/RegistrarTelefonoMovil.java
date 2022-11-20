@@ -66,4 +66,5 @@ public class RegistrarTelefonoMovil extends JFrame {
 		btnCancel.setBounds(333, 125, 80, 25);
 		contentPane.add(btnCancel);
 	}
+
 }

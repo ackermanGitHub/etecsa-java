@@ -48,7 +48,7 @@ public class RegistrarTelefonoFijo extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String numero = txtNumeroTelefono.getText();
 				TelefonoFijo nuevoFijo = new TelefonoFijo(numero, usuario);
-				usuario.addTelefonoFijo(nuevoFijo);
+				usuario.addTelefonoFijo(sistem, nuevoFijo);
 				sistem.addTelefono(nuevoFijo);
 				dispose();
 			}
@@ -67,4 +67,5 @@ public class RegistrarTelefonoFijo extends JFrame {
 		btnCancel.setBounds(333, 125, 80, 25);
 		contentPane.add(btnCancel);
 	}
+
 }

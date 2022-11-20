@@ -84,4 +84,5 @@ public class AcercaDe extends JFrame {
 		lblG.setBounds(204, 81, 46, 23);
 		contentPane.add(lblG);
 	}
+
 }

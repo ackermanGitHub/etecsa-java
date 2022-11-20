@@ -184,4 +184,5 @@ public class CrearEntidadNoEstatal extends JDialog {
 			}
 		}
 	}
+
 }

@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import logic.Llamada;
 import logic.Sistema;
 import logic.Telefono;
 import logic.TelefonoFijo;
@@ -23,6 +24,8 @@ import logic.Usuario;
 public class LlamadaEnProceso extends JFrame {
 
 	private JPanel contentPane;
+	private double duracion = 1;
+
 	public LlamadaEnProceso(final Sistema sistem, final Usuario usuario, final Telefono telefono, final String numero) {
 		setTitle("Llamada en Proceso");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -31,6 +34,8 @@ public class LlamadaEnProceso extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+
+		setLocationRelativeTo(null);
 
 		JLabel lblNumero = new JLabel("Numero:");
 		lblNumero.setFont(new Font("Arial", Font.PLAIN, 13));
@@ -69,40 +74,39 @@ public class LlamadaEnProceso extends JFrame {
 		lblDuracionLlamada.setBounds(154, 127, 80, 25);
 		contentPane.add(lblDuracionLlamada);
 
-		JLabel lblUsuarioCargado = new JLabel();
-		if(telefono instanceof TelefonoMovil){
-			lblUsuarioCargado.setText("true");
-		} else if(telefono instanceof TelefonoFijo){
-			if(sistem.getTelefono(numero) instanceof TelefonoMovil){
-				lblUsuarioCargado.setText("false");
-			} else if(sistem.getTelefono(numero) instanceof TelefonoFijo){
-				lblUsuarioCargado.setText("true");
-			}
-		}
+		String cargada = "true";
+		if(telefono instanceof TelefonoFijo && sistem.getTelefono(numero) instanceof TelefonoMovil)
+			cargada = "false";
+		final JLabel lblUsuarioCargado = new JLabel(cargada);
 		lblUsuarioCargado.setFont(new Font("Arial", Font.PLAIN, 13));
 		lblUsuarioCargado.setBounds(154, 163, 80, 25);
 		contentPane.add(lblUsuarioCargado);
 
 		final Timer timer = new Timer(1000, new ActionListener(){
-			int tiempo = 1;
 			public void actionPerformed(ActionEvent e) {
-				String strTiempo = String.valueOf(tiempo);
+				String strTiempo = String.valueOf(duracion);
 				lblDuracionLlamada.setText(strTiempo);
-				tiempo++;
+				duracion++;
 			}
 		});
-
 		timer.start();
 
 		JButton btnOk = new JButton("OK");
 		btnOk.setFont(new Font("Microsoft Sans Serif", Font.PLAIN, 12));
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				timer.stop();
+				timer.stop();				
+				Llamada llamada = new Llamada(numero, duracion, sistem.getTelefono(numero).getUsuario().getProvincia());
+				if(lblUsuarioCargado.getText().equals("true")){
+					telefono.addLlamada(llamada);
+				} else {
+					sistem.getTelefono(numero).addLlamada(llamada);
+				}
 				dispose();
 			}
 		});
 		btnOk.setBounds(145, 227, 89, 23);
 		contentPane.add(btnOk);
 	}
+
 }

@@ -210,4 +210,5 @@ public class CrearPersonaJuridica extends JDialog {
 			}
 		}
 	}
+	
 }

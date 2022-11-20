@@ -43,10 +43,11 @@ public class Representante {
 	}
 
 	public Representante(String nombre, String apellido1, String apellido2, String ID, Boolean firmaAutorizo) {
-		this.nombre = nombre;
-		this.apellido1 = apellido1;
-		this.apellido2 = apellido2;
-		this.ID = ID;
-		this.firmaAutorizo = firmaAutorizo;
+		this.setNombre(nombre);;
+		this.setApellido1(apellido1);;
+		this.setApellido2(apellido2);;
+		this.setID(ID);;
+		this.setFirmaAutorizo(firmaAutorizo);;
 	}
+	
 }
