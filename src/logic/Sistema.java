@@ -2,6 +2,8 @@ package logic;
 
 import java.util.ArrayList;
 
+import auxiliar.Utils;
+
 public class Sistema {
 	
 	private ArrayList<Usuario> listaDeUsuario = new ArrayList<Usuario>();
@@ -28,7 +30,7 @@ public class Sistema {
 		if(resultado == null)
 			this.listaDeUsuario.add(usuario);
 		else
-			throw new IllegalArgumentException("El usuario introducido ya existe, inicie sesión");
+			Utils.launchError("El usuario ya existe");
 	}
 	public ArrayList<Usuario> getListaDeUsuarios(){
 		return this.listaDeUsuario;
@@ -55,7 +57,7 @@ public class Sistema {
 		if(resultado == null)
 			this.listaDeTelefonos.add(telefono);
 		else
-			throw new IllegalArgumentException("El télefono introducido ya existe");
+			Utils.launchError("El télefono ya existe");
 	}
 	public ArrayList<Telefono> getListaDeTelefonos(){
 		return this.listaDeTelefonos;

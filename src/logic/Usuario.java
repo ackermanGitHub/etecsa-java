@@ -53,55 +53,50 @@ public abstract class Usuario {
 		return this.userName;
 	}
 	public void setUserName(String userName) {
-		if(!Utils.validarNombre(userName)){
-			throw new IllegalArgumentException("El nombre de usuario no es válido");
-		} else {
+		if(!Utils.validarNombre(userName))
+			Utils.launchError("El nombre de usuario no es válido");
+		else
 			this.userName = userName;			
-		}
 	}
 
 	public String getPassword() {
 		return this.password;
 	}
 	public void setPassword(String password) {
-		if(!Utils.validarNombre(password)){
-			throw new IllegalArgumentException("La contraseña no es válida");
-		} else {
+		if(!Utils.validarNombre(password))
+			Utils.launchError("La contraseña no es válida");
+		else
 			this.password = password;
-		}
 	}
 
 	public String getNombre() {
 		return nombre;
 	}
 	public void setNombre(String nombre) {
-		if(!Utils.validarNombre(nombre)){
-			throw new IllegalArgumentException("El nombre no es válido");
-		} else {
+		if(!Utils.validarNombre(nombre))
+			Utils.launchError("El nombre no es válido");
+		else 
 			this.nombre = nombre;
-		}
 	}
 	
 	public String getMunicipio() {
 		return municipio;
 	}
 	public void setMunicipio(String municipio) {
-		if(!Utils.validarNombre(municipio)){
-			throw new IllegalArgumentException("El municipio no es válido");
-		} else {
+		if(!Utils.validarNombre(municipio))
+			Utils.launchError("El municipio no es válido");
+		else 
 			this.municipio = municipio;
-		}
 	}
 
 	public String getProvincia() {
 		return provincia;
 	}
 	public void setProvincia(String provincia) {
-		if(!Utils.validarNombre(provincia)){
-			throw new IllegalArgumentException("La provincia no es válida");
-		} else {
+		if(!Utils.validarNombre(provincia))
+			Utils.launchError("La provincia no es válida");
+		else 
 			this.provincia = provincia;
-		}
 	}
 
 	public String getDireccionPostal() {

@@ -28,6 +28,8 @@ public class DatosDeTelefono extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
+		setLocationRelativeTo(null);
+		
 		menuBar = new JMenuBar();
 		menuBar.setBackground(Color.LIGHT_GRAY);
 		menuBar.setBounds(0, 0, 528, 24);

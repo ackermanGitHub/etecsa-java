@@ -3,8 +3,8 @@ package logic;
 import java.util.ArrayList;
 
 public class TelefonoMovil extends Telefono{
-	private String numero;
-	private ArrayList<FacturaMensual> facturas = new ArrayList<FacturaMensual>();
+	
+	private ArrayList<Llamada> llamadas = new ArrayList<Llamada>();
 
 	public TelefonoMovil(String numero, Usuario usuario) {
 		super(numero, usuario);
@@ -15,6 +15,13 @@ public class TelefonoMovil extends Telefono{
 	}
 	public void setNumero(String numero) {
 		this.numero = numero;
+	}
+	
+	public void addLlamada(Llamada llamada){
+		this.llamadas.add(llamada);
+	}
+	public ArrayList<Llamada> getLlamadas(){
+		return this.llamadas;
 	}
 
 }

@@ -130,7 +130,8 @@ public class CrearCuenta extends JDialog {
 				okButton.setFont(new Font("Arial", Font.BOLD, 14));
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
-
+						
+						String errorMessage = null;
 						String userName = userNameField.getText();
 						@SuppressWarnings("deprecation")
 						String password1 = passwordField.getText();
@@ -138,17 +139,21 @@ public class CrearCuenta extends JDialog {
 						String password2 = passwordField_1.getText();
 
 						if(!password1.equals(password2))
-							throw new IllegalArgumentException("Las contraseñas no coinciden");
+							errorMessage = "Las contraseñas no coinciden";
 
 						if(sistem.getUsuario(userName) != null) 
-							throw new IllegalArgumentException("El nombre de usuario ya está tomado");						
+							errorMessage = "El nombre de usuario ya está tomado";						
 
 						if(!Utils.validarNombreUsuario(userName))
-							throw new IllegalArgumentException("Nombre de usuario no válido");
+							errorMessage = "El nombre de usuario no es válido";
 
 						if(!Utils.validarNombreUsuario(password1))
-							throw new IllegalArgumentException("Contraseña no válida");						
+							errorMessage = "La contraseña no es válida";						
 
+						if(errorMessage != null){
+							Utils.launchError(errorMessage);
+						}
+						
 						if(rdbtnPersonaNatural.isSelected()){
 							CrearPersonaNatural datosPersonaNatural = new CrearPersonaNatural(userName, password1, sistem);
 							datosPersonaNatural.setVisible(true);
@@ -165,7 +170,8 @@ public class CrearCuenta extends JDialog {
 							datosEntidadNoEstatal.setAlwaysOnTop(true);
 							dispose();
 						} else {
-							throw new IllegalArgumentException("El usuario no ha seleccionado un tipo de cuenta");
+							errorMessage = "Seleccione un tipo de cuenta";
+							Utils.launchError(errorMessage);
 						}
 						dispose();
 					}

@@ -21,6 +21,7 @@ import java.awt.Color;
 
 import javax.swing.JLabel;
 
+import auxiliar.Utils;
 import datos.DatosDeLlamada;
 import datos.DatosDeTelefono;
 import datos.DatosDeUsuario;
@@ -126,9 +127,9 @@ public class Principal extends JFrame {
 		JMenuItem mntmLlamador1 = new JMenuItem("Llamador");
 		mntmLlamador1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(user.getTelefonosFijos().size() == 0)
-					throw new IllegalArgumentException("Usted no cuenta con un teléfono fijo");
-
+				if(user.getTelefonosFijos().size() == 0){
+					Utils.launchError("Usted no cuenta con un teléfono fijo");
+				}
 				LLamador llamador = new LLamador(sistem, user, user.getTelefonosFijos().get(0));
 				llamador.setVisible(true);
 				llamador.setAlwaysOnTop(true);
@@ -160,8 +161,8 @@ public class Principal extends JFrame {
 		mntmLlamador.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(user.getTelefonosMoviles().size() == 0)
-					throw new IllegalArgumentException("Usted no cuenta con un teléfono móvil");
-
+					Utils.launchError("Usted no cuenta con un teléfono móvil");
+				
 				LLamador llamador = new LLamador(sistem, user, user.getTelefonosMoviles().get(0));
 				llamador.setVisible(true);
 				llamador.setAlwaysOnTop(true);

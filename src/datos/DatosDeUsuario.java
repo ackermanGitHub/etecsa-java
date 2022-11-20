@@ -27,6 +27,8 @@ public class DatosDeUsuario extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		setLocationRelativeTo(null);
 
 		menuBar = new JMenuBar();
 		menuBar.setBackground(Color.LIGHT_GRAY);

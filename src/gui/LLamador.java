@@ -10,6 +10,8 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JTextField;
 
+import auxiliar.Utils;
+
 import java.awt.Font;
 
 import logic.Sistema;
@@ -167,7 +169,7 @@ public class LLamador extends JFrame {
 
 				Telefono telefonoLlamado = sistema.getTelefono(numero);
 				if(telefonoLlamado == null)
-					throw new IllegalArgumentException("El telefono llamado no se encuentra registrado en el sistema");
+					Utils.launchError("El telefono llamado no se encuentra registrado en el sistema");
 
 				LlamadaEnProceso llamadaEnProceso = new LlamadaEnProceso(sistema, usuario, telefono, numero);
 				llamadaEnProceso.setVisible(true);

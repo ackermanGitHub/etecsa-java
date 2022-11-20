@@ -1,5 +1,7 @@
 package logic;
 
+import auxiliar.Utils;
+
 public class PersonaNatural extends Usuario{
 	private String apellido1;
 	private String apellido2;
@@ -10,13 +12,13 @@ public class PersonaNatural extends Usuario{
 		if(telefonosMoviles.size() < 2)
 			this.telefonosMoviles.add(telefonoMovil);
 		else 
-			throw new IllegalArgumentException("Las personas naturales solo pueden tener 2 teléfonos móviles");
+			Utils.launchError("Las personas naturales solo pueden tener 2 teléfonos móviles");
 	}
 	public void addTelefonoFijo(TelefonoFijo telefonoFijo) {
 		if(telefonosFijos.size() == 0)
 			this.telefonosFijos.add(telefonoFijo);
 		else 
-			throw new IllegalArgumentException("Las personas naturales solo pueden tener 1 teléfono fijo");
+			Utils.launchError("Las personas naturales solo pueden tener 1 teléfono fijo");
 	}
 
 	public String getApellido1() {

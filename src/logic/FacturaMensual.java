@@ -13,16 +13,16 @@ public class FacturaMensual {
 	}
 
 	public double montoLocal(){
-		double monto = 0;
+		double monto = this.tarifaFija;
 		return monto;
 	}
 	public double montoLargaDistancia(){
-		double monto = 0;
+		double monto = this.tarifaFija;
 		return monto;
 	}
 	public double totalPagar(){
-		double monto = 0;
-		return monto;
+		double total = this.montoLargaDistancia() + this.montoLocal();
+		return total;
 	}
 
 	public ArrayList<Llamada> getLlamadas() {
