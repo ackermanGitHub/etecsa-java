@@ -11,17 +11,10 @@ public class Sistema {
 
 	public Usuario getUsuario(String userName){
 		Usuario resultado = null;
-		boolean encontrado = false;
-		int i = 0;
-		if(listaDeUsuario.size() > 0){
-			do{
-				String name = this.listaDeUsuario.get(i).getUserName();
-				if(name.equals(userName)){ 
-					resultado = this.listaDeUsuario.get(i);
-					encontrado = true;
-				}
-				i++;
-			}while (!encontrado && i < this.listaDeUsuario.size());
+		for(Usuario user : this.getListaDeUsuarios()){
+			if(user.getNombre().equals(userName)){
+				resultado = user;
+			}
 		}
 		return resultado;
 	}
@@ -38,17 +31,9 @@ public class Sistema {
 
 	public Telefono getTelefono(String numero){
 		Telefono resultado = null;
-		boolean encontrado = false;
-		int i = 0;
-		if(this.listaDeTelefonos.size() > 0){
-			do{
-				String num = this.listaDeTelefonos.get(i).getNumero();
-				if(num.equals(numero)){ 
-					resultado = this.listaDeTelefonos.get(i);
-					encontrado = true;
-				}
-				i++;
-			}while (!encontrado && i < this.listaDeTelefonos.size());
+		for(Telefono telefono : this.getListaDeTelefonos()){
+			if(telefono.getNumero().equals(numero))
+				resultado = telefono;
 		}
 		return resultado;
 	}
@@ -67,7 +52,7 @@ public class Sistema {
 		ArrayList<Llamada> result = new ArrayList<Llamada>();
 		for(Telefono telefono : this.getListaDeTelefonos()){
 			if(telefono.getLlamadas() != null)
-			result.addAll(telefono.getLlamadas());
+				result.addAll(telefono.getLlamadas());
 		}
 		return result;
 	}
