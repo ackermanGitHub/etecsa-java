@@ -9,6 +9,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -23,6 +24,7 @@ public class RegistrarTelefonoFijo extends JFrame {
 	private JTextField txtNumeroTelefono;
 
 	public RegistrarTelefonoFijo(final Sistema sistem, final Usuario usuario) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/images/favicon.png")));
 		setTitle("Registrar Nuevo Telefono");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 200);
@@ -30,6 +32,8 @@ public class RegistrarTelefonoFijo extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		setLocationRelativeTo(null);
 
 		txtNumeroTelefono = new JTextField();
 		txtNumeroTelefono.setFont(new Font("Microsoft Sans Serif", Font.PLAIN, 13));
@@ -49,7 +53,6 @@ public class RegistrarTelefonoFijo extends JFrame {
 				String numero = txtNumeroTelefono.getText();
 				TelefonoFijo nuevoFijo = new TelefonoFijo(numero, usuario);
 				usuario.addTelefonoFijo(sistem, nuevoFijo);
-				sistem.addTelefono(nuevoFijo);
 				dispose();
 			}
 		});
@@ -66,6 +69,7 @@ public class RegistrarTelefonoFijo extends JFrame {
 		btnCancel.setFont(new Font("Arial", Font.PLAIN, 12));
 		btnCancel.setBounds(333, 125, 80, 25);
 		contentPane.add(btnCancel);
+
 	}
 
 }

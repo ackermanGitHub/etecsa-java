@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.Toolkit;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -37,8 +38,8 @@ public class CrearCuenta extends JDialog {
 	private JRadioButton rdbtnEntidadNoEstatal;
 
 	public CrearCuenta(final Sistema sistem) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/images/favicon.png")));
 		setFont(new Font("Dialog", Font.PLAIN, 12));
-
 		setTitle("Cuenta Nueva");
 		setBounds(100, 100, 430, 328);
 		getContentPane().setLayout(new BorderLayout());

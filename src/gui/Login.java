@@ -23,6 +23,7 @@ import javax.swing.border.CompoundBorder;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Toolkit;
 
 @SuppressWarnings("serial")
 public class Login extends JFrame {
@@ -32,6 +33,7 @@ public class Login extends JFrame {
 	private JPasswordField userPassword;
 
 	public Login(final Sistema sistem) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/images/favicon.png")));
 		setForeground(Color.WHITE);
 		setFont(new Font("Dialog", Font.PLAIN, 12));
 		setBackground(Color.WHITE);
@@ -89,7 +91,8 @@ public class Login extends JFrame {
 		btnIniciarSecion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				Usuario usuario = sistem.getUsuario(userName.getText());
+				@SuppressWarnings("deprecation")
+				Usuario usuario = sistem.checkUsuario(userName.getText(), userPassword.getText());
 
 				if(usuario != null){
 					Principal p = new Principal(usuario, sistem);

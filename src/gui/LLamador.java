@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 import auxiliar.Utils;
 
 import java.awt.Font;
+import java.awt.Toolkit;
 
 import logic.Sistema;
 import logic.Telefono;
@@ -25,6 +26,7 @@ public class LLamador extends JFrame {
 	private JTextField txtTelefono;
 
 	public LLamador(final Sistema sistema, final Usuario usuario, final Telefono telefono) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/images/favicon.png")));
 		setTitle("Llamador");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 277, 407);
@@ -170,8 +172,11 @@ public class LLamador extends JFrame {
 				Telefono telefonoLlamado = sistema.getTelefono(numero);
 				if(telefonoLlamado == null)
 					Utils.launchError("El telefono llamado no se encuentra registrado en el sistema");
+				if(telefonoLlamado.getUsuario() == usuario)
+					Utils.launchError("No te puedes llamar a ti mismo");
 
 				LlamadaEnProceso llamadaEnProceso = new LlamadaEnProceso(sistema, usuario, telefono, numero);
+				
 				llamadaEnProceso.setVisible(true);
 				llamadaEnProceso.setAlwaysOnTop(true);
 				txtTelefono.setText("");

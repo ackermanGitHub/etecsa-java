@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.Toolkit;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -34,6 +35,7 @@ public class CrearEntidadNoEstatal extends JDialog {
 	private JTextField txtProvincia;
 
 	public CrearEntidadNoEstatal(final String userName, final String password, final Sistema sistem) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/images/favicon.png")));
 		setTitle("Creando Cuenta de Entidad no Estatal");
 		setBounds(100, 100, 401, 449);
 		getContentPane().setLayout(new BorderLayout());

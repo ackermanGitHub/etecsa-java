@@ -26,12 +26,12 @@ public abstract class Telefono {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
-	public void addLlamada(Llamada llamada){
-		this.llamadas.add(llamada);
+
+	public ArrayList<Llamada> getLlamadas() {
+		return llamadas;
 	}
-	public ArrayList<Llamada> getLlamadas(){
-		return this.llamadas;
+	public void addLlamada(Llamada llamada) {
+		this.llamadas.add(llamada);
 	}
 	
 }

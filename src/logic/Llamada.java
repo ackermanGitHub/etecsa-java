@@ -1,35 +1,29 @@
 package logic;
 
 public class Llamada {
-	private String numero;
+	private String numeroLlamado;
 	private double duracion;
 	private String provinciaLlamada;
+	private boolean largaDistancia;
 
-	public Llamada(String numero, double duracion, String provinciaLlamada) {
-		this.setNumero(numero);
-		this.setDuracion(duracion);
-		this.setProvinciaLlamada(provinciaLlamada);
+	public Llamada(String numero, double duracion, String provinciaLlamada, boolean largaDistancia) {
+		this.numeroLlamado = numero;
+		this.duracion = duracion;
+		this.provinciaLlamada = provinciaLlamada;
+		this.largaDistancia = largaDistancia;
 	}
 
 	public String getNumero() {
-		return numero;
+		return numeroLlamado;
 	}
-	public void setNumero(String numero) {
-		this.numero = numero;
-	}
-
 	public double getDuracion() {
 		return duracion;
 	}
-	public void setDuracion(double duracion) {
-		this.duracion = duracion;
-	}
-
 	public String getProvinciaLlamada() {
 		return provinciaLlamada;
 	}
-	public void setProvinciaLlamada(String provinciaLlamada) {
-		this.provinciaLlamada = provinciaLlamada;
+	public boolean isLargaDistancia() {
+		return largaDistancia;
 	}
-
+	
 }

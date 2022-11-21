@@ -1,10 +1,13 @@
 package datos;
 
+import gui.Login;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import java.awt.Color;
+import java.awt.Toolkit;
 
 import javax.swing.JMenuBar;
 import javax.swing.JScrollPane;
@@ -21,6 +24,8 @@ public class DatosDeUsuario extends JFrame {
 	private JMenuBar menuBar;
 
 	public DatosDeUsuario(Sistema sistem) {
+		setTitle("Datos Usuarios");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/images/favicon.png")));
 		setBounds(100, 100, 524, 350);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);

@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import java.awt.Toolkit;
 
 @SuppressWarnings("serial")
 public class AcercaDe extends JFrame {
@@ -17,6 +18,7 @@ public class AcercaDe extends JFrame {
 	private JPanel contentPane;
 
 	public AcercaDe() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/images/favicon.png")));
 		setFont(new Font("Dialog", Font.PLAIN, 12));
 		setTitle("Acerca de");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

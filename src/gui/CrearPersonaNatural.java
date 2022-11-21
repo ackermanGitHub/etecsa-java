@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.Toolkit;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -32,6 +33,7 @@ public class CrearPersonaNatural extends JDialog {
 	private JTextField txtProvincia;
 
 	public CrearPersonaNatural(final String userName, final String password, final Sistema sistem) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/images/favicon.png")));
 		setTitle("Creando Cuenta de Persona Natural");
 		setBounds(100, 100, 376, 354);
 		getContentPane().setLayout(new BorderLayout());

@@ -9,10 +9,19 @@ public class Sistema {
 	private ArrayList<Usuario> listaDeUsuario = new ArrayList<Usuario>();
 	private ArrayList<Telefono> listaDeTelefonos = new ArrayList<Telefono>();
 
+	public Usuario checkUsuario(String userName, String password){
+		Usuario resultado = null;
+		for(Usuario user : this.getListaDeUsuarios()){
+			if(user.getUserName().equals(userName) && user.getPassword().equals(password)){
+				resultado = user;
+			}
+		}
+		return resultado;
+	}
 	public Usuario getUsuario(String userName){
 		Usuario resultado = null;
 		for(Usuario user : this.getListaDeUsuarios()){
-			if(user.getNombre().equals(userName)){
+			if(user.getUserName().equals(userName)){
 				resultado = user;
 			}
 		}
@@ -24,6 +33,13 @@ public class Sistema {
 			this.listaDeUsuario.add(usuario);
 		else
 			Utils.launchError("El usuario ya existe");
+	}
+	public void removeUsuario(Usuario usuario) {
+		Usuario resultado = this.getUsuario(usuario.getUserName());
+		if(resultado != null)
+			this.listaDeUsuario.remove(usuario);
+		else
+			Utils.launchError("El usuario no existe");
 	}
 	public ArrayList<Usuario> getListaDeUsuarios(){
 		return this.listaDeUsuario;

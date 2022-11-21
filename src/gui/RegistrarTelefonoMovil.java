@@ -9,6 +9,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -23,6 +24,7 @@ public class RegistrarTelefonoMovil extends JFrame {
 	private JTextField txtNumeroTelefono;
 
 	public RegistrarTelefonoMovil(final Sistema sistem, final Usuario usuario) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/images/favicon.png")));
 		setTitle("Registrar Nuevo Telefono");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 200);
@@ -30,6 +32,8 @@ public class RegistrarTelefonoMovil extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		setLocationRelativeTo(null);
 
 		txtNumeroTelefono = new JTextField();
 		txtNumeroTelefono.setFont(new Font("Microsoft Sans Serif", Font.PLAIN, 13));

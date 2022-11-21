@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.Toolkit;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -36,6 +37,7 @@ public class CrearPersonaJuridica extends JDialog {
 	private JTextField txtID;
 
 	public CrearPersonaJuridica(final String userName, final String password, final Sistema sistem) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/images/favicon.png")));
 		setTitle("Creando Cuenta de Persona Jurídica");
 		setBounds(100, 100, 432, 489);
 		getContentPane().setLayout(new BorderLayout());

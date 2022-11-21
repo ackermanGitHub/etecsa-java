@@ -30,11 +30,13 @@ import datos.DatosDeUsuario;
 public class Principal extends JFrame {
 
 	JPanel contentPane;
+	Usuario usuario;
 
 	public Principal(final Usuario user, final Sistema sistem) {
+		usuario = user;
 
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/images/favicon.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
 		setTitle("Sistema ETECSA");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -87,7 +89,7 @@ public class Principal extends JFrame {
 		JMenuItem mntmDatosTelefonos = new JMenuItem("Datos de Tel\u00E9fonos");
 		mntmDatosTelefonos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DatosDeTelefono datos = new DatosDeTelefono(sistem);
+				DatosDeTelefono datos = new DatosDeTelefono(sistem.getListaDeTelefonos());
 				datos.setVisible(true);
 			}
 		});
@@ -186,18 +188,13 @@ public class Principal extends JFrame {
 		mnOpciones.setFont(new Font("Arial", Font.PLAIN, 12));
 		menuBar.add(mnOpciones);
 
-		JMenuItem mntmCrearCuenta = new JMenuItem("Crear Cuenta");
-		mntmCrearCuenta.setFont(new Font("Arial", Font.PLAIN, 12));
-		mntmCrearCuenta.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				CrearCuenta cuentaNueva = new CrearCuenta(sistem);
-				cuentaNueva.setVisible(true);
-				cuentaNueva.setAlwaysOnTop(true);
+		JMenuItem mntmBorrarCuenta = new JMenuItem("Borrar Cuenta");
+		mntmBorrarCuenta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				sistem.removeUsuario(user);
+				dispose();
 			}
 		});
-		mnOpciones.add(mntmCrearCuenta);
-
-		JMenuItem mntmBorrarCuenta = new JMenuItem("Borrar Cuenta");
 		mntmBorrarCuenta.setFont(new Font("Arial", Font.PLAIN, 12));
 		mnOpciones.add(mntmBorrarCuenta);
 
