@@ -21,7 +21,8 @@ import logic.Usuario;
 
 @SuppressWarnings("serial")
 public class LLamador extends JFrame {
-
+	
+	static private String ultimaLlamada = null;
 	private JPanel contentPane;
 	private JTextField txtTelefono;
 
@@ -170,15 +171,20 @@ public class LLamador extends JFrame {
 				String numero = txtTelefono.getText();
 
 				Telefono telefonoLlamado = sistema.getTelefono(numero);
-				if(telefonoLlamado == null)
+				if(numero.isEmpty() && ultimaLlamada == null)
+					Utils.launchError("No ha introducido ningún teléfono");
+				else if(numero.isEmpty() && ultimaLlamada != null)
+					txtTelefono.setText(ultimaLlamada);
+				else if(telefonoLlamado == null)
 					Utils.launchError("El telefono llamado no se encuentra registrado en el sistema");
-				if(sistema.getUsuarioPorTelefono(numero) == usuario)
+				else if(sistema.getUsuarioPorTelefono(numero) == usuario)
 					Utils.launchError("No te puedes llamar a ti mismo");
-				
-				LlamadaEnProceso llamadaEnProceso = new LlamadaEnProceso(sistema, usuario, telefono, numero);
-				
-				llamadaEnProceso.setVisible(true);
-				txtTelefono.setText("");
+				else {
+					LlamadaEnProceso llamadaEnProceso = new LlamadaEnProceso(sistema, usuario, telefono, numero);
+					ultimaLlamada = numero;
+					llamadaEnProceso.setVisible(true);
+					txtTelefono.setText("");					
+				}
 			}
 		});
 		btnLlamar.setFont(new Font("Arial", Font.PLAIN, 13));

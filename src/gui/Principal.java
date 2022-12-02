@@ -120,23 +120,6 @@ public class Principal extends JFrame {
 		mntmTelefoniaFija.setFont(new Font("Arial", Font.PLAIN, 12));
 		mnServicios.add(mntmTelefoniaFija);
 
-		JMenuItem mntmLlamador1 = new JMenuItem("Llamador");
-		mntmLlamador1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				if(user.getTelefonosFijos().size() == 0){
-					Utils.launchError("Usted no cuenta con un teléfono fijo");
-				}
-				LLamador llamador = new LLamador(sistem, user, user.getTelefonosFijos().get(0));
-				llamador.setVisible(true);
-			}
-		});
-
-		JMenuItem mntmFacturaTelefonica = new JMenuItem("Factura Telefonica");
-		mntmFacturaTelefonica.setFont(new Font("Arial", Font.PLAIN, 12));
-		mntmTelefoniaFija.add(mntmFacturaTelefonica);
-		mntmLlamador1.setFont(new Font("Arial", Font.PLAIN, 12));
-		mntmTelefoniaFija.add(mntmLlamador1);
-
 		JMenuItem mntmRegistrarNuevoTelefono = new JMenuItem("Registrar Nuevo Tel\u00E9fono");
 		mntmRegistrarNuevoTelefono.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -154,16 +137,19 @@ public class Principal extends JFrame {
 		JMenuItem mntmLlamador = new JMenuItem("Llamador");
 		mntmLlamador.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(user.getTelefonosMoviles().size() == 0)
-					Utils.launchError("Usted no cuenta con un teléfono móvil");
-				else {
+				if(user.getListaTelefonos().size() == 0)
+					Utils.launchError("Usted no cuenta con ningún teléfono");
+				else if(user.getListaTelefonos().size() == 1) {
+					LLamador llamador = new LLamador(sistem, user, user.getTelefonosMoviles().get(0));
+					llamador.setVisible(true);
+				} else {
 					SeleccionarTelefono telefono = new SeleccionarTelefono(sistem, user);
 					telefono.setVisible(true);
 				}
 			}
 		});
 		mntmLlamador.setFont(new Font("Arial", Font.PLAIN, 12));
-		mntmTelefoniaMovil.add(mntmLlamador);
+		mnServicios.add(mntmLlamador);
 
 		JMenuItem mntmRegistrarNuevoMovil = new JMenuItem("Registrar Nuevo M\u00F3vil");
 		mntmRegistrarNuevoMovil.addActionListener(new ActionListener() {
