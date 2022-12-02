@@ -157,10 +157,8 @@ public class Principal extends JFrame {
 				if(user.getTelefonosMoviles().size() == 0)
 					Utils.launchError("Usted no cuenta con un teléfono móvil");
 				else {
-					SeleccionarTelefono telefono = new SeleccionarTelefono(user.getTelefonosMoviles());
+					SeleccionarTelefono telefono = new SeleccionarTelefono(sistem, user);
 					telefono.setVisible(true);
-					LLamador llamador = new LLamador(sistem, user, user.getTelefonosMoviles().get(SeleccionarTelefono.pos));
-					llamador.setVisible(true);
 				}
 			}
 		});
