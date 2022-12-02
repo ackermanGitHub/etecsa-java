@@ -5,12 +5,15 @@ public class Llamada {
 	private double duracion;
 	private String provinciaLlamada;
 	private boolean largaDistancia;
+	private boolean saliente;
 
-	public Llamada(String numero, double duracion, String provinciaLlamada, boolean largaDistancia) {
+	public Llamada(String numero, double duracion, String provinciaLlamada, boolean largaDistancia, boolean saliente) {
+		// paraDespues: validar el número
 		this.numeroLlamado = numero;
 		this.duracion = duracion;
 		this.provinciaLlamada = provinciaLlamada;
 		this.largaDistancia = largaDistancia;
+		this.saliente = saliente;
 	}
 
 	public String getNumero() {
@@ -24,6 +27,9 @@ public class Llamada {
 	}
 	public boolean isLargaDistancia() {
 		return largaDistancia;
+	}
+	public boolean isSaliente() {
+		return saliente;
 	}
 	
 }

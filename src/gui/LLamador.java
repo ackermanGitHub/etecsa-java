@@ -28,14 +28,14 @@ public class LLamador extends JFrame {
 	public LLamador(final Sistema sistema, final Usuario usuario, final Telefono telefono) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/images/favicon.png")));
 		setTitle("Llamador");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 277, 407);
+		setBounds(100, 100, 260, 407);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		setLocationRelativeTo(null);
+		setResizable(false);
 
 		txtTelefono = new JTextField();
 		txtTelefono.setFont(new Font("Arial", Font.BOLD, 14));
@@ -44,7 +44,7 @@ public class LLamador extends JFrame {
 		txtTelefono.setColumns(10);
 
 		JButton button_1 = new JButton("1");
-		button_1.setFont(new Font("Arial", Font.PLAIN, 12));
+		button_1.setFont(new Font("Arial", Font.PLAIN, 13));
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				txtTelefono.setText(txtTelefono.getText() + "1");
@@ -59,12 +59,12 @@ public class LLamador extends JFrame {
 				txtTelefono.setText(txtTelefono.getText() + "2");
 			}
 		});
-		button_2.setFont(new Font("Arial", Font.PLAIN, 12));
+		button_2.setFont(new Font("Arial", Font.PLAIN, 13));
 		button_2.setBounds(104, 100, 50, 40);
 		contentPane.add(button_2);
 
 		JButton button_3 = new JButton("3");
-		button_3.setFont(new Font("Arial", Font.PLAIN, 12));
+		button_3.setFont(new Font("Arial", Font.PLAIN, 13));
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				txtTelefono.setText(txtTelefono.getText() + "3");
@@ -74,7 +74,7 @@ public class LLamador extends JFrame {
 		contentPane.add(button_3);
 
 		JButton button_4 = new JButton("4");
-		button_4.setFont(new Font("Arial", Font.PLAIN, 12));
+		button_4.setFont(new Font("Arial", Font.PLAIN, 13));
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				txtTelefono.setText(txtTelefono.getText() + "4");
@@ -84,7 +84,7 @@ public class LLamador extends JFrame {
 		contentPane.add(button_4);
 
 		JButton button_5 = new JButton("5");
-		button_5.setFont(new Font("Arial", Font.PLAIN, 12));
+		button_5.setFont(new Font("Arial", Font.PLAIN, 13));
 		button_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				txtTelefono.setText(txtTelefono.getText() + "5");
@@ -94,7 +94,7 @@ public class LLamador extends JFrame {
 		contentPane.add(button_5);
 
 		JButton button_6 = new JButton("6");
-		button_6.setFont(new Font("Arial", Font.PLAIN, 12));
+		button_6.setFont(new Font("Arial", Font.PLAIN, 13));
 		button_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				txtTelefono.setText(txtTelefono.getText() + "6");
@@ -104,7 +104,7 @@ public class LLamador extends JFrame {
 		contentPane.add(button_6);
 
 		JButton button_7 = new JButton("7");
-		button_7.setFont(new Font("Arial", Font.PLAIN, 12));
+		button_7.setFont(new Font("Arial", Font.PLAIN, 13));
 		button_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				txtTelefono.setText(txtTelefono.getText() + "7");
@@ -114,7 +114,7 @@ public class LLamador extends JFrame {
 		contentPane.add(button_7);
 
 		JButton button_8 = new JButton("8");
-		button_8.setFont(new Font("Arial", Font.PLAIN, 12));
+		button_8.setFont(new Font("Arial", Font.PLAIN, 13));
 		button_8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				txtTelefono.setText(txtTelefono.getText() + "8");
@@ -124,7 +124,7 @@ public class LLamador extends JFrame {
 		contentPane.add(button_8);
 
 		JButton button_9 = new JButton("9");
-		button_9.setFont(new Font("Arial", Font.PLAIN, 12));
+		button_9.setFont(new Font("Arial", Font.PLAIN, 13));
 		button_9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				txtTelefono.setText(txtTelefono.getText() + "9");
@@ -134,7 +134,7 @@ public class LLamador extends JFrame {
 		contentPane.add(button_9);
 
 		JButton button_por = new JButton("*");
-		button_por.setFont(new Font("Arial", Font.PLAIN, 12));
+		button_por.setFont(new Font("Arial", Font.PLAIN, 13));
 		button_por.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				txtTelefono.setText(txtTelefono.getText() + "*");
@@ -144,7 +144,7 @@ public class LLamador extends JFrame {
 		contentPane.add(button_por);
 
 		JButton button_0 = new JButton("0");
-		button_0.setFont(new Font("Arial", Font.PLAIN, 12));
+		button_0.setFont(new Font("Arial", Font.PLAIN, 13));
 		button_0.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				txtTelefono.setText(txtTelefono.getText() + "0");
@@ -154,7 +154,7 @@ public class LLamador extends JFrame {
 		contentPane.add(button_0);
 
 		JButton button_hash = new JButton("#");
-		button_hash.setFont(new Font("Arial", Font.PLAIN, 12));
+		button_hash.setFont(new Font("Arial", Font.PLAIN, 13));
 		button_hash.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				txtTelefono.setText(txtTelefono.getText() + "#");
@@ -172,17 +172,16 @@ public class LLamador extends JFrame {
 				Telefono telefonoLlamado = sistema.getTelefono(numero);
 				if(telefonoLlamado == null)
 					Utils.launchError("El telefono llamado no se encuentra registrado en el sistema");
-				if(telefonoLlamado.getUsuario() == usuario)
+				if(sistema.getUsuarioPorTelefono(numero) == usuario)
 					Utils.launchError("No te puedes llamar a ti mismo");
-
+				
 				LlamadaEnProceso llamadaEnProceso = new LlamadaEnProceso(sistema, usuario, telefono, numero);
 				
 				llamadaEnProceso.setVisible(true);
-				llamadaEnProceso.setAlwaysOnTop(true);
 				txtTelefono.setText("");
 			}
 		});
-		btnLlamar.setFont(new Font("Arial", Font.PLAIN, 12));
+		btnLlamar.setFont(new Font("Arial", Font.PLAIN, 13));
 		btnLlamar.setBounds(40, 328, 85, 30);
 		contentPane.add(btnLlamar);
 
@@ -192,7 +191,7 @@ public class LLamador extends JFrame {
 				dispose();
 			}
 		});
-		btnCancelar.setFont(new Font("Arial", Font.PLAIN, 12));
+		btnCancelar.setFont(new Font("Arial", Font.PLAIN, 13));
 		btnCancelar.setBounds(129, 328, 91, 30);
 		contentPane.add(btnCancelar);
 
@@ -203,7 +202,7 @@ public class LLamador extends JFrame {
 					txtTelefono.setText(txtTelefono.getText().substring(0, txtTelefono.getText().length() - 1));
 			}
 		});
-		btnDel.setFont(new Font("Arial", Font.PLAIN, 12));
+		btnDel.setFont(new Font("Arial", Font.PLAIN, 13));
 		btnDel.setBounds(163, 25, 57, 40);
 		contentPane.add(btnDel);
 	}

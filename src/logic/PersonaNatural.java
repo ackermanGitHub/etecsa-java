@@ -8,15 +8,15 @@ public class PersonaNatural extends Usuario{
 	private String ID;
 	private String direccionParticular;
 
-	public void addTelefonoMovil(TelefonoMovil telefonoMovil) {
-		if(telefonosMoviles.size() < 2)
-			this.telefonosMoviles.add(telefonoMovil);
+	public void addTelefonoMovil(String numero) {
+		if(this.getTelefonosMoviles().size() < 2)
+			this.telefonosMoviles.add(new TelefonoMovil(numero));
 		else 
 			Utils.launchError("Las personas naturales solo pueden tener 2 teléfonos móviles");
 	}
-	public void addTelefonoFijo(TelefonoFijo telefonoFijo) {
-		if(telefonosFijos.size() == 0)
-			this.telefonosFijos.add(telefonoFijo);
+	public void addTelefonoFijo(String numero) {
+		if(this.getTelefonosFijos().size() == 0)
+			this.telefonosFijos.add(new TelefonoFijo(numero));
 		else 
 			Utils.launchError("Las personas naturales solo pueden tener 1 teléfono fijo");
 	}
@@ -49,12 +49,14 @@ public class PersonaNatural extends Usuario{
 		this.direccionParticular = direccionParticular;
 	}
 
-	public PersonaNatural(String userName, String password, String nombre, String apellido1, String apellido2, String ID, String direccionParticular, String municipio, String provincia) {
+	public PersonaNatural(String userName, String password, String nombre, 
+			String apellido1, String apellido2, String ID, 
+			String direccionParticular, String municipio, String provincia) {
 		super(userName, password, nombre, municipio, provincia, null, null);
 		this.setApellido1(apellido1);
 		this.setApellido2(apellido2);
 		this.setID(ID);
 		this.setDireccionParticular(direccionParticular);
 	}
-	
+
 }

@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public class FacturaMensual {
 
-	private double tarifaFija = 10;
-	private ArrayList<Llamada> llamadas = new ArrayList<Llamada>();
+	private double tarifaFija = 10.5;
 	private double atrasoDePago;
+	private ArrayList<Llamada> llamadas = new ArrayList<Llamada>();
 
 	public FacturaMensual(double atrasoDePago) {
 		this.atrasoDePago = atrasoDePago;
@@ -14,7 +14,7 @@ public class FacturaMensual {
 
 	public double montoLocal(){
 		double monto = 0;
-		for(Llamada llamada : this.getLlamadas()){
+		for(Llamada llamada : this.getListaLlamadas()){
 			if(!llamada.isLargaDistancia()){
 				monto += llamada.getDuracion() * this.tarifaFija;
 			}
@@ -23,7 +23,7 @@ public class FacturaMensual {
 	}
 	public double montoLargaDistancia(){
 		double monto = this.tarifaFija;
-		for(Llamada llamada : this.getLlamadas()){
+		for(Llamada llamada : this.getListaLlamadas()){
 			if(llamada.isLargaDistancia()){
 				monto += llamada.getDuracion() * this.tarifaFija * 2;
 			}
@@ -35,15 +35,15 @@ public class FacturaMensual {
 		return total;
 	}
 
-	public ArrayList<Llamada> getLlamadas() {
-		return llamadas;
+	public ArrayList<Llamada> getListaLlamadas() {
+		return this.llamadas;
 	}
 	public void addLlamada(Llamada llamadas) {
 		this.llamadas.add(llamadas);
 	}
 
 	public double getAtrasoDePago() {
-		return atrasoDePago;
+		return this.atrasoDePago;
 	}
 	public void setAtrasoDePago(double atrasoDePago) {
 		this.atrasoDePago = atrasoDePago;

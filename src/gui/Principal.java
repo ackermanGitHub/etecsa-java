@@ -29,23 +29,17 @@ import datos.DatosDeUsuario;
 @SuppressWarnings("serial")
 public class Principal extends JFrame {
 
-	JPanel contentPane;
-	Usuario usuario;
+	private JPanel contentPane;
 
 	public Principal(final Usuario user, final Sistema sistem) {
-		usuario = user;
-
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/images/favicon.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Sistema ETECSA");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-
-		this.setExtendedState(MAXIMIZED_BOTH);
-		this.setUndecorated(true);
-		this.setVisible(true);
-
+		setBounds(100, 100, 1200, 700);
+		setLocationRelativeTo(null);
+		
 		JMenuBar menuBar = new JMenuBar();
+		menuBar.setFont(new Font("Arial", Font.PLAIN, 12));
 		setJMenuBar(menuBar);
 
 		JMenu mnArchivo = new JMenu("Archivo");
@@ -89,7 +83,7 @@ public class Principal extends JFrame {
 		JMenuItem mntmDatosTelefonos = new JMenuItem("Datos de Tel\u00E9fonos");
 		mntmDatosTelefonos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DatosDeTelefono datos = new DatosDeTelefono(sistem.getListaDeTelefonos());
+				DatosDeTelefono datos = new DatosDeTelefono(sistem.getListaTelefonos());
 				datos.setVisible(true);
 			}
 		});
@@ -134,7 +128,6 @@ public class Principal extends JFrame {
 				}
 				LLamador llamador = new LLamador(sistem, user, user.getTelefonosFijos().get(0));
 				llamador.setVisible(true);
-				llamador.setAlwaysOnTop(true);
 			}
 		});
 
@@ -149,7 +142,6 @@ public class Principal extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				RegistrarTelefonoFijo nuevoTelefono = new RegistrarTelefonoFijo(sistem, user);
 				nuevoTelefono.setVisible(true);
-				nuevoTelefono.setAlwaysOnTop(true);
 			}
 		});
 		mntmRegistrarNuevoTelefono.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -164,10 +156,12 @@ public class Principal extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				if(user.getTelefonosMoviles().size() == 0)
 					Utils.launchError("Usted no cuenta con un teléfono móvil");
-				
-				LLamador llamador = new LLamador(sistem, user, user.getTelefonosMoviles().get(0));
-				llamador.setVisible(true);
-				llamador.setAlwaysOnTop(true);
+				else {
+					SeleccionarTelefono telefono = new SeleccionarTelefono(user.getTelefonosMoviles());
+					telefono.setVisible(true);
+					LLamador llamador = new LLamador(sistem, user, user.getTelefonosMoviles().get(SeleccionarTelefono.pos));
+					llamador.setVisible(true);
+				}
 			}
 		});
 		mntmLlamador.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -178,7 +172,6 @@ public class Principal extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				RegistrarTelefonoMovil nuevoTelefono = new RegistrarTelefonoMovil(sistem, user);
 				nuevoTelefono.setVisible(true);
-				nuevoTelefono.setAlwaysOnTop(true);
 			}
 		});
 		mntmRegistrarNuevoMovil.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -192,6 +185,8 @@ public class Principal extends JFrame {
 		mntmBorrarCuenta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				sistem.removeUsuario(user);
+				Login logIn = new Login(sistem);
+				logIn.setVisible(true);
 				dispose();
 			}
 		});
@@ -208,7 +203,6 @@ public class Principal extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				AcercaDe info = new AcercaDe();
 				info.setVisible(true);
-				info.setAlwaysOnTop(true);
 			}
 		});
 		mnAyuda.add(mntmAcercaDe);
@@ -229,5 +223,4 @@ public class Principal extends JFrame {
 		lblTipoDeCuenta.setBounds(10, 0, 440, 49);
 		contentPane.add(lblTipoDeCuenta);
 	}
-
 }

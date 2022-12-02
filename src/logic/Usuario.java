@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import auxiliar.Utils;
 
 public abstract class Usuario {
-	
+
 	protected String userName;
 	protected String password;
 	protected String nombre;
@@ -17,9 +17,18 @@ public abstract class Usuario {
 	protected ArrayList<TelefonoMovil> telefonosMoviles = new ArrayList<TelefonoMovil>();
 	protected ArrayList<CuentaNauta> cuentasNautas = new ArrayList<CuentaNauta>();
 
+	
+	public Telefono getTelefono(String numero){
+		Telefono resultado = null;
+		for(Telefono telefono : this.getListaTelefonos()){
+			if(telefono.getNumero().equals(numero))
+				resultado = telefono;
+		}
+		return resultado;
+	}
 	public TelefonoMovil getTelefonoMovil(String numero) {
 		TelefonoMovil resultado = null;
-		for(TelefonoMovil telefono : this.telefonosMoviles){
+		for(TelefonoMovil telefono : this.getTelefonosMoviles()){
 			if(telefono.getNumero().equals(numero))
 				resultado = telefono;
 		}
@@ -28,25 +37,30 @@ public abstract class Usuario {
 	public ArrayList<TelefonoMovil> getTelefonosMoviles() {
 		return this.telefonosMoviles;
 	}
-	public void addTelefonoMovil(Sistema sistem, TelefonoMovil telefonoMovil) {
-		sistem.addTelefono(telefonoMovil);
-		this.telefonosMoviles.add(telefonoMovil);
+	public void addTelefonoMovil(String numero) {
+		this.telefonosMoviles.add(new TelefonoMovil(numero));
 	}
-	
+
 	public TelefonoFijo getTelefonoFijo(String numero) {
 		TelefonoFijo resultado = null;
-		for(TelefonoFijo telefono : this.telefonosFijos){
+		for(TelefonoFijo telefono : this.getTelefonosFijos()){
 			if(telefono.getNumero().equals(numero))
 				resultado = telefono;
 		}
 		return resultado;
 	}
-	public void addTelefonoFijo(Sistema sistem, TelefonoFijo telefonoFijo) {
-		sistem.addTelefono(telefonoFijo);
-		this.telefonosFijos.add(telefonoFijo);
-	}
 	public ArrayList<TelefonoFijo> getTelefonosFijos() {
 		return this.telefonosFijos;
+	}
+	public void addTelefonoFijo(String numero) {
+		this.telefonosFijos.add(new TelefonoFijo(numero));
+	}
+	
+	public ArrayList<Telefono> getListaTelefonos(){
+		ArrayList<Telefono> listaTelefonos = new ArrayList<Telefono>();
+		listaTelefonos.addAll(this.getTelefonosFijos());
+		listaTelefonos.addAll(this.getTelefonosMoviles());
+		return listaTelefonos;
 	}
 
 	public String getUserName() {
@@ -78,7 +92,7 @@ public abstract class Usuario {
 		else 
 			this.nombre = nombre;
 	}
-	
+
 	public String getMunicipio() {
 		return municipio;
 	}
@@ -122,5 +136,5 @@ public abstract class Usuario {
 		this.setDireccionPostal(direccionPostal);
 		this.setRepresentante(representante);		
 	}
-	
+
 }

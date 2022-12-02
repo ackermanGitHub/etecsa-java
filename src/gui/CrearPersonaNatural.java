@@ -17,7 +17,6 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.SwingConstants;
 
-import logic.PersonaNatural;
 import logic.Sistema;
 
 @SuppressWarnings("serial")
@@ -35,116 +34,116 @@ public class CrearPersonaNatural extends JDialog {
 	public CrearPersonaNatural(final String userName, final String password, final Sistema sistem) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/images/favicon.png")));
 		setTitle("Creando Cuenta de Persona Natural");
-		setBounds(100, 100, 376, 354);
+		setBounds(100, 100, 329, 354);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 
 		setLocationRelativeTo(null);
+		setResizable(false);
 
 		txtNombre = new JTextField();
-		txtNombre.setFont(new Font("Arial", Font.PLAIN, 15));
-		txtNombre.setBounds(147, 54, 175, 23);
+		txtNombre.setFont(new Font("Arial", Font.PLAIN, 13));
+		txtNombre.setBounds(133, 54, 160, 23);
 		contentPanel.add(txtNombre);
 		txtNombre.setColumns(10);
 
 		JLabel lblNombre = new JLabel("Nombre:");
 		lblNombre.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNombre.setFont(new Font("Arial", Font.BOLD, 15));
-		lblNombre.setBounds(35, 54, 91, 23);
+		lblNombre.setFont(new Font("Arial", Font.PLAIN, 13));
+		lblNombre.setBounds(21, 54, 91, 23);
 		contentPanel.add(lblNombre);
 
 		JLabel lblApellido = new JLabel("Apellido 1:");
 		lblApellido.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblApellido.setFont(new Font("Arial", Font.BOLD, 15));
-		lblApellido.setBounds(35, 85, 91, 23);
+		lblApellido.setFont(new Font("Arial", Font.PLAIN, 13));
+		lblApellido.setBounds(21, 85, 91, 23);
 		contentPanel.add(lblApellido);
 
 		JLabel lblApellido_1 = new JLabel("Apellido 2:");
 		lblApellido_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblApellido_1.setFont(new Font("Arial", Font.BOLD, 15));
-		lblApellido_1.setBounds(35, 116, 91, 23);
+		lblApellido_1.setFont(new Font("Arial", Font.PLAIN, 13));
+		lblApellido_1.setBounds(21, 116, 91, 23);
 		contentPanel.add(lblApellido_1);
 
 		JLabel lblId = new JLabel("ID:");
 		lblId.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblId.setFont(new Font("Arial", Font.BOLD, 15));
-		lblId.setBounds(35, 147, 91, 23);
+		lblId.setFont(new Font("Arial", Font.PLAIN, 13));
+		lblId.setBounds(21, 147, 91, 23);
 		contentPanel.add(lblId);
 
 		JLabel lblDireccion = new JLabel("Direccion:");
 		lblDireccion.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblDireccion.setFont(new Font("Arial", Font.BOLD, 15));
-		lblDireccion.setBounds(35, 178, 91, 23);
+		lblDireccion.setFont(new Font("Arial", Font.PLAIN, 13));
+		lblDireccion.setBounds(21, 178, 91, 23);
 		contentPanel.add(lblDireccion);
 
 		txtApellido_1 = new JTextField();
-		txtApellido_1.setFont(new Font("Arial", Font.PLAIN, 15));
+		txtApellido_1.setFont(new Font("Arial", Font.PLAIN, 13));
 		txtApellido_1.setColumns(10);
-		txtApellido_1.setBounds(147, 85, 175, 23);
+		txtApellido_1.setBounds(133, 85, 160, 23);
 		contentPanel.add(txtApellido_1);
 
 		txtApellido_2 = new JTextField();
-		txtApellido_2.setFont(new Font("Arial", Font.PLAIN, 15));
+		txtApellido_2.setFont(new Font("Arial", Font.PLAIN, 13));
 		txtApellido_2.setColumns(10);
-		txtApellido_2.setBounds(147, 116, 175, 23);
+		txtApellido_2.setBounds(133, 116, 160, 23);
 		contentPanel.add(txtApellido_2);
 
 		txtID = new JTextField();
-		txtID.setFont(new Font("Arial", Font.PLAIN, 15));
+		txtID.setFont(new Font("Arial", Font.PLAIN, 13));
 		txtID.setColumns(10);
-		txtID.setBounds(147, 147, 175, 23);
+		txtID.setBounds(133, 147, 160, 23);
 		contentPanel.add(txtID);
 
 		txtDireccion = new JTextField();
-		txtDireccion.setFont(new Font("Arial", Font.PLAIN, 15));
+		txtDireccion.setFont(new Font("Arial", Font.PLAIN, 13));
 		txtDireccion.setColumns(10);
-		txtDireccion.setBounds(147, 178, 175, 23);
+		txtDireccion.setBounds(133, 178, 160, 23);
 		contentPanel.add(txtDireccion);
 
 		JLabel lblMunicipio = new JLabel("Municipio:");
 		lblMunicipio.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblMunicipio.setFont(new Font("Arial", Font.BOLD, 15));
-		lblMunicipio.setBounds(35, 209, 91, 23);
+		lblMunicipio.setFont(new Font("Arial", Font.PLAIN, 13));
+		lblMunicipio.setBounds(21, 209, 91, 23);
 		contentPanel.add(lblMunicipio);
 
 		JLabel lblProvincia = new JLabel("Provincia:");
 		lblProvincia.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblProvincia.setFont(new Font("Arial", Font.BOLD, 15));
-		lblProvincia.setBounds(35, 240, 91, 23);
+		lblProvincia.setFont(new Font("Arial", Font.PLAIN, 13));
+		lblProvincia.setBounds(21, 240, 91, 23);
 		contentPanel.add(lblProvincia);
 
 		txtMunicipio = new JTextField();
-		txtMunicipio.setFont(new Font("Arial", Font.PLAIN, 15));
+		txtMunicipio.setFont(new Font("Arial", Font.PLAIN, 13));
 		txtMunicipio.setColumns(10);
-		txtMunicipio.setBounds(147, 209, 175, 23);
+		txtMunicipio.setBounds(133, 209, 160, 23);
 		contentPanel.add(txtMunicipio);
 
 		txtProvincia = new JTextField();
-		txtProvincia.setFont(new Font("Arial", Font.PLAIN, 15));
+		txtProvincia.setFont(new Font("Arial", Font.PLAIN, 13));
 		txtProvincia.setColumns(10);
-		txtProvincia.setBounds(147, 240, 175, 23);
+		txtProvincia.setBounds(133, 240, 160, 23);
 		contentPanel.add(txtProvincia);
 
 		JLabel lblIntroduzcaLosDatos = new JLabel("Introduzca los datos de su nueva cuenta");
 		lblIntroduzcaLosDatos.setHorizontalAlignment(SwingConstants.CENTER);
-		lblIntroduzcaLosDatos.setFont(new Font("Microsoft Sans Serif", Font.PLAIN, 16));
-		lblIntroduzcaLosDatos.setBounds(35, 11, 287, 28);
+		lblIntroduzcaLosDatos.setFont(new Font("Arial", Font.PLAIN, 13));
+		lblIntroduzcaLosDatos.setBounds(27, 11, 258, 28);
 		contentPanel.add(lblIntroduzcaLosDatos);
 		{
 			JPanel buttonPane = new JPanel();
-			buttonPane.setBounds(10, 274, 340, 38);
+			buttonPane.setBounds(9, 274, 304, 40);
 			contentPanel.add(buttonPane);
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			{
 				JButton okButton = new JButton("OK");
-				okButton.setFont(new Font("Arial", Font.BOLD, 14));
+				okButton.setFont(new Font("Arial", Font.PLAIN, 12));
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {						
-						PersonaNatural nuevoUsuario = new PersonaNatural(userName, password, txtNombre.getText(), txtApellido_1.getText(), txtApellido_2.getText(), txtID.getText(), txtDireccion.getText(), txtMunicipio.getText(), txtProvincia.getText());
-						sistem.addUsuario(nuevoUsuario);
-						Principal p = new Principal(nuevoUsuario, sistem);
+						sistem.addPersonaNatural(userName, password, txtNombre.getText(), txtApellido_1.getText(), txtApellido_2.getText(), txtID.getText(), txtDireccion.getText(), txtMunicipio.getText(), txtProvincia.getText());
+						Principal p = new Principal(sistem.getUsuario(userName), sistem);
 						p.setVisible(true);	
 						dispose();
 					}
@@ -155,7 +154,7 @@ public class CrearPersonaNatural extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
-				cancelButton.setFont(new Font("Arial", Font.BOLD, 14));
+				cancelButton.setFont(new Font("Arial", Font.PLAIN, 12));
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						dispose();

@@ -49,5 +49,5 @@ public class Representante {
 		this.setID(ID);;
 		this.setFirmaAutorizo(firmaAutorizo);;
 	}
-	
+
 }

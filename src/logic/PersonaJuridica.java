@@ -18,7 +18,9 @@ public class PersonaJuridica extends Usuario {
 		this.organismo = organismo;
 	}
 
-	public PersonaJuridica(String userName, String password, String nombreEmpresa, String entidad, String organismo, String municipio, String provincia, String direccionPostal, Representante representante) {
+	public PersonaJuridica(String userName, String password, String nombreEmpresa, 
+			String entidad, String organismo, String municipio, String provincia, 
+			String direccionPostal, Representante representante) {
 		super(userName, password, nombreEmpresa, municipio, provincia, direccionPostal, representante);
 		this.setEntidad(entidad);
 		this.setOrganismo(organismo);

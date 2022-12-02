@@ -12,7 +12,7 @@ import logic.TelefonoMovil;
 public class TelefonoTableModel extends DefaultTableModel{
 
 	public TelefonoTableModel(ArrayList<Telefono> telefonos){
-		String[] columnNames = {"Tipo", "Numero", "Nombre"};
+		String[] columnNames = {"Tipo", "Numero"};
 		this.setColumnIdentifiers(columnNames);
 		String tipo = "Undefined";
 		for(Telefono telefono : telefonos){
@@ -20,7 +20,7 @@ public class TelefonoTableModel extends DefaultTableModel{
 				tipo = "TelefonoMovil";
 			else if(telefono instanceof TelefonoFijo)
 				tipo = "TelefonoFijo";	
-			Object[] newRow = new Object[]{tipo, telefono.getNumero(), telefono.getUsuario().getNombre()};
+			Object[] newRow = new Object[]{tipo, telefono.getNumero()};
 			addRow(newRow);			
 		}
 	}

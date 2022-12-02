@@ -29,17 +29,18 @@ import java.awt.Toolkit;
 public class Login extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField userName;
-	private JPasswordField userPassword;
+	private JTextField txtUserName;
+	private JPasswordField txtUserPassword;
 
 	public Login(final Sistema sistem) {
+		setResizable(false);
+		setAlwaysOnTop(true);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/images/favicon.png")));
 		setForeground(Color.WHITE);
 		setFont(new Font("Dialog", Font.PLAIN, 12));
 		setBackground(Color.WHITE);
 		setTitle("Autenticaci\u00F3n de Usuario");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 429, 260);
+		setBounds(100, 100, 429, 250);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setForeground(Color.WHITE);
@@ -53,35 +54,35 @@ public class Login extends JFrame {
 		lblUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblUsuario.setForeground(Color.BLACK);
 		lblUsuario.setFont(new Font("Arial", Font.BOLD, 15));
-		lblUsuario.setBounds(67, 21, 94, 23);
+		lblUsuario.setBounds(67, 33, 94, 23);
 		contentPane.add(lblUsuario);
 
-		userName = new JTextField();
-		userName.setFont(new Font("Arial", Font.PLAIN, 15));
-		userName.setBounds(171, 21, 165, 23);
-		contentPane.add(userName);
-		userName.setColumns(10);
+		txtUserName = new JTextField();
+		txtUserName.setFont(new Font("Arial", Font.PLAIN, 15));
+		txtUserName.setBounds(171, 33, 165, 23);
+		contentPane.add(txtUserName);
+		txtUserName.setColumns(10);
 
 		JLabel lblContrasena = new JLabel("Contrase\u00F1a:");
 		lblContrasena.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblContrasena.setForeground(Color.BLACK);
 		lblContrasena.setFont(new Font("Arial", Font.BOLD, 15));
-		lblContrasena.setBounds(67, 73, 94, 23);
+		lblContrasena.setBounds(67, 85, 94, 23);
 		contentPane.add(lblContrasena);
 
-		userPassword = new JPasswordField();
-		userPassword.setFont(new Font("Arial", Font.PLAIN, 15));
-		userPassword.setToolTipText("");
-		userPassword.setBounds(171, 73, 165, 23);
-		contentPane.add(userPassword);
+		txtUserPassword = new JPasswordField();
+		txtUserPassword.setFont(new Font("Arial", Font.PLAIN, 15));
+		txtUserPassword.setToolTipText("");
+		txtUserPassword.setBounds(171, 85, 165, 23);
+		contentPane.add(txtUserPassword);
 
-		final JLabel errorMessage = new JLabel("Nombre de Usuario o Contrase\u00F1a Incorrecta.");
-		errorMessage.setFont(new Font("Microsoft Sans Serif", Font.PLAIN, 12));
-		errorMessage.setHorizontalAlignment(SwingConstants.CENTER);
-		errorMessage.setForeground(Color.RED);
-		errorMessage.setBounds(31, 144, 359, 14);
-		errorMessage.setVisible(false);
-		contentPane.add(errorMessage);
+		final JLabel lblErrorMessage = new JLabel("Nombre de Usuario o Contrase\u00F1a Incorrecta.");
+		lblErrorMessage.setFont(new Font("Microsoft Sans Serif", Font.PLAIN, 12));
+		lblErrorMessage.setHorizontalAlignment(SwingConstants.CENTER);
+		lblErrorMessage.setForeground(Color.RED);
+		lblErrorMessage.setBounds(31, 144, 359, 14);
+		lblErrorMessage.setVisible(false);
+		contentPane.add(lblErrorMessage);
 
 
 		JButton btnIniciarSecion = new JButton("Iniciar Sesi\u00F3n");
@@ -92,17 +93,23 @@ public class Login extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 
 				@SuppressWarnings("deprecation")
-				Usuario usuario = sistem.checkUsuario(userName.getText(), userPassword.getText());
-
+				String userName = txtUserName.getText(), userPassword = txtUserPassword.getText();
+				Usuario usuario = sistem.checkUsuario(userName, userPassword);
+				
 				if(usuario != null){
 					Principal p = new Principal(usuario, sistem);
 					p.setVisible(true);					
 					dispose();
-				} else
-					errorMessage.setVisible(true);
+				} else {
+					if(userName.isEmpty() || userPassword.isEmpty())
+						lblErrorMessage.setText("Rellene todos los campos.");
+					else
+						lblErrorMessage.setText("Nombre de Usuario o Contrase\u00F1a Incorrecta.");
+					lblErrorMessage.setVisible(true);
+				}
 			}
 		});
-		btnIniciarSecion.setBounds(67, 169, 141, 31);
+		btnIniciarSecion.setBounds(74, 169, 141, 31);
 		contentPane.add(btnIniciarSecion);
 
 		JButton btnSalir = new JButton("Salir");
@@ -114,7 +121,7 @@ public class Login extends JFrame {
 				dispose();
 			}
 		});
-		btnSalir.setBounds(234, 169, 107, 31);
+		btnSalir.setBounds(241, 169, 107, 31);
 		contentPane.add(btnSalir);
 
 		JLabel lblCrearCuenta = new JLabel("Crear Cuenta");
