@@ -8,13 +8,12 @@ import javax.swing.border.EmptyBorder;
 
 import java.awt.Color;
 import java.awt.Toolkit;
-import java.util.ArrayList;
 
 import javax.swing.JMenuBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import logic.Telefono;
+import logic.Sistema;
 
 @SuppressWarnings("serial")
 public class DatosDeTelefono extends JFrame {
@@ -24,7 +23,7 @@ public class DatosDeTelefono extends JFrame {
 	private TelefonoTableModel tableModel;
 	private JMenuBar menuBar;
 
-	public DatosDeTelefono(ArrayList<Telefono> telefonos) {
+	public DatosDeTelefono(Sistema sistem) {
 		setTitle("Datos Teléfonos");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/images/favicon.png")));
 		setBounds(100, 100, 524, 350);
@@ -46,7 +45,7 @@ public class DatosDeTelefono extends JFrame {
 		contentPane.add(scrollPane);
 
 		table = new JTable();
-		tableModel = new TelefonoTableModel(telefonos);
+		tableModel = new TelefonoTableModel(sistem);
 		table.setModel(tableModel);
 		scrollPane.setViewportView(table);
 	}

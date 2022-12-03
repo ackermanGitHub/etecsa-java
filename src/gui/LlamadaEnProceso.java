@@ -98,9 +98,9 @@ public class LlamadaEnProceso extends JFrame {
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				timer.stop();
-				boolean largaDistancia = false;
+				boolean largaDistancia = true;
 				if(usuario.getProvincia().equals(sistem.getUsuarioPorTelefono(numeroLlamado).getProvincia()));
-					largaDistancia = true;
+					largaDistancia = false;
 			
 				Llamada llamada;
 				if(lblUsuarioCargado.getText().equals("true")) {

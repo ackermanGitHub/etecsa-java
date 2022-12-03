@@ -84,7 +84,7 @@ public class Principal extends JFrame {
 		JMenuItem mntmDatosTelefonos = new JMenuItem("Datos de Tel\u00E9fonos");
 		mntmDatosTelefonos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DatosDeTelefono datos = new DatosDeTelefono(sistem.getListaTelefonos());
+				DatosDeTelefono datos = new DatosDeTelefono(sistem);
 				datos.setVisible(true);
 			}
 		});
