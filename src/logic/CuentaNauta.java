@@ -15,8 +15,11 @@ public class CuentaNauta {
 	public ArrayList<NavegacionMensual> getDatosNavegacion() {
 		return datosNavegacion;
 	}
-	public void setDatosNavegacion(ArrayList<NavegacionMensual> datosNavegacion) {
-		this.datosNavegacion = datosNavegacion;
+	public void addNavegacionMensual(double kbNacRecibXCorreo, double kbNacEnvXCorreo,
+			double kbIntRecibXCorreo, double kbIntEnvXCorreo,
+			double kbNavInternet){
+		this.datosNavegacion.add(new NavegacionMensual(kbNacRecibXCorreo, kbNacEnvXCorreo, 
+				kbIntRecibXCorreo, kbIntEnvXCorreo, kbNavInternet));
 	}
 	
 	public String getNickCuenta() {

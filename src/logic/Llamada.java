@@ -8,7 +8,6 @@ public class Llamada {
 	private boolean saliente;
 
 	public Llamada(String numero, double duracion, String provinciaLlamada, boolean largaDistancia, boolean saliente) {
-		// paraDespues: validar el número
 		this.numeroLlamado = numero;
 		this.duracion = duracion;
 		this.provinciaLlamada = provinciaLlamada;

@@ -25,6 +25,7 @@ import auxiliar.Utils;
 import datos.DatosDeLlamada;
 import datos.DatosDeTelefono;
 import datos.DatosDeUsuario;
+import datos.FacturaTelFijo;
 
 @SuppressWarnings("serial")
 public class Principal extends JFrame {
@@ -129,6 +130,22 @@ public class Principal extends JFrame {
 		});
 		mntmRegistrarNuevoTelefono.setFont(new Font("Arial", Font.PLAIN, 12));
 		mntmTelefoniaFija.add(mntmRegistrarNuevoTelefono);
+		
+		JMenuItem mntmVerFacturas = new JMenuItem("Ver Facturas");
+		mntmVerFacturas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(user.getTelefonosFijos().size() == 0)
+					Utils.launchError("Usted no cuenta con ningún teléfono fijo");
+				else if(user.getTelefonosFijos().size() == 1) {
+					FacturaTelFijo tablaFactura = new FacturaTelFijo(user.getTelefonosFijos().get(0));
+					tablaFactura.setVisible(true);
+				} else {
+					
+				}
+			}
+		});
+		mntmVerFacturas.setFont(new Font("Arial", Font.PLAIN, 12));
+		mntmTelefoniaFija.add(mntmVerFacturas);
 
 		JMenuItem mntmTelefoniaMovil = new JMenu("Telefon\u00EDa M\u00F3vil");
 		mntmTelefoniaMovil.setFont(new Font("Arial", Font.PLAIN, 12));

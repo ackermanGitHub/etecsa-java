@@ -93,8 +93,9 @@ public class Login extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 
 				@SuppressWarnings("deprecation")
-				String userName = txtUserName.getText(), userPassword = txtUserPassword.getText();
-				Usuario usuario = sistem.checkUsuario(userName, userPassword);
+				String userPassword = txtUserPassword.getText();
+				String userName = txtUserName.getText();
+				Usuario usuario = sistem.getUsuario(userName, userPassword);
 				
 				if(usuario != null){
 					Principal p = new Principal(usuario, sistem);

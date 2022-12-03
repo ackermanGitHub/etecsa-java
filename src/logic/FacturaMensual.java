@@ -12,7 +12,7 @@ public class FacturaMensual {
 		this.atrasoDePago = atrasoDePago;
 	}
 
-	public double montoLocal(){
+	public double getMontoLocal(){
 		double monto = 0;
 		for(Llamada llamada : this.getListaLlamadas()){
 			if(!llamada.isLargaDistancia()){
@@ -21,7 +21,7 @@ public class FacturaMensual {
 		}
 		return monto;
 	}
-	public double montoLargaDistancia(){
+	public double getMontoLargaDistancia(){
 		double monto = this.tarifaFija;
 		for(Llamada llamada : this.getListaLlamadas()){
 			if(llamada.isLargaDistancia()){
@@ -30,8 +30,8 @@ public class FacturaMensual {
 		}
 		return monto;
 	}
-	public double totalPagar(){
-		double total = this.montoLargaDistancia() + this.montoLocal() + this.getAtrasoDePago();
+	public double getTotalPagar(){
+		double total = this.getMontoLargaDistancia() + this.getMontoLocal() + this.getAtrasoDePago();
 		return total;
 	}
 
@@ -44,9 +44,6 @@ public class FacturaMensual {
 
 	public double getAtrasoDePago() {
 		return this.atrasoDePago;
-	}
-	public void setAtrasoDePago(double atrasoDePago) {
-		this.atrasoDePago = atrasoDePago;
 	}
 
 }

@@ -26,14 +26,7 @@ public abstract class Usuario {
 		}
 		return resultado;
 	}
-	public TelefonoMovil getTelefonoMovil(String numero) {
-		TelefonoMovil resultado = null;
-		for(TelefonoMovil telefono : this.getTelefonosMoviles()){
-			if(telefono.getNumero().equals(numero))
-				resultado = telefono;
-		}
-		return resultado;
-	}
+	
 	public ArrayList<TelefonoMovil> getTelefonosMoviles() {
 		return this.telefonosMoviles;
 	}
@@ -41,14 +34,6 @@ public abstract class Usuario {
 		this.telefonosMoviles.add(new TelefonoMovil(numero));
 	}
 
-	public TelefonoFijo getTelefonoFijo(String numero) {
-		TelefonoFijo resultado = null;
-		for(TelefonoFijo telefono : this.getTelefonosFijos()){
-			if(telefono.getNumero().equals(numero))
-				resultado = telefono;
-		}
-		return resultado;
-	}
 	public ArrayList<TelefonoFijo> getTelefonosFijos() {
 		return this.telefonosFijos;
 	}

@@ -8,7 +8,7 @@ public class Sistema {
 	
 	private ArrayList<Usuario> listaDeUsuarios = new ArrayList<Usuario>();
 
-	public Usuario checkUsuario(String userName, String password){
+	public Usuario getUsuario(String userName, String password){
 		Usuario resultado = null;
 		for(Usuario user : this.getListaDeUsuarios()){
 			if(user.getUserName().equals(userName) && user.getPassword().equals(password)){

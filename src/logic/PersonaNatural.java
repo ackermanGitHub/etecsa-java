@@ -10,13 +10,13 @@ public class PersonaNatural extends Usuario{
 
 	public void addTelefonoMovil(String numero) {
 		if(this.getTelefonosMoviles().size() < 2)
-			this.telefonosMoviles.add(new TelefonoMovil(numero));
+			super.addTelefonoMovil(numero);
 		else 
 			Utils.launchError("Las personas naturales solo pueden tener 2 teléfonos móviles");
 	}
 	public void addTelefonoFijo(String numero) {
 		if(this.getTelefonosFijos().size() == 0)
-			this.telefonosFijos.add(new TelefonoFijo(numero));
+			super.addTelefonoFijo(numero);
 		else 
 			Utils.launchError("Las personas naturales solo pueden tener 1 teléfono fijo");
 	}
