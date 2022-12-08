@@ -13,6 +13,7 @@ import javax.swing.JMenuItem;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import logic.PersonaJuridica;
 import logic.Sistema;
 import logic.Usuario;
 
@@ -111,10 +112,25 @@ public class Principal extends JFrame {
 		mnServicios.add(mnCuentaNauta);
 
 		JMenuItem mntmCrearCuentaNauta = new JMenuItem("Crear Cuenta Nauta");
+		mntmCrearCuentaNauta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CrearCuentaNauta cuentaN = new CrearCuentaNauta(sistem, user);
+				cuentaN.setVisible(true);
+			}
+		});
 		mntmCrearCuentaNauta.setFont(new Font("Arial", Font.PLAIN, 12));
 		mnCuentaNauta.add(mntmCrearCuentaNauta);
 
 		JMenuItem mntmEstadoDeCuenta = new JMenuItem("Estado de Cuenta");
+		mntmEstadoDeCuenta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(user instanceof PersonaJuridica)
+					Utils.launchError("Las Personas JurÃ­dicas no pueden tener cuenta nauta");
+				else if(!user.getCuentasNauta().isEmpty()){
+					Utils.launchError("Esta parte del programa se encuentra en construcciÃ³n");
+				}
+			}
+		});
 		mntmEstadoDeCuenta.setFont(new Font("Arial", Font.PLAIN, 12));
 		mnCuentaNauta.add(mntmEstadoDeCuenta);
 
@@ -136,7 +152,7 @@ public class Principal extends JFrame {
 		mntmVerFacturas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(user.getTelefonosFijos().size() == 0)
-					Utils.launchError("Usted no cuenta con ningún teléfono fijo");
+					Utils.launchError("Usted no cuenta con ningï¿½n telï¿½fono fijo");
 				else if(user.getTelefonosFijos().size() == 1) {
 					FacturaTelFijo tablaFactura = new FacturaTelFijo(user.getTelefonosFijos().get(0));
 					tablaFactura.setVisible(true);
@@ -156,7 +172,7 @@ public class Principal extends JFrame {
 		mntmLlamador.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(user.getListaTelefonos().size() == 0)
-					Utils.launchError("Usted no cuenta con ningún teléfono");
+					Utils.launchError("Usted no cuenta con ningÃºn telÃ©fono");
 				else if(user.getListaTelefonos().size() == 1) {
 					LLamador llamador = new LLamador(sistem, user, user.getTelefonosMoviles().get(0));
 					llamador.setVisible(true);

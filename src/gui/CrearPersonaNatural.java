@@ -17,6 +17,7 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.SwingConstants;
 
+import auxiliar.Utils;
 import logic.Sistema;
 
 @SuppressWarnings("serial")
@@ -141,8 +142,39 @@ public class CrearPersonaNatural extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.setFont(new Font("Arial", Font.PLAIN, 12));
 				okButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {						
-						sistem.addPersonaNatural(userName, password, txtNombre.getText(), txtApellido_1.getText(), txtApellido_2.getText(), txtID.getText(), txtDireccion.getText(), txtMunicipio.getText(), txtProvincia.getText());
+					public void actionPerformed(ActionEvent arg0) {		
+						String name = txtNombre.getText();
+						String apellido1 = txtApellido_1.getText();
+						String apellido2 = txtApellido_2.getText();
+						String ID = txtID.getText();
+						String direccion = txtDireccion.getText();
+						String municipio = txtMunicipio.getText();
+						String provincia = txtProvincia.getText();
+
+						String errorMessage = null;
+						if(name.isEmpty() || apellido1.isEmpty() || apellido2.isEmpty() || ID.isEmpty() 
+							|| direccion.isEmpty() || municipio.isEmpty() || provincia.isEmpty())
+							errorMessage = "Rellene todos los campos";						
+						else if(!Utils.validarNombre(name))
+							errorMessage = "El nombre no es v�lido";
+						else if(!Utils.validarNombre(apellido1))
+							errorMessage = "El primer apellido no es válido";	
+						else if(!Utils.validarNombre(apellido2))
+							errorMessage = "El segundo apellido no es válido";
+						else if(!Utils.validarID(ID))
+							errorMessage = "El ID no es válido";	
+						else if(!Utils.validarDireccion(direccion))
+							errorMessage = "La dirección no es válida";		
+						else if(!Utils.validarNombre(municipio))
+							errorMessage = "El municipio no es válido";	
+						else if(!Utils.validarNombre(provincia))
+							errorMessage = "La provincia no es válida";			
+						if(errorMessage != null)
+							Utils.launchError(errorMessage);
+
+						sistem.addPersonaNatural(userName, password, name, 
+							apellido1, apellido2, ID, 
+							direccion, municipio, provincia);
 						Principal p = new Principal(sistem.getUsuario(userName), sistem);
 						p.setVisible(true);	
 						dispose();

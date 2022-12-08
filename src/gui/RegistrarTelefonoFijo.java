@@ -15,6 +15,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import logic.PersonaNatural;
 import logic.Sistema;
 import logic.Usuario;
 
@@ -57,13 +58,16 @@ public class RegistrarTelefonoFijo extends JFrame {
 		JButton btnOk = new JButton("OK");
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (!Utils.validarNumeroFijo(txtNumeroTelefono.getText())) 
+					Utils.launchError("El número ingresado no es válido, debe ser de 7 cifras sin contar el código de la provincia");
 				String numero = String.valueOf(Utils.getProvinciaNum(usuario.getProvincia())) + txtNumeroTelefono.getText();
+				if (usuario instanceof PersonaNatural && usuario.getTelefonosFijos().size() == 1) 
+					Utils.launchError("Las Personas Naturales solamente pueden tener un teléfono fijo");
 				if(sistem.getTelefono(numero) == null){
 					usuario.addTelefonoFijo(numero);
 					dispose();					
-				} else {
-					Utils.launchError("Ese n�mero ya se encuentra registrado");
-				}
+				} else 
+					Utils.launchError("Ese n�mero ya se encuentra registrado");
 			}
 		});
 		btnOk.setFont(new Font("Arial", Font.PLAIN, 12));

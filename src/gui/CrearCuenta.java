@@ -143,13 +143,13 @@ public class CrearCuenta extends JDialog {
 						if(userName.isEmpty() || password1.isEmpty() || password2.isEmpty())
 							errorMessage = "Rellene todos los campos";
 						else if(!password1.equals(password2))
-							errorMessage = "Las contraseñas no coinciden";
+							errorMessage = "Las contraseï¿½as no coinciden";
 						else if(sistem.getUsuario(userName) != null) 
-							errorMessage = "El nombre de usuario ya está tomado";						
+							errorMessage = "El nombre de usuario ya estï¿½ tomado";						
 						else if(!Utils.validarNombreUsuario(userName))
-							errorMessage = "El nombre de usuario no es válido";
+							errorMessage = "El nombre de usuario no es vï¿½lido";
 						else if(!Utils.validarNombreUsuario(password1))
-							errorMessage = "La contraseña no es válida";						
+							errorMessage = "La contraseï¿½a no es vï¿½lida";						
 						if(errorMessage != null)
 							Utils.launchError(errorMessage);
 						

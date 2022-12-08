@@ -14,7 +14,6 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-import logic.Llamada;
 import logic.Sistema;
 import logic.Telefono;
 import logic.TelefonoFijo;
@@ -27,9 +26,9 @@ public class LlamadaEnProceso extends JFrame {
 	private JPanel contentPane;
 	private double duracion = 1;
 
-	public LlamadaEnProceso(final Sistema sistem, final Usuario usuario, final Telefono telefono, final String numeroLlamado) {
+	public LlamadaEnProceso(final Sistema sistema, final Usuario usuario, final Telefono telefono, final String numeroLlamado) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/images/favicon.png")));
-		setTitle(sistem.getUsuarioPorTelefono(numeroLlamado).getNombre());
+		setTitle(sistema.getUsuarioPorTelefono(numeroLlamado).getNombre());
 		setBounds(100, 100, 290, 266);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -66,7 +65,7 @@ public class LlamadaEnProceso extends JFrame {
 		contentPane.add(lblNumeroLLamado);
 
 		JLabel lblProvinciaLlamada = new JLabel();
-		lblProvinciaLlamada.setText(sistem.getUsuarioPorTelefono(numeroLlamado).getProvincia());
+		lblProvinciaLlamada.setText(sistema.getUsuarioPorTelefono(numeroLlamado).getProvincia());
 		lblProvinciaLlamada.setFont(new Font("Arial", Font.PLAIN, 13));
 		lblProvinciaLlamada.setBounds(135, 67, 100, 25);
 		contentPane.add(lblProvinciaLlamada);
@@ -77,8 +76,9 @@ public class LlamadaEnProceso extends JFrame {
 		contentPane.add(lblDuracionLlamada);
 
 		String cargada = "true";
-		if(telefono instanceof TelefonoFijo && sistem.getTelefono(numeroLlamado) instanceof TelefonoMovil) // Si la llamada se realiza desde un fijo a un móvil
-			cargada = "false";                                                                      // se le carga al móvil correspondiente
+		if(telefono instanceof TelefonoFijo &&  // Si el teléfono llamando es un fijo y el llamado un móvil
+			sistema.getTelefono(numeroLlamado) instanceof TelefonoMovil)
+			cargada = "false";   // Se le carga la llamada al teléfono móvil
 		final JLabel lblUsuarioCargado = new JLabel(cargada);
 		lblUsuarioCargado.setFont(new Font("Arial", Font.PLAIN, 13));
 		lblUsuarioCargado.setBounds(135, 139, 100, 25);
@@ -98,19 +98,12 @@ public class LlamadaEnProceso extends JFrame {
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				timer.stop();
-				boolean largaDistancia = true;
-				if(usuario.getProvincia().equals(sistem.getUsuarioPorTelefono(numeroLlamado).getProvincia()));
-					largaDistancia = false;
-			
-				Llamada llamada;
-				if(lblUsuarioCargado.getText().equals("true")) {
-					llamada = new Llamada(numeroLlamado, duracion, sistem.getUsuarioPorTelefono(numeroLlamado).getProvincia(), largaDistancia, true);
-					telefono.addLlamada(llamada);
-				}
-				else {
-					llamada = new Llamada(telefono.getNumero(), duracion, sistem.getUsuarioPorTelefono(numeroLlamado).getProvincia(), largaDistancia, false);
-					sistem.getTelefono(numeroLlamado).addLlamada(llamada);
-				}
+				
+				if(lblUsuarioCargado.getText().equals("true")) 
+					telefono.addLlamada(sistema, usuario, numeroLlamado, duracion, true);
+				else 
+					telefono.addLlamada(sistema, usuario, numeroLlamado, duracion, false);
+
 				dispose();
 			}
 		});

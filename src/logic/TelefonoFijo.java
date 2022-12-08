@@ -35,5 +35,26 @@ public class TelefonoFijo extends Telefono{
 		}
 		return resultado;
 	}
+
+	public void addLlamada(Sistema sistema, Usuario usuario, String numeroLlamado, double duracion, boolean usuarioCargado) {
+			
+		Usuario usuarioLlamado = sistema.getUsuarioPorTelefono(numeroLlamado);
+		Telefono telefonoLlamado = sistema.getTelefono(numeroLlamado);
+
+		String provinciaUsuario = usuario.getProvincia();
+		String provinciaLlamada = usuarioLlamado.getProvincia();
+		boolean isLargaDistancia = !provinciaUsuario.equals(provinciaLlamada);
+	
+		Llamada llamada;
+		if(usuarioCargado) {
+			llamada = new Llamada(numeroLlamado, duracion, usuarioLlamado.getProvincia(), isLargaDistancia, true);
+			this.addLlamada(llamada);
+		}
+		else {
+			llamada = new Llamada(this.getNumero(), duracion, usuarioLlamado.getProvincia(), isLargaDistancia, false);
+			telefonoLlamado.addLlamada(llamada);
+		}
+		
+	}
 	
 }

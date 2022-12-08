@@ -2,7 +2,7 @@ package logic;
 
 import java.util.ArrayList;
 
-public abstract class Telefono {
+public abstract class Telefono implements Llamador{
 
 	protected String numero;
 	protected ArrayList<Llamada> llamadas = new ArrayList<Llamada>();

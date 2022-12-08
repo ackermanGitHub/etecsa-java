@@ -15,6 +15,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import logic.PersonaNatural;
 import logic.Sistema;
 import logic.Usuario;
 
@@ -40,12 +41,15 @@ public class RegistrarTelefonoMovil extends JFrame {
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String numero = txtNumeroTelefono.getText();
+				if (!Utils.validarNumeroMovil(numero)) 
+					Utils.launchError("El número ingresado no es válido, debe ser de 8 cifras comenzando por 5");
+				if(usuario instanceof PersonaNatural && usuario.getTelefonosMoviles().size() == 2)
+					Utils.launchError("Las Personas Naturales solamente pueden tener dos teléfonos móviles");
 				if(sistem.getTelefono(numero) == null){
 					usuario.addTelefonoMovil(numero);
 					dispose();					
-				} else {
-					Utils.launchError("Ese n�mero ya se encuentra registrado");
-				}
+				} else
+					Utils.launchError("Ese n�mero ya se encuentra registrado");
 			}
 		});
 		btnOk.setFont(new Font("Arial", Font.PLAIN, 12));

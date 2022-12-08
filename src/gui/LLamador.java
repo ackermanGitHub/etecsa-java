@@ -172,7 +172,7 @@ public class LLamador extends JFrame {
 
 				Telefono telefonoLlamado = sistema.getTelefono(numero);
 				if(numero.isEmpty() && ultimaLlamada == null)
-					Utils.launchError("No ha introducido ningún teléfono");
+					Utils.launchError("No ha introducido ningï¿½n telï¿½fono");
 				else if(numero.isEmpty() && ultimaLlamada != null)
 					txtTelefono.setText(ultimaLlamada);
 				else if(telefonoLlamado == null)
@@ -181,8 +181,8 @@ public class LLamador extends JFrame {
 					Utils.launchError("No te puedes llamar a ti mismo");
 				else {
 					LlamadaEnProceso llamadaEnProceso = new LlamadaEnProceso(sistema, usuario, telefono, numero);
-					ultimaLlamada = numero;
 					llamadaEnProceso.setVisible(true);
+					ultimaLlamada = numero;
 					txtTelefono.setText("");					
 				}
 			}

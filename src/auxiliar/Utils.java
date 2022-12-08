@@ -20,6 +20,40 @@ public class Utils {
 			resultado = true;
 		return resultado;
 	}
+	public static boolean validarNumeroFijo(String numeroTelefono) {
+		boolean esValido = true;
+		if (numeroTelefono.length() != 7) 
+			esValido = false;
+		else {
+			for (int i = 0; i < numeroTelefono.length(); i++) {
+			  char caracter = numeroTelefono.charAt(i);
+			  if (!Character.isDigit(caracter)) 
+				esValido = false;
+			}
+		}
+		return esValido;
+	}
+	public static boolean validarNumeroMovil(String numeroTelefono) {
+		boolean esValido = true;
+		if (!numeroTelefono.startsWith("5"))
+			esValido = false;
+		else if (numeroTelefono.length() != 8) 
+			esValido = false;
+		else {
+			for (int i = 0; i < numeroTelefono.length(); i++) {
+		  		char caracter = numeroTelefono.charAt(i);
+		  		if (!Character.isDigit(caracter)) 
+					esValido = false;
+			}
+		}
+		return esValido;
+	}
+	public static boolean validarID(String ID) {
+		return true;
+	}
+	public static boolean validarDireccion(String direccion) {
+		return true;
+	}
 	public static void launchError(String errorMessage){
 		ErrorWindow errorWindow = new ErrorWindow(errorMessage);
 		errorWindow.setVisible(true);
@@ -47,13 +81,13 @@ public class Utils {
 			result = 32;
 		else if(provincia.contains("as") && provincia.contains("unas"))
 			result = 31;
-		else if(provincia.contains("olguín") || provincia.contains("olguin"))
+		else if(provincia.contains("olguï¿½n") || provincia.contains("olguin"))
 			result = 24;
 		else if(provincia.contains("ranma"))
 			result = 23;
 		else if(provincia.contains("antiago") && provincia.contains("uba"))
 			result = 22;
-		else if(provincia.contains("antánamo") || provincia.contains("antanamo"))
+		else if(provincia.contains("antï¿½namo") || provincia.contains("antanamo"))
 			result = 21;
 		else if(provincia.contains("sla") && provincia.contains("uventud"))
 			result = 46;

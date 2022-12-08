@@ -1,5 +1,7 @@
 package logic;
 
+import java.util.ArrayList;
+
 public class PersonaJuridica extends Usuario {
 	private String entidad;
 	private String organismo;
@@ -16,6 +18,13 @@ public class PersonaJuridica extends Usuario {
 	}
 	public void setOrganismo(String organismo) {
 		this.organismo = organismo;
+	}
+
+	public void addCuentaNauta(String nickName) {
+		throw new IllegalArgumentException("Las Personas Jurídicas no pueden tener cuenta nauta");
+	}
+	public ArrayList<CuentaNauta> getCuentasNauta() {
+		throw new IllegalArgumentException("Las Personas Jurídicas no pueden tener cuenta nauta");
 	}
 
 	public PersonaJuridica(String userName, String password, String nombreEmpresa, 

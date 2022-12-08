@@ -48,12 +48,19 @@ public abstract class Usuario {
 		return listaTelefonos;
 	}
 
+	public ArrayList<CuentaNauta> getCuentasNauta() {
+		return this.cuentasNautas;
+	}
+	public void addCuentaNauta(String nickName) {
+		this.cuentasNautas.add(new CuentaNauta(nickName));
+	}
+
 	public String getUserName() {
 		return this.userName;
 	}
 	public void setUserName(String userName) {
 		if(!Utils.validarNombre(userName))
-			Utils.launchError("El nombre de usuario no es válido");
+			throw new IllegalArgumentException("El nombre de usuario no es vÃ¡lido");
 		else
 			this.userName = userName;			
 	}
@@ -63,7 +70,7 @@ public abstract class Usuario {
 	}
 	public void setPassword(String password) {
 		if(!Utils.validarNombre(password))
-			Utils.launchError("La contraseña no es válida");
+			throw new IllegalArgumentException("La contraseï¿½a no es vï¿½lida");
 		else
 			this.password = password;
 	}
@@ -73,7 +80,7 @@ public abstract class Usuario {
 	}
 	public void setNombre(String nombre) {
 		if(!Utils.validarNombre(nombre))
-			Utils.launchError("El nombre no es válido");
+			throw new IllegalArgumentException("El nombre no es vï¿½lido");
 		else 
 			this.nombre = nombre;
 	}
@@ -83,7 +90,7 @@ public abstract class Usuario {
 	}
 	public void setMunicipio(String municipio) {
 		if(!Utils.validarNombre(municipio))
-			Utils.launchError("El municipio no es válido");
+			throw new IllegalArgumentException("El municipio no es vï¿½lido");
 		else 
 			this.municipio = municipio;
 	}
@@ -93,7 +100,7 @@ public abstract class Usuario {
 	}
 	public void setProvincia(String provincia) {
 		if(!Utils.validarNombre(provincia))
-			Utils.launchError("La provincia no es válida");
+			throw new IllegalArgumentException("La provincia no es vï¿½lida");
 		else 
 			this.provincia = provincia;
 	}

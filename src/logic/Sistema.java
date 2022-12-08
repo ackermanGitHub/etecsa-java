@@ -2,8 +2,6 @@ package logic;
 
 import java.util.ArrayList;
 
-import auxiliar.Utils;
-
 public class Sistema {
 	
 	private ArrayList<Usuario> listaDeUsuarios = new ArrayList<Usuario>();
@@ -40,36 +38,36 @@ public class Sistema {
 		if(resultado == null)
 			this.listaDeUsuarios.add(usuario);
 		else
-			Utils.launchError("El usuario ya existe");
+			throw new IllegalArgumentException("El usuario ya existe");
 	}
 	public void addPersonaNatural(String userName, String password, String nombre, 
 			String apellido1, String apellido2, String ID, 
 			String direccionParticular, String municipio, String provincia) {
 		
-			PersonaNatural nuevoUsuario = new PersonaNatural(userName, password, nombre, 
-					apellido1, apellido2, ID, direccionParticular, municipio, provincia);
-			
-			this.addUsuario(nuevoUsuario);
+		PersonaNatural nuevoUsuario = new PersonaNatural(userName, password, nombre, 
+				apellido1, apellido2, ID, direccionParticular, municipio, provincia);
+		
+		this.addUsuario(nuevoUsuario);
 	}
 	public void addPersonaJuridica(String userName, String password, String nombreEmpresa, 
 			String entidad, String organismo, String municipio, String provincia, 
 			String direccionPostal, Representante representante) {
 		
-			PersonaJuridica nuevoUsuario = new PersonaJuridica(userName, password, nombreEmpresa, 
-					entidad, organismo, municipio, provincia, 
-					direccionPostal, representante);
-			
-			this.addUsuario(nuevoUsuario);
+		PersonaJuridica nuevoUsuario = new PersonaJuridica(userName, password, nombreEmpresa, 
+				entidad, organismo, municipio, provincia, 
+				direccionPostal, representante);
+		
+		this.addUsuario(nuevoUsuario);
 	}
 	public void addEntidadNoEstatal(String userName, String password, String nombre,  
 			String municipio, String provincia, String direccionPostal, 
 			Representante representante) {
 		
-			EntidadNoEstatal nuevoUsuario = new EntidadNoEstatal(userName, password, nombre,  
-					municipio, provincia, direccionPostal, 
-					representante);
-			
-			this.addUsuario(nuevoUsuario);
+		EntidadNoEstatal nuevoUsuario = new EntidadNoEstatal(userName, password, nombre,  
+				municipio, provincia, direccionPostal, 
+				representante);
+		
+		this.addUsuario(nuevoUsuario);
 	}
 	
 	public void removeUsuario(Usuario usuario) {
@@ -77,7 +75,7 @@ public class Sistema {
 		if(resultado != null)
 			this.listaDeUsuarios.remove(usuario);
 		else
-			Utils.launchError("El usuario no existe");
+			throw new IllegalArgumentException("El usuario no existe");
 	}
 	public ArrayList<Usuario> getListaDeUsuarios(){
 		return this.listaDeUsuarios;

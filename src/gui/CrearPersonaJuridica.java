@@ -17,8 +17,10 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.SwingConstants;
 
+import auxiliar.Utils;
 import logic.Representante;
 import logic.Sistema;
+
 
 @SuppressWarnings("serial")
 public class CrearPersonaJuridica extends JDialog {
@@ -37,7 +39,7 @@ public class CrearPersonaJuridica extends JDialog {
 
 	public CrearPersonaJuridica(final String userName, final String password, final Sistema sistem) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/images/favicon.png")));
-		setTitle("Creando Cuenta de Persona Jur�dica");
+		setTitle("Creando Cuenta de Persona Jur�dica");
 		setBounds(100, 100, 388, 489);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -188,8 +190,51 @@ public class CrearPersonaJuridica extends JDialog {
 				okButton.setFont(new Font("Arial", Font.PLAIN, 12));
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
-						Representante nuevoRepresent = new Representante(txtNombre.getText(), txtApellido_1.getText(), txtApellido_2.getText(), txtID.getText(), true);
-						sistem.addPersonaJuridica(userName, password, txtNombreEmpresa.getText(), txtEntidad.getText(), txtOrganismo.getText(), txtMunicipio.getText(), txtProvincia.getText(), txtDireccionPostal.getText(), nuevoRepresent);
+						String nombreRepr = txtNombre.getText();
+						String apellido1Repr = txtApellido_1.getText();
+						String apellido2Repr = txtApellido_2.getText();
+						String IDRepr = txtID.getText();
+
+						String nombreEmpresa =  txtNombreEmpresa.getText();
+						String entidad = txtEntidad.getText();
+						String organismo = txtOrganismo.getText();
+						String municipio = txtMunicipio.getText();
+						String provincia = txtProvincia.getText();
+						String direccionPostal = txtDireccionPostal.getText();
+
+						String errorMessage = null;
+						if(nombreRepr.isEmpty() || apellido1Repr.isEmpty() || apellido2Repr.isEmpty()
+							|| IDRepr.isEmpty() || nombreEmpresa.isEmpty() || entidad.isEmpty() || organismo.isEmpty() 
+							|| municipio.isEmpty() || provincia. isEmpty() || direccionPostal.isEmpty())
+							errorMessage = "Rellene todos los campos";						
+						else if(!Utils.validarNombre(nombreRepr))
+							errorMessage = "El nombre del representante no es válido";
+						else if(!Utils.validarNombre(apellido1Repr))
+							errorMessage = "El primer apellido del representante no es válido";	
+						else if(!Utils.validarNombre(apellido2Repr))
+							errorMessage = "El segundo apellido del representante no es válido";
+						else if(!Utils.validarID(IDRepr))
+							errorMessage = "El ID del representante no es válido";				
+						else if(!Utils.validarNombre(nombreEmpresa))
+							errorMessage = "El nombre de la empresa no es válido";
+						else if(!Utils.validarNombre(entidad))
+							errorMessage = "La entidad no es válida";	
+						else if(!Utils.validarNombre(organismo))
+							errorMessage = "El organismo no es válido";
+						else if(!Utils.validarNombre(municipio))
+							errorMessage = "El municipio no es válido";	
+						else if(!Utils.validarNombre(provincia))
+							errorMessage = "La provincia no es válida";			
+						else if(!Utils.validarDireccion(direccionPostal))
+							errorMessage = "La dirección postal no es válida";		
+						if(errorMessage != null)
+							Utils.launchError(errorMessage);
+							
+						Representante nuevoRepresent = new Representante(nombreRepr, apellido1Repr, apellido2Repr, 
+							IDRepr, true);
+						sistem.addPersonaJuridica(userName, password, nombreEmpresa, 
+							entidad, organismo, municipio, 
+							provincia, direccionPostal, nuevoRepresent);
 						Principal p = new Principal(sistem.getUsuario(userName), sistem);
 						p.setVisible(true);	
 						dispose();
