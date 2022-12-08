@@ -33,6 +33,7 @@ public class Principal extends JFrame {
 	private JPanel contentPane;
 
 	public Principal(final Usuario user, final Sistema sistem) {
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/images/favicon.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Sistema ETECSA");

@@ -16,7 +16,7 @@ public class Main {
 		sistem.getUsuario("alejandro").addTelefonoMovil("55395131");
 		sistem.getTelefono("55395131").addLlamada(new Llamada("52953930", 8, "Camaguey", true, true));
 		
-		sistem.addPersonaNatural("julio", "julio123", "Julio", "López", "Quiros", "02092766721", "Pedro Pérez/Clavel y Mariano No.561", "Cerro", "Camaguey");
+		sistem.addPersonaNatural("julio", "julio123", "Julio", "López", "Quiros", "02092766721", "Pedro Pérez/Clavel y Mariano No.561", "Florida", "Camaguey");
 		sistem.getUsuario("julio").addTelefonoMovil("52953930");
 		sistem.getTelefono("52953930").addLlamada(new Llamada("55395131", 15, "La Habana", true, true));
 		
