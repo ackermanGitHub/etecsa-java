@@ -32,7 +32,7 @@ public class CrearPersonaNatural extends JDialog {
 	private JTextField txtMunicipio;
 	private JTextField txtProvincia;
 
-	public CrearPersonaNatural(final String userName, final String password, final Sistema sistem) {
+	public CrearPersonaNatural(final String userName, final String password, final Sistema sistema) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/images/favicon.png")));
 		setTitle("Creando Cuenta de Persona Natural");
 		setBounds(100, 100, 329, 354);
@@ -172,10 +172,9 @@ public class CrearPersonaNatural extends JDialog {
 						if(errorMessage != null)
 							Utils.launchError(errorMessage);
 
-						sistem.addPersonaNatural(userName, password, name, 
-							apellido1, apellido2, ID, 
-							direccion, municipio, provincia);
-						Principal p = new Principal(sistem.getUsuario(userName), sistem);
+						sistema.addPersonaNatural(userName, password, name, apellido1, 
+								apellido2, ID, direccion, municipio, provincia);
+						Principal p = new Principal(sistema.getUsuario(userName), sistema);
 						p.setVisible(true);	
 						dispose();
 					}

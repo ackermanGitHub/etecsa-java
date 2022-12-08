@@ -7,7 +7,9 @@ public class Llamada {
 	private boolean largaDistancia;
 	private boolean saliente;
 
-	public Llamada(String numero, double duracion, String provinciaLlamada, boolean largaDistancia, boolean saliente) {
+	public Llamada(String numero, double duracion, 
+			String provinciaLlamada, boolean largaDistancia, boolean saliente) {
+		
 		this.numeroLlamado = numero;
 		this.duracion = duracion;
 		this.provinciaLlamada = provinciaLlamada;
@@ -30,5 +32,5 @@ public class Llamada {
 	public boolean isSaliente() {
 		return saliente;
 	}
-	
+
 }

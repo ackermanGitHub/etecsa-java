@@ -49,8 +49,12 @@ public class PersonaNatural extends Usuario{
 
 	public PersonaNatural(String userName, String password, String nombre, 
 			String apellido1, String apellido2, String ID, 
-			String direccionParticular, String municipio, String provincia) {
-		super(userName, password, nombre, municipio, provincia, null, null);
+			String direccionParticular, String municipio, 
+			String provincia, boolean isAdministrador) {
+		
+		super(userName, password, nombre, municipio, 
+				provincia, null, null, isAdministrador);
+		
 		this.setApellido1(apellido1);
 		this.setApellido2(apellido2);
 		this.setID(ID);

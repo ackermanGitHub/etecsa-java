@@ -42,7 +42,9 @@ public class Representante {
 		this.firmaAutorizo = firmaAutorizo;
 	}
 
-	public Representante(String nombre, String apellido1, String apellido2, String ID, Boolean firmaAutorizo) {
+	public Representante(String nombre, String apellido1, 
+			String apellido2, String ID, Boolean firmaAutorizo) {
+
 		this.setNombre(nombre);;
 		this.setApellido1(apellido1);;
 		this.setApellido2(apellido2);;

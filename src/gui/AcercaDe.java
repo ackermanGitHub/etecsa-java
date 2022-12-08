@@ -86,10 +86,10 @@ public class AcercaDe extends JFrame {
 		lblGrupo.setBounds(37, 81, 143, 23);
 		contentPane.add(lblGrupo);
 
-		JLabel lblG = new JLabel("G12");
-		lblG.setFont(new Font("Arial", Font.PLAIN, 13));
-		lblG.setBounds(204, 81, 46, 23);
-		contentPane.add(lblG);
+		JLabel lblGrupo12 = new JLabel("G12");
+		lblGrupo12.setFont(new Font("Arial", Font.PLAIN, 13));
+		lblGrupo12.setBounds(204, 81, 46, 23);
+		contentPane.add(lblGrupo12);
 	}
 
 }

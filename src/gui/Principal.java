@@ -33,14 +33,14 @@ public class Principal extends JFrame {
 
 	private JPanel contentPane;
 
-	public Principal(final Usuario user, final Sistema sistem) {
+	public Principal(final Usuario usuario, final Sistema sistema) {
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/images/favicon.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Sistema ETECSA");
 		setBounds(100, 100, 1200, 700);
 		setLocationRelativeTo(null);
-		
+
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setFont(new Font("Arial", Font.PLAIN, 12));
 		setJMenuBar(menuBar);
@@ -53,7 +53,7 @@ public class Principal extends JFrame {
 		mntmCerrarSecion.setFont(new Font("Arial", Font.PLAIN, 12));
 		mntmCerrarSecion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Login logIn = new Login(sistem);
+				Login logIn = new Login(sistema);
 				logIn.setVisible(true);
 				dispose();
 			}
@@ -73,31 +73,70 @@ public class Principal extends JFrame {
 		mnSistema.setFont(new Font("Arial", Font.PLAIN, 12));
 		menuBar.add(mnSistema);
 
-		JMenuItem mntmDatosUsuarios = new JMenuItem("Datos de Usuarios");
+		if(usuario.isAdministrador()){
+			JMenuItem mntmDatosUsuarios = new JMenuItem("Datos de Usuarios");
+			mntmDatosUsuarios.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					DatosDeUsuario datos = new DatosDeUsuario(sistema.getListaDeUsuarios());
+					datos.setVisible(true);
+				}
+			});
+			mntmDatosUsuarios.setFont(new Font("Arial", Font.PLAIN, 12));
+			mnSistema.add(mntmDatosUsuarios);
+
+			JMenuItem mntmDatosTelefonos = new JMenuItem("Datos de Tel\u00E9fonos");
+			mntmDatosTelefonos.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if(sistema.getListaTelefonos().size() > 0){
+						DatosDeTelefono datosTelefonos = new DatosDeTelefono(sistema, sistema.getListaTelefonos());
+						datosTelefonos.setVisible(true);						
+					} else {
+						Utils.launchError("No hay ningún teléfono registrado en el sistema");
+					}
+				}
+			});
+			mntmDatosTelefonos.setFont(new Font("Arial", Font.PLAIN, 12));
+			mnSistema.add(mntmDatosTelefonos);
+
+			JMenuItem mntmDatosLlamadas = new JMenuItem("Datos Llamadas");
+			mntmDatosLlamadas.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if(sistema.getListaLlamadas().size() > 0){
+						DatosDeLlamada datosLlamadas = new DatosDeLlamada(sistema, sistema.getListaTelefonos());
+						datosLlamadas.setVisible(true);
+					} else {
+						Utils.launchError("No hay ninguna llamada registrada en el sistema");
+					}
+				}
+			});
+			mntmDatosLlamadas.setFont(new Font("Arial", Font.PLAIN, 12));
+			mnSistema.add(mntmDatosLlamadas);
+		}
+
+		JMenuItem mntmDatosUsuarios = new JMenuItem("Tus Datos");
 		mntmDatosUsuarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DatosDeUsuario datos = new DatosDeUsuario(sistem);
-				datos.setVisible(true);
+				Utils.launchError("Esta funcionalidad se encuentra en desarrollo");
 			}
 		});
 		mntmDatosUsuarios.setFont(new Font("Arial", Font.PLAIN, 12));
 		mnSistema.add(mntmDatosUsuarios);
 
-		JMenuItem mntmDatosTelefonos = new JMenuItem("Datos de Tel\u00E9fonos");
+		JMenuItem mntmDatosTelefonos = new JMenuItem("Tus Tel\u00E9fonos");
 		mntmDatosTelefonos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DatosDeTelefono datos = new DatosDeTelefono(sistem);
-				datos.setVisible(true);
+				DatosDeTelefono datosTelefono = new DatosDeTelefono(sistema, usuario.getListaTelefonos());
+				datosTelefono.setVisible(true);
 			}
 		});
 		mntmDatosTelefonos.setFont(new Font("Arial", Font.PLAIN, 12));
 		mnSistema.add(mntmDatosTelefonos);
 
-		JMenuItem mntmDatosLlamadas = new JMenuItem("Datos Llamadas");
+		JMenuItem mntmDatosLlamadas = new JMenuItem("Tus Llamadas");
 		mntmDatosLlamadas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DatosDeLlamada datos = new DatosDeLlamada(sistem);
-				datos.setVisible(true);
+				SelectTelefInfLlamadas seleccion = new SelectTelefInfLlamadas(sistema, usuario);
+				seleccion.setVisible(true);
 			}
 		});
 		mntmDatosLlamadas.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -114,8 +153,8 @@ public class Principal extends JFrame {
 		JMenuItem mntmCrearCuentaNauta = new JMenuItem("Crear Cuenta Nauta");
 		mntmCrearCuentaNauta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CrearCuentaNauta cuentaN = new CrearCuentaNauta(sistem, user);
-				cuentaN.setVisible(true);
+				CrearCuentaNauta nuevaCuentaNauta = new CrearCuentaNauta(sistema, usuario);
+				nuevaCuentaNauta.setVisible(true);
 			}
 		});
 		mntmCrearCuentaNauta.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -124,9 +163,9 @@ public class Principal extends JFrame {
 		JMenuItem mntmEstadoDeCuenta = new JMenuItem("Estado de Cuenta");
 		mntmEstadoDeCuenta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(user instanceof PersonaJuridica)
+				if(usuario instanceof PersonaJuridica)
 					Utils.launchError("Las Personas Jurídicas no pueden tener cuenta nauta");
-				else if(!user.getCuentasNauta().isEmpty()){
+				else if(!usuario.getCuentasNauta().isEmpty()){
 					Utils.launchError("Esta parte del programa se encuentra en construcción");
 				}
 			}
@@ -141,23 +180,23 @@ public class Principal extends JFrame {
 		JMenuItem mntmRegistrarNuevoTelefono = new JMenuItem("Registrar Nuevo Tel\u00E9fono");
 		mntmRegistrarNuevoTelefono.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RegistrarTelefonoFijo nuevoTelefono = new RegistrarTelefonoFijo(sistem, user);
+				RegistrarTelefonoFijo nuevoTelefono = new RegistrarTelefonoFijo(sistema, usuario);
 				nuevoTelefono.setVisible(true);
 			}
 		});
 		mntmRegistrarNuevoTelefono.setFont(new Font("Arial", Font.PLAIN, 12));
 		mntmTelefoniaFija.add(mntmRegistrarNuevoTelefono);
-		
+
 		JMenuItem mntmVerFacturas = new JMenuItem("Ver Facturas");
 		mntmVerFacturas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(user.getTelefonosFijos().size() == 0)
-					Utils.launchError("Usted no cuenta con ning�n tel�fono fijo");
-				else if(user.getTelefonosFijos().size() == 1) {
-					FacturaTelFijo tablaFactura = new FacturaTelFijo(user.getTelefonosFijos().get(0));
-					tablaFactura.setVisible(true);
+				if(usuario.getTelefonosFijos().size() == 0)
+					Utils.launchError("Usted no cuenta con ningún teléfono fijo");
+				else if(usuario.getTelefonosFijos().size() == 1) {
+					FacturaTelFijo FacturaFijo = new FacturaTelFijo(usuario.getTelefonosFijos().get(0));
+					FacturaFijo.setVisible(true);
 				} else {
-					
+
 				}
 			}
 		});
@@ -171,14 +210,14 @@ public class Principal extends JFrame {
 		JMenuItem mntmLlamador = new JMenuItem("Llamador");
 		mntmLlamador.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(user.getListaTelefonos().size() == 0)
+				if(usuario.getListaTelefonos().size() == 0)
 					Utils.launchError("Usted no cuenta con ningún teléfono");
-				else if(user.getListaTelefonos().size() == 1) {
-					LLamador llamador = new LLamador(sistem, user, user.getTelefonosMoviles().get(0));
+				else if(usuario.getListaTelefonos().size() == 1) {
+					LLamador llamador = new LLamador(sistema, usuario, usuario.getTelefonosMoviles().get(0));
 					llamador.setVisible(true);
 				} else {
-					SeleccionarTelefono telefono = new SeleccionarTelefono(sistem, user);
-					telefono.setVisible(true);
+					SelectTelefLlamar seleccionarTelefono = new SelectTelefLlamar(sistema, usuario);
+					seleccionarTelefono.setVisible(true);
 				}
 			}
 		});
@@ -188,7 +227,7 @@ public class Principal extends JFrame {
 		JMenuItem mntmRegistrarNuevoMovil = new JMenuItem("Registrar Nuevo M\u00F3vil");
 		mntmRegistrarNuevoMovil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RegistrarTelefonoMovil nuevoTelefono = new RegistrarTelefonoMovil(sistem, user);
+				RegistrarTelefonoMovil nuevoTelefono = new RegistrarTelefonoMovil(sistema, usuario);
 				nuevoTelefono.setVisible(true);
 			}
 		});
@@ -202,8 +241,8 @@ public class Principal extends JFrame {
 		JMenuItem mntmBorrarCuenta = new JMenuItem("Borrar Cuenta");
 		mntmBorrarCuenta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sistem.removeUsuario(user);
-				Login logIn = new Login(sistem);
+				sistema.removeUsuario(usuario);
+				Login logIn = new Login(sistema);
 				logIn.setVisible(true);
 				dispose();
 			}
@@ -235,7 +274,7 @@ public class Principal extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblTipoDeCuenta = new JLabel("Bienvenido: " + user.getNombre());
+		JLabel lblTipoDeCuenta = new JLabel("Bienvenido: " + usuario.getNombre());
 		lblTipoDeCuenta.setForeground(Color.WHITE);
 		lblTipoDeCuenta.setFont(new Font("Microsoft Sans Serif", Font.BOLD, 35));
 		lblTipoDeCuenta.setBounds(10, 0, 440, 49);

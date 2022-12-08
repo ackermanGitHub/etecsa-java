@@ -32,7 +32,7 @@ public class Login extends JFrame {
 	private JTextField txtUserName;
 	private JPasswordField txtUserPassword;
 
-	public Login(final Sistema sistem) {
+	public Login(final Sistema sistema) {
 		setResizable(false);
 		setAlwaysOnTop(true);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/images/favicon.png")));
@@ -95,10 +95,10 @@ public class Login extends JFrame {
 				@SuppressWarnings("deprecation")
 				String userPassword = txtUserPassword.getText();
 				String userName = txtUserName.getText();
-				Usuario usuario = sistem.getUsuario(userName, userPassword);
+				Usuario usuario = sistema.getUsuario(userName, userPassword);
 				
 				if(usuario != null){
-					Principal p = new Principal(usuario, sistem);
+					Principal p = new Principal(usuario, sistema);
 					p.setVisible(true);					
 					dispose();
 				} else {
@@ -128,8 +128,8 @@ public class Login extends JFrame {
 		JLabel lblCrearCuenta = new JLabel("Crear Cuenta");
 		lblCrearCuenta.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
-				CrearCuenta dialog = new CrearCuenta(sistem);
-				dialog.setVisible(true);
+				CrearCuenta crearCuenta = new CrearCuenta(sistema);
+				crearCuenta.setVisible(true);
 				dispose();
 			}
 		});

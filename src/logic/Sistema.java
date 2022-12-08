@@ -3,7 +3,7 @@ package logic;
 import java.util.ArrayList;
 
 public class Sistema {
-	
+
 	private ArrayList<Usuario> listaDeUsuarios = new ArrayList<Usuario>();
 
 	public Usuario getUsuario(String userName, String password){
@@ -24,10 +24,19 @@ public class Sistema {
 		}
 		return resultado;
 	}
-	public Usuario getUsuarioPorTelefono(String numero){
+	public Usuario getUsuarioPorNumero(String numero){
 		Usuario resultado = null;
 		for(Usuario user : this.getListaDeUsuarios()){
 			if(user.getTelefono(numero) != null){
+				resultado = user;
+			}
+		}
+		return resultado;
+	}
+	public Usuario getUsuarioPorTelefono(Telefono telefono){
+		Usuario resultado = null;
+		for(Usuario user : this.getListaDeUsuarios()){
+			if(user.getTelefono(telefono.getNumero()) != null){
 				resultado = user;
 			}
 		}
@@ -43,33 +52,32 @@ public class Sistema {
 	public void addPersonaNatural(String userName, String password, String nombre, 
 			String apellido1, String apellido2, String ID, 
 			String direccionParticular, String municipio, String provincia) {
-		
+
 		PersonaNatural nuevoUsuario = new PersonaNatural(userName, password, nombre, 
-				apellido1, apellido2, ID, direccionParticular, municipio, provincia);
-		
+				apellido1, apellido2, ID, direccionParticular, municipio, provincia, false);
+
 		this.addUsuario(nuevoUsuario);
 	}
 	public void addPersonaJuridica(String userName, String password, String nombreEmpresa, 
 			String entidad, String organismo, String municipio, String provincia, 
 			String direccionPostal, Representante representante) {
-		
-		PersonaJuridica nuevoUsuario = new PersonaJuridica(userName, password, nombreEmpresa, 
-				entidad, organismo, municipio, provincia, 
-				direccionPostal, representante);
-		
+
+		PersonaJuridica nuevoUsuario = new PersonaJuridica(userName, password, 
+				nombreEmpresa, entidad, organismo, municipio, provincia, 
+				direccionPostal, representante, false);
+
 		this.addUsuario(nuevoUsuario);
 	}
-	public void addEntidadNoEstatal(String userName, String password, String nombre,  
-			String municipio, String provincia, String direccionPostal, 
-			Representante representante) {
-		
-		EntidadNoEstatal nuevoUsuario = new EntidadNoEstatal(userName, password, nombre,  
-				municipio, provincia, direccionPostal, 
-				representante);
-		
+	public void addEntidadNoEstatal(String userName, String password, 
+			String nombre, String municipio, String provincia, 
+			String direccionPostal, Representante representante) {
+
+		EntidadNoEstatal nuevoUsuario = new EntidadNoEstatal(userName, password, 
+				nombre, municipio, provincia, direccionPostal, representante, false);
+
 		this.addUsuario(nuevoUsuario);
 	}
-	
+
 	public void removeUsuario(Usuario usuario) {
 		Usuario resultado = this.getUsuario(usuario.getUserName());
 		if(resultado != null)
@@ -96,7 +104,7 @@ public class Sistema {
 		}
 		return telefonos;
 	}
-	
+
 	public ArrayList<Llamada> getListaLlamadas(){
 		ArrayList<Llamada> result = new ArrayList<Llamada>();
 		for(Telefono telefono : this.getListaTelefonos()){

@@ -37,7 +37,7 @@ public class CrearPersonaJuridica extends JDialog {
 	private JTextField txtApellido_2;
 	private JTextField txtID;
 
-	public CrearPersonaJuridica(final String userName, final String password, final Sistema sistem) {
+	public CrearPersonaJuridica(final String userName, final String password, final Sistema sistema) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/images/favicon.png")));
 		setTitle("Creando Cuenta de Persona Jur�dica");
 		setBounds(100, 100, 388, 489);
@@ -204,8 +204,8 @@ public class CrearPersonaJuridica extends JDialog {
 
 						String errorMessage = null;
 						if(nombreRepr.isEmpty() || apellido1Repr.isEmpty() || apellido2Repr.isEmpty()
-							|| IDRepr.isEmpty() || nombreEmpresa.isEmpty() || entidad.isEmpty() || organismo.isEmpty() 
-							|| municipio.isEmpty() || provincia. isEmpty() || direccionPostal.isEmpty())
+								|| IDRepr.isEmpty() || nombreEmpresa.isEmpty() || entidad.isEmpty() || organismo.isEmpty() 
+								|| municipio.isEmpty() || provincia. isEmpty() || direccionPostal.isEmpty())
 							errorMessage = "Rellene todos los campos";						
 						else if(!Utils.validarNombre(nombreRepr))
 							errorMessage = "El nombre del representante no es válido";
@@ -229,13 +229,12 @@ public class CrearPersonaJuridica extends JDialog {
 							errorMessage = "La dirección postal no es válida";		
 						if(errorMessage != null)
 							Utils.launchError(errorMessage);
-							
-						Representante nuevoRepresent = new Representante(nombreRepr, apellido1Repr, apellido2Repr, 
-							IDRepr, true);
-						sistem.addPersonaJuridica(userName, password, nombreEmpresa, 
-							entidad, organismo, municipio, 
-							provincia, direccionPostal, nuevoRepresent);
-						Principal p = new Principal(sistem.getUsuario(userName), sistem);
+
+						Representante nuevoRepresent = new Representante(nombreRepr, 
+								apellido1Repr, apellido2Repr, IDRepr, true);
+						sistema.addPersonaJuridica(userName, password, nombreEmpresa, entidad, 
+								organismo, municipio, provincia, direccionPostal, nuevoRepresent);
+						Principal p = new Principal(sistema.getUsuario(userName), sistema);
 						p.setVisible(true);	
 						dispose();
 					}
@@ -257,5 +256,5 @@ public class CrearPersonaJuridica extends JDialog {
 			}
 		}
 	}
-	
+
 }

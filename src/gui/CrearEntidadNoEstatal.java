@@ -17,6 +17,7 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.SwingConstants;
 
+import auxiliar.Utils;
 import logic.Representante;
 import logic.Sistema;
 
@@ -33,7 +34,7 @@ public class CrearEntidadNoEstatal extends JDialog {
 	private JTextField txtMunicipio;
 	private JTextField txtProvincia;
 
-	public CrearEntidadNoEstatal(final String userName, final String password, final Sistema sistem) {
+	public CrearEntidadNoEstatal(final String userName, final String password, final Sistema sistema) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/images/favicon.png")));
 		setTitle("Creando Cuenta de Entidad no Estatal");
 		setBounds(100, 100, 350, 449);
@@ -162,13 +163,46 @@ public class CrearEntidadNoEstatal extends JDialog {
 				okButton.setFont(new Font("Arial", Font.PLAIN, 12));
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
-						Representante nuevoRepresent = new Representante(txtNombreRepresent.getText(), 
-								txtApellido_1.getText(), txtApellido_2.getText(), 
-								txtID.getText(), true);
-						sistem.addEntidadNoEstatal(userName, password, txtNombre.getText(), 
-								txtMunicipio.getText(), txtProvincia.getText(), 
-								txtDireccionPostal.getText(), nuevoRepresent);
-						Principal p = new Principal(sistem.getUsuario(userName), sistem);
+
+						String nombreRepr = txtNombreRepresent.getText();
+						String apellido1Repr = txtApellido_1.getText();
+						String apellido2Repr = txtApellido_2.getText();
+						String IDRepr = txtID.getText();
+
+						String nombreEmpresa =  txtNombre.getText();
+						String municipio = txtMunicipio.getText();
+						String provincia = txtProvincia.getText();
+						String direccionPostal = txtDireccionPostal.getText();
+
+						String errorMessage = null;
+						if(nombreRepr.isEmpty() || apellido1Repr.isEmpty() || apellido2Repr.isEmpty()
+								|| IDRepr.isEmpty() || nombreEmpresa.isEmpty() || municipio.isEmpty() 
+								|| provincia. isEmpty() || direccionPostal.isEmpty())
+							errorMessage = "Rellene todos los campos";						
+						else if(!Utils.validarNombre(nombreRepr))
+							errorMessage = "El nombre del representante no es válido";
+						else if(!Utils.validarNombre(apellido1Repr))
+							errorMessage = "El primer apellido del representante no es válido";	
+						else if(!Utils.validarNombre(apellido2Repr))
+							errorMessage = "El segundo apellido del representante no es válido";
+						else if(!Utils.validarID(IDRepr))
+							errorMessage = "El ID del representante no es válido";				
+						else if(!Utils.validarNombre(nombreEmpresa))
+							errorMessage = "El nombre de la entidad no es válido";
+						else if(!Utils.validarNombre(municipio))
+							errorMessage = "El municipio no es válido";	
+						else if(!Utils.validarNombre(provincia))
+							errorMessage = "La provincia no es válida";			
+						else if(!Utils.validarDireccion(direccionPostal))
+							errorMessage = "La dirección postal no es válida";		
+						if(errorMessage != null)
+							Utils.launchError(errorMessage);
+
+						Representante nuevoRepresent = new Representante(nombreRepr, 
+								apellido1Repr, apellido2Repr, IDRepr, true);
+						sistema.addEntidadNoEstatal(userName, password, nombreEmpresa, 
+								municipio, provincia, direccionPostal, nuevoRepresent);
+						Principal p = new Principal(sistema.getUsuario(userName), sistema);
 						p.setVisible(true);
 						dispose();
 					}

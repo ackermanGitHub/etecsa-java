@@ -37,7 +37,7 @@ public class CrearCuenta extends JDialog {
 	private JRadioButton rdbtnPersonaJuridica;
 	private JRadioButton rdbtnEntidadNoEstatal;
 
-	public CrearCuenta(final Sistema sistem) {
+	public CrearCuenta(final Sistema sistema) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/images/favicon.png")));
 		setFont(new Font("Dialog", Font.PLAIN, 12));
 		setTitle("Cuenta Nueva");
@@ -132,19 +132,19 @@ public class CrearCuenta extends JDialog {
 				okButton.setFont(new Font("Arial", Font.PLAIN, 12));
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
-						
+
 						String errorMessage = null;
 						String userName = userNameField.getText();
 						@SuppressWarnings("deprecation")
 						String password1 = passwordField.getText();
 						@SuppressWarnings("deprecation")
 						String password2 = passwordField_1.getText();
-						
+
 						if(userName.isEmpty() || password1.isEmpty() || password2.isEmpty())
 							errorMessage = "Rellene todos los campos";
 						else if(!password1.equals(password2))
 							errorMessage = "Las contrase�as no coinciden";
-						else if(sistem.getUsuario(userName) != null) 
+						else if(sistema.getUsuario(userName) != null) 
 							errorMessage = "El nombre de usuario ya est� tomado";						
 						else if(!Utils.validarNombreUsuario(userName))
 							errorMessage = "El nombre de usuario no es v�lido";
@@ -152,17 +152,17 @@ public class CrearCuenta extends JDialog {
 							errorMessage = "La contrase�a no es v�lida";						
 						if(errorMessage != null)
 							Utils.launchError(errorMessage);
-						
+
 						if(rdbtnPersonaNatural.isSelected()){
-							CrearPersonaNatural datosPersonaNatural = new CrearPersonaNatural(userName, password1, sistem);
+							CrearPersonaNatural datosPersonaNatural = new CrearPersonaNatural(userName, password1, sistema);
 							datosPersonaNatural.setVisible(true);
 							dispose();
 						} else if(rdbtnPersonaJuridica.isSelected()){
-							CrearPersonaJuridica datosPersonaJuridica = new CrearPersonaJuridica(userName, password1, sistem);
+							CrearPersonaJuridica datosPersonaJuridica = new CrearPersonaJuridica(userName, password1, sistema);
 							datosPersonaJuridica.setVisible(true);
 							dispose();
 						} else if(rdbtnEntidadNoEstatal.isSelected()){
-							CrearEntidadNoEstatal datosEntidadNoEstatal = new CrearEntidadNoEstatal(userName, password1, sistem);
+							CrearEntidadNoEstatal datosEntidadNoEstatal = new CrearEntidadNoEstatal(userName, password1, sistema);
 							datosEntidadNoEstatal.setVisible(true);
 							dispose();
 						} else {

@@ -177,7 +177,7 @@ public class LLamador extends JFrame {
 					txtTelefono.setText(ultimaLlamada);
 				else if(telefonoLlamado == null)
 					Utils.launchError("El telefono llamado no se encuentra registrado en el sistema");
-				else if(sistema.getUsuarioPorTelefono(numero) == usuario)
+				else if(sistema.getUsuarioPorNumero(numero) == usuario)
 					Utils.launchError("No te puedes llamar a ti mismo");
 				else {
 					LlamadaEnProceso llamadaEnProceso = new LlamadaEnProceso(sistema, usuario, telefono, numero);

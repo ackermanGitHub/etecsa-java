@@ -5,14 +5,14 @@ import gui.ErrorWindow;
 public class Utils {
 
 	public static boolean validarNombre(String nombre) {
-		boolean result = true;
+		boolean resultado = true;
 		if(nombre.length() < 3)
-			result = false;
+			resultado = false;
 		for (int i = 0; i > nombre.length(); i++) {   
 			if (!Character.isAlphabetic((nombre.charAt(i))))
-				result = false; 
+				resultado = false; 
 		}
-		return result; 
+		return resultado; 
 	}
 	public static boolean validarNombreUsuario(String entrada){
 		boolean resultado = false;
@@ -26,9 +26,9 @@ public class Utils {
 			esValido = false;
 		else {
 			for (int i = 0; i < numeroTelefono.length(); i++) {
-			  char caracter = numeroTelefono.charAt(i);
-			  if (!Character.isDigit(caracter)) 
-				esValido = false;
+				char caracter = numeroTelefono.charAt(i);
+				if (!Character.isDigit(caracter)) 
+					esValido = false;
 			}
 		}
 		return esValido;
@@ -41,8 +41,8 @@ public class Utils {
 			esValido = false;
 		else {
 			for (int i = 0; i < numeroTelefono.length(); i++) {
-		  		char caracter = numeroTelefono.charAt(i);
-		  		if (!Character.isDigit(caracter)) 
+				char caracter = numeroTelefono.charAt(i);
+				if (!Character.isDigit(caracter)) 
 					esValido = false;
 			}
 		}
@@ -60,38 +60,38 @@ public class Utils {
 		throw new IllegalArgumentException(errorMessage);
 	}
 	public static int getProvinciaNum(String provincia){
-		int result = 0;
+		int resultado = 0;
 		if(provincia.contains("inar"))
-			result = 48;
+			resultado = 48;
 		else if(provincia.contains("abana"))
-			result = 7;
+			resultado = 7;
 		else if(provincia.contains("rtemisa") || provincia.contains("ayabeque"))
-			result = 47;
+			resultado = 47;
 		else if(provincia.contains("atanzas"))
-			result = 45;
+			resultado = 45;
 		else if(provincia.contains("illa") && provincia.contains("lara"))
-			result = 42;
+			resultado = 42;
 		else if(provincia.contains("ienfuegos"))
-			result = 43;
+			resultado = 43;
 		else if(provincia.contains("ancti"))
-			result = 41;
+			resultado = 41;
 		else if(provincia.contains("iego") && provincia.contains("vila"))
-			result = 33;
+			resultado = 33;
 		else if(provincia.contains("amaguey"))
-			result = 32;
+			resultado = 32;
 		else if(provincia.contains("as") && provincia.contains("unas"))
-			result = 31;
+			resultado = 31;
 		else if(provincia.contains("olgu�n") || provincia.contains("olguin"))
-			result = 24;
+			resultado = 24;
 		else if(provincia.contains("ranma"))
-			result = 23;
+			resultado = 23;
 		else if(provincia.contains("antiago") && provincia.contains("uba"))
-			result = 22;
+			resultado = 22;
 		else if(provincia.contains("ant�namo") || provincia.contains("antanamo"))
-			result = 21;
+			resultado = 21;
 		else if(provincia.contains("sla") && provincia.contains("uventud"))
-			result = 46;
-		return result;
+			resultado = 46;
+		return resultado;
 	}
 
 }

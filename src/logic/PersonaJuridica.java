@@ -29,8 +29,11 @@ public class PersonaJuridica extends Usuario {
 
 	public PersonaJuridica(String userName, String password, String nombreEmpresa, 
 			String entidad, String organismo, String municipio, String provincia, 
-			String direccionPostal, Representante representante) {
-		super(userName, password, nombreEmpresa, municipio, provincia, direccionPostal, representante);
+			String direccionPostal, Representante representante, boolean isAdministrador) {
+		
+		super(userName, password, nombreEmpresa, municipio, 
+				provincia, direccionPostal, representante, isAdministrador);
+		
 		this.setEntidad(entidad);
 		this.setOrganismo(organismo);
 	}

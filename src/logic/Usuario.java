@@ -13,11 +13,12 @@ public abstract class Usuario {
 	protected String provincia;
 	protected String direccionPostal;
 	protected Representante representante;
+	protected boolean administrador;
 	protected ArrayList<TelefonoFijo> telefonosFijos = new ArrayList<TelefonoFijo>();
 	protected ArrayList<TelefonoMovil> telefonosMoviles = new ArrayList<TelefonoMovil>();
 	protected ArrayList<CuentaNauta> cuentasNautas = new ArrayList<CuentaNauta>();
 
-	
+
 	public Telefono getTelefono(String numero){
 		Telefono resultado = null;
 		for(Telefono telefono : this.getListaTelefonos()){
@@ -26,7 +27,7 @@ public abstract class Usuario {
 		}
 		return resultado;
 	}
-	
+
 	public ArrayList<TelefonoMovil> getTelefonosMoviles() {
 		return this.telefonosMoviles;
 	}
@@ -40,7 +41,7 @@ public abstract class Usuario {
 	public void addTelefonoFijo(String numero) {
 		this.telefonosFijos.add(new TelefonoFijo(numero));
 	}
-	
+
 	public ArrayList<Telefono> getListaTelefonos(){
 		ArrayList<Telefono> listaTelefonos = new ArrayList<Telefono>();
 		listaTelefonos.addAll(this.getTelefonosFijos());
@@ -119,14 +120,26 @@ public abstract class Usuario {
 		this.representante = representante;
 	}
 
-	public Usuario(String userName, String password, String nombre, String municipio, String provincia, String direccionPostal, Representante representante) {
+	public boolean isAdministrador() {
+		return administrador;
+	}
+	public void setAdministrador(boolean administrador) {
+		this.administrador = administrador;
+	}
+
+	public Usuario(String userName, String password, String nombre, 
+			String municipio, String provincia, String direccionPostal, 
+			Representante representante, boolean isAdministrador) {
+
 		this.setUserName(userName);
 		this.setPassword(password);
 		this.setNombre(nombre);
 		this.setMunicipio(municipio);
 		this.setProvincia(provincia);
 		this.setDireccionPostal(direccionPostal);
-		this.setRepresentante(representante);		
+		this.setRepresentante(representante);	
+		this.setAdministrador(isAdministrador);
 	}
+
 
 }
