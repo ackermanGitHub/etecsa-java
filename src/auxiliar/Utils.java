@@ -16,7 +16,7 @@ public class Utils {
 	}
 	public static boolean validarNombreUsuario(String entrada){
 		boolean resultado = false;
-		if(entrada.matches("^[A-Za-z]\\w{5,29}$"))
+		if(entrada.matches("^[A-Za-z]\\w{3,29}$"))
 			resultado = true;
 		return resultado;
 	}
@@ -81,13 +81,13 @@ public class Utils {
 			resultado = 32;
 		else if(provincia.contains("as") && provincia.contains("unas"))
 			resultado = 31;
-		else if(provincia.contains("olgu�n") || provincia.contains("olguin"))
+		else if(provincia.contains("olguín") || provincia.contains("olguin"))
 			resultado = 24;
 		else if(provincia.contains("ranma"))
 			resultado = 23;
 		else if(provincia.contains("antiago") && provincia.contains("uba"))
 			resultado = 22;
-		else if(provincia.contains("ant�namo") || provincia.contains("antanamo"))
+		else if(provincia.contains("antánamo") || provincia.contains("antanamo"))
 			resultado = 21;
 		else if(provincia.contains("sla") && provincia.contains("uventud"))
 			resultado = 46;

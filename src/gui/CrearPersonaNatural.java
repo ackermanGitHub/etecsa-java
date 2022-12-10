@@ -19,6 +19,7 @@ import javax.swing.SwingConstants;
 
 import auxiliar.Utils;
 import logic.Sistema;
+import java.awt.Color;
 
 @SuppressWarnings("serial")
 public class CrearPersonaNatural extends JDialog {
@@ -33,10 +34,11 @@ public class CrearPersonaNatural extends JDialog {
 	private JTextField txtProvincia;
 
 	public CrearPersonaNatural(final String userName, final String password, final Sistema sistema) {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/images/favicon.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/images/anadir-32.png")));
 		setTitle("Creando Cuenta de Persona Natural");
-		setBounds(100, 100, 329, 354);
+		setBounds(100, 100, 329, 345);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(Color.WHITE);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
@@ -51,30 +53,35 @@ public class CrearPersonaNatural extends JDialog {
 		txtNombre.setColumns(10);
 
 		JLabel lblNombre = new JLabel("Nombre:");
+		lblNombre.setForeground(new Color(0, 0, 0));
 		lblNombre.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNombre.setFont(new Font("Arial", Font.PLAIN, 13));
 		lblNombre.setBounds(21, 54, 91, 23);
 		contentPanel.add(lblNombre);
 
 		JLabel lblApellido = new JLabel("Apellido 1:");
+		lblApellido.setForeground(new Color(0, 0, 0));
 		lblApellido.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblApellido.setFont(new Font("Arial", Font.PLAIN, 13));
 		lblApellido.setBounds(21, 85, 91, 23);
 		contentPanel.add(lblApellido);
 
 		JLabel lblApellido_1 = new JLabel("Apellido 2:");
+		lblApellido_1.setForeground(new Color(0, 0, 0));
 		lblApellido_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblApellido_1.setFont(new Font("Arial", Font.PLAIN, 13));
 		lblApellido_1.setBounds(21, 116, 91, 23);
 		contentPanel.add(lblApellido_1);
 
 		JLabel lblId = new JLabel("ID:");
+		lblId.setForeground(new Color(0, 0, 0));
 		lblId.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblId.setFont(new Font("Arial", Font.PLAIN, 13));
 		lblId.setBounds(21, 147, 91, 23);
 		contentPanel.add(lblId);
 
 		JLabel lblDireccion = new JLabel("Direccion:");
+		lblDireccion.setForeground(new Color(0, 0, 0));
 		lblDireccion.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblDireccion.setFont(new Font("Arial", Font.PLAIN, 13));
 		lblDireccion.setBounds(21, 178, 91, 23);
@@ -105,12 +112,14 @@ public class CrearPersonaNatural extends JDialog {
 		contentPanel.add(txtDireccion);
 
 		JLabel lblMunicipio = new JLabel("Municipio:");
+		lblMunicipio.setForeground(new Color(0, 0, 0));
 		lblMunicipio.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblMunicipio.setFont(new Font("Arial", Font.PLAIN, 13));
 		lblMunicipio.setBounds(21, 209, 91, 23);
 		contentPanel.add(lblMunicipio);
 
 		JLabel lblProvincia = new JLabel("Provincia:");
+		lblProvincia.setForeground(new Color(0, 0, 0));
 		lblProvincia.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblProvincia.setFont(new Font("Arial", Font.PLAIN, 13));
 		lblProvincia.setBounds(21, 240, 91, 23);
@@ -129,13 +138,15 @@ public class CrearPersonaNatural extends JDialog {
 		contentPanel.add(txtProvincia);
 
 		JLabel lblIntroduzcaLosDatos = new JLabel("Introduzca los datos de su nueva cuenta");
+		lblIntroduzcaLosDatos.setForeground(new Color(0, 0, 0));
 		lblIntroduzcaLosDatos.setHorizontalAlignment(SwingConstants.CENTER);
 		lblIntroduzcaLosDatos.setFont(new Font("Arial", Font.PLAIN, 13));
 		lblIntroduzcaLosDatos.setBounds(27, 11, 258, 28);
 		contentPanel.add(lblIntroduzcaLosDatos);
 		{
 			JPanel buttonPane = new JPanel();
-			buttonPane.setBounds(9, 274, 304, 40);
+			buttonPane.setBackground(Color.WHITE);
+			buttonPane.setBounds(28, 274, 266, 31);
 			contentPanel.add(buttonPane);
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			{
@@ -156,7 +167,7 @@ public class CrearPersonaNatural extends JDialog {
 							|| direccion.isEmpty() || municipio.isEmpty() || provincia.isEmpty())
 							errorMessage = "Rellene todos los campos";						
 						else if(!Utils.validarNombre(name))
-							errorMessage = "El nombre no es v�lido";
+							errorMessage = "El nombre no es válido";
 						else if(!Utils.validarNombre(apellido1))
 							errorMessage = "El primer apellido no es válido";	
 						else if(!Utils.validarNombre(apellido2))

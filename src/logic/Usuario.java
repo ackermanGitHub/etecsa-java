@@ -71,7 +71,7 @@ public abstract class Usuario {
 	}
 	public void setPassword(String password) {
 		if(!Utils.validarNombre(password))
-			throw new IllegalArgumentException("La contrase�a no es v�lida");
+			throw new IllegalArgumentException("La contraseña no es válida");
 		else
 			this.password = password;
 	}
@@ -81,7 +81,7 @@ public abstract class Usuario {
 	}
 	public void setNombre(String nombre) {
 		if(!Utils.validarNombre(nombre))
-			throw new IllegalArgumentException("El nombre no es v�lido");
+			throw new IllegalArgumentException("El nombre no es válido");
 		else 
 			this.nombre = nombre;
 	}
@@ -91,7 +91,7 @@ public abstract class Usuario {
 	}
 	public void setMunicipio(String municipio) {
 		if(!Utils.validarNombre(municipio))
-			throw new IllegalArgumentException("El municipio no es v�lido");
+			throw new IllegalArgumentException("El municipio no es válido");
 		else 
 			this.municipio = municipio;
 	}
@@ -101,7 +101,7 @@ public abstract class Usuario {
 	}
 	public void setProvincia(String provincia) {
 		if(!Utils.validarNombre(provincia))
-			throw new IllegalArgumentException("La provincia no es v�lida");
+			throw new IllegalArgumentException("La provincia no es válida");
 		else 
 			this.provincia = provincia;
 	}

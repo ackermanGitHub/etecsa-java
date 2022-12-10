@@ -19,6 +19,7 @@ import logic.Telefono;
 import logic.TelefonoFijo;
 import logic.TelefonoMovil;
 import logic.Usuario;
+import java.awt.Color;
 
 @SuppressWarnings("serial")
 public class LlamadaEnProceso extends JFrame {
@@ -27,10 +28,11 @@ public class LlamadaEnProceso extends JFrame {
 	private double duracion = 1;
 
 	public LlamadaEnProceso(final Sistema sistema, final Usuario usuario, final Telefono telefono, final String numeroLlamado) {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/images/favicon.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(LlamadaEnProceso.class.getResource("/images/telefono-sonando-32.png")));
 		setTitle(sistema.getUsuarioPorNumero(numeroLlamado).getNombre());
-		setBounds(100, 100, 290, 266);
+		setBounds(100, 100, 260, 250);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -38,41 +40,48 @@ public class LlamadaEnProceso extends JFrame {
 		setLocationRelativeTo(null);
 		setResizable(false);
 
-		JLabel lblNumero = new JLabel("Numero:");
+		JLabel lblNumero = new JLabel("Número:");
+		lblNumero.setForeground(Color.BLACK);
 		lblNumero.setFont(new Font("Arial", Font.PLAIN, 13));
-		lblNumero.setBounds(45, 31, 80, 25);
+		lblNumero.setBounds(41, 22, 80, 25);
 		contentPane.add(lblNumero);
 
 		JLabel lblProvincia = new JLabel("Provincia:");
+		lblProvincia.setForeground(Color.BLACK);
 		lblProvincia.setFont(new Font("Arial", Font.PLAIN, 13));
-		lblProvincia.setBounds(45, 67, 80, 25);
+		lblProvincia.setBounds(41, 58, 80, 25);
 		contentPane.add(lblProvincia);
 
 		JLabel lblDuracion = new JLabel("Duraci\u00F3n:");
+		lblDuracion.setForeground(Color.BLACK);
 		lblDuracion.setFont(new Font("Arial", Font.PLAIN, 13));
-		lblDuracion.setBounds(45, 103, 80, 25);
+		lblDuracion.setBounds(41, 94, 80, 25);
 		contentPane.add(lblDuracion);
 
 		JLabel lblCargada = new JLabel("Cargada:");
+		lblCargada.setForeground(Color.BLACK);
 		lblCargada.setFont(new Font("Arial", Font.PLAIN, 13));
-		lblCargada.setBounds(45, 139, 80, 25);
+		lblCargada.setBounds(41, 130, 80, 25);
 		contentPane.add(lblCargada);
 
 		JLabel lblNumeroLLamado = new JLabel();
+		lblNumeroLLamado.setForeground(Color.BLACK);
 		lblNumeroLLamado.setText(numeroLlamado);
 		lblNumeroLLamado.setFont(new Font("Arial", Font.PLAIN, 13));
-		lblNumeroLLamado.setBounds(135, 31, 100, 25);
+		lblNumeroLLamado.setBounds(131, 22, 80, 25);
 		contentPane.add(lblNumeroLLamado);
 
 		JLabel lblProvinciaLlamada = new JLabel();
+		lblProvinciaLlamada.setForeground(Color.BLACK);
 		lblProvinciaLlamada.setText(sistema.getUsuarioPorNumero(numeroLlamado).getProvincia());
 		lblProvinciaLlamada.setFont(new Font("Arial", Font.PLAIN, 13));
-		lblProvinciaLlamada.setBounds(135, 67, 100, 25);
+		lblProvinciaLlamada.setBounds(131, 58, 80, 25);
 		contentPane.add(lblProvinciaLlamada);
 
 		final JLabel lblDuracionLlamada = new JLabel("0");
+		lblDuracionLlamada.setForeground(Color.BLACK);
 		lblDuracionLlamada.setFont(new Font("Arial", Font.PLAIN, 13));
-		lblDuracionLlamada.setBounds(135, 103, 100, 25);
+		lblDuracionLlamada.setBounds(131, 94, 80, 25);
 		contentPane.add(lblDuracionLlamada);
 
 		String cargada = "true";
@@ -80,8 +89,9 @@ public class LlamadaEnProceso extends JFrame {
 				sistema.getTelefono(numeroLlamado) instanceof TelefonoMovil)
 			cargada = "false";   // Se le carga la llamada al teléfono móvil
 		final JLabel lblUsuarioCargado = new JLabel(cargada);
+		lblUsuarioCargado.setForeground(Color.BLACK);
 		lblUsuarioCargado.setFont(new Font("Arial", Font.PLAIN, 13));
-		lblUsuarioCargado.setBounds(135, 139, 100, 25);
+		lblUsuarioCargado.setBounds(131, 130, 80, 25);
 		contentPane.add(lblUsuarioCargado);
 
 		final Timer timer = new Timer(1000, new ActionListener(){
@@ -99,15 +109,12 @@ public class LlamadaEnProceso extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				timer.stop();
 
-				if(lblUsuarioCargado.getText().equals("true")) 
-					telefono.addLlamada(sistema, usuario, numeroLlamado, duracion, true);
-				else 
-					telefono.addLlamada(sistema, usuario, numeroLlamado, duracion, false);
+				telefono.addLlamada(sistema, usuario, numeroLlamado, duracion);
 
 				dispose();
 			}
 		});
-		btnOk.setBounds(98, 175, 89, 30);
+		btnOk.setBounds(82, 175, 89, 30);
 		contentPane.add(btnOk);
 	}
 

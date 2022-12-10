@@ -27,6 +27,10 @@ import datos.DatosDeLlamada;
 import datos.DatosDeTelefono;
 import datos.DatosDeUsuario;
 import datos.FacturaTelFijo;
+import datos.NavegacionNauta;
+import datos.SelectTelefInfLlamadas;
+import datos.SelectTelefLlamar;
+import javax.swing.ImageIcon;
 
 @SuppressWarnings("serial")
 public class Principal extends JFrame {
@@ -50,6 +54,7 @@ public class Principal extends JFrame {
 		menuBar.add(mnArchivo);
 
 		JMenuItem mntmCerrarSecion = new JMenuItem("Cerrar Cesi\u00F3n");
+		mntmCerrarSecion.setIcon(new ImageIcon(Principal.class.getResource("/images/cierre-de-sesión-16.png")));
 		mntmCerrarSecion.setFont(new Font("Arial", Font.PLAIN, 12));
 		mntmCerrarSecion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -61,6 +66,7 @@ public class Principal extends JFrame {
 		mnArchivo.add(mntmCerrarSecion);
 
 		JMenuItem mntmSalir = new JMenuItem("Salir");
+		mntmSalir.setIcon(new ImageIcon(Principal.class.getResource("/images/eliminar-16.png")));
 		mntmSalir.setFont(new Font("Arial", Font.PLAIN, 12));
 		mntmSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -75,6 +81,7 @@ public class Principal extends JFrame {
 
 		if(usuario.isAdministrador()){
 			JMenuItem mntmDatosUsuarios = new JMenuItem("Datos de Usuarios");
+			mntmDatosUsuarios.setIcon(new ImageIcon(Principal.class.getResource("/images/usuario-16.png")));
 			mntmDatosUsuarios.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					DatosDeUsuario datos = new DatosDeUsuario(sistema.getListaDeUsuarios());
@@ -85,6 +92,7 @@ public class Principal extends JFrame {
 			mnSistema.add(mntmDatosUsuarios);
 
 			JMenuItem mntmDatosTelefonos = new JMenuItem("Datos de Tel\u00E9fonos");
+			mntmDatosTelefonos.setIcon(new ImageIcon(Principal.class.getResource("/images/telefonos-16.png")));
 			mntmDatosTelefonos.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if(sistema.getListaTelefonos().size() > 0){
@@ -99,6 +107,7 @@ public class Principal extends JFrame {
 			mnSistema.add(mntmDatosTelefonos);
 
 			JMenuItem mntmDatosLlamadas = new JMenuItem("Datos Llamadas");
+			mntmDatosLlamadas.setIcon(new ImageIcon(Principal.class.getResource("/images/llamadas-16.png")));
 			mntmDatosLlamadas.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if(sistema.getListaLlamadas().size() > 0){
@@ -113,18 +122,13 @@ public class Principal extends JFrame {
 			mnSistema.add(mntmDatosLlamadas);
 		}
 
-		JMenuItem mntmDatosUsuarios = new JMenuItem("Tus Datos");
-		mntmDatosUsuarios.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Utils.launchError("Esta funcionalidad se encuentra en desarrollo");
-			}
-		});
-		mntmDatosUsuarios.setFont(new Font("Arial", Font.PLAIN, 12));
-		mnSistema.add(mntmDatosUsuarios);
-
 		JMenuItem mntmDatosTelefonos = new JMenuItem("Tus Tel\u00E9fonos");
+		mntmDatosTelefonos.setIcon(new ImageIcon(Principal.class.getResource("/images/telefonos-16.png")));
 		mntmDatosTelefonos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(usuario.getListaTelefonos().size() == 0){
+					Utils.launchError("Usted no cuenta con ningún teléfono");
+				}
 				DatosDeTelefono datosTelefono = new DatosDeTelefono(sistema, usuario.getListaTelefonos());
 				datosTelefono.setVisible(true);
 			}
@@ -133,8 +137,11 @@ public class Principal extends JFrame {
 		mnSistema.add(mntmDatosTelefonos);
 
 		JMenuItem mntmDatosLlamadas = new JMenuItem("Tus Llamadas");
+		mntmDatosLlamadas.setIcon(new ImageIcon(Principal.class.getResource("/images/llamadas-16.png")));
 		mntmDatosLlamadas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(usuario.getListaTelefonos().size() == 0)
+					Utils.launchError("Usted no cuenta con ningún teléfono");
 				SelectTelefInfLlamadas seleccion = new SelectTelefInfLlamadas(sistema, usuario);
 				seleccion.setVisible(true);
 			}
@@ -147,10 +154,12 @@ public class Principal extends JFrame {
 		menuBar.add(mnServicios);
 
 		JMenu mnCuentaNauta = new JMenu("Cuenta Nauta");
+		mnCuentaNauta.setIcon(new ImageIcon(Principal.class.getResource("/images/cuenta-nauta.png")));
 		mnCuentaNauta.setFont(new Font("Arial", Font.PLAIN, 12));
 		mnServicios.add(mnCuentaNauta);
 
 		JMenuItem mntmCrearCuentaNauta = new JMenuItem("Crear Cuenta Nauta");
+		mntmCrearCuentaNauta.setIcon(new ImageIcon(Principal.class.getResource("/images/crear-cuenta-nauta.png")));
 		mntmCrearCuentaNauta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CrearCuentaNauta nuevaCuentaNauta = new CrearCuentaNauta(sistema, usuario);
@@ -161,12 +170,16 @@ public class Principal extends JFrame {
 		mnCuentaNauta.add(mntmCrearCuentaNauta);
 
 		JMenuItem mntmEstadoDeCuenta = new JMenuItem("Estado de Cuenta");
+		mntmEstadoDeCuenta.setIcon(new ImageIcon(Principal.class.getResource("/images/estado-de-cuenta.png")));
 		mntmEstadoDeCuenta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(usuario instanceof PersonaJuridica)
 					Utils.launchError("Las Personas Jurídicas no pueden tener cuenta nauta");
-				else if(!usuario.getCuentasNauta().isEmpty()){
-					Utils.launchError("Esta parte del programa se encuentra en construcción");
+				else if(usuario.getCuentasNauta().isEmpty()){
+					Utils.launchError("Usted no cuenta con ninguna cuenta nauta");
+				} else {
+					NavegacionNauta navegacionNauta = new NavegacionNauta(usuario.getCuentasNauta().get(usuario.getCuentasNauta().size()-1));
+					navegacionNauta.setVisible(true);
 				}
 			}
 		});
@@ -174,10 +187,12 @@ public class Principal extends JFrame {
 		mnCuentaNauta.add(mntmEstadoDeCuenta);
 
 		JMenuItem mntmTelefoniaFija = new JMenu("Telefon\u00EDa Fija");
+		mntmTelefoniaFija.setIcon(new ImageIcon(Principal.class.getResource("/images/telefonia-fija.png")));
 		mntmTelefoniaFija.setFont(new Font("Arial", Font.PLAIN, 12));
 		mnServicios.add(mntmTelefoniaFija);
 
 		JMenuItem mntmRegistrarNuevoTelefono = new JMenuItem("Registrar Nuevo Tel\u00E9fono");
+		mntmRegistrarNuevoTelefono.setIcon(new ImageIcon(Principal.class.getResource("/images/telefonia-fija.png")));
 		mntmRegistrarNuevoTelefono.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RegistrarTelefonoFijo nuevoTelefono = new RegistrarTelefonoFijo(sistema, usuario);
@@ -188,6 +203,7 @@ public class Principal extends JFrame {
 		mntmTelefoniaFija.add(mntmRegistrarNuevoTelefono);
 
 		JMenuItem mntmVerFacturas = new JMenuItem("Ver Facturas");
+		mntmVerFacturas.setIcon(new ImageIcon(Principal.class.getResource("/images/estado-de-cuenta.png")));
 		mntmVerFacturas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(usuario.getTelefonosFijos().size() == 0)
@@ -204,10 +220,12 @@ public class Principal extends JFrame {
 		mntmTelefoniaFija.add(mntmVerFacturas);
 
 		JMenuItem mntmTelefoniaMovil = new JMenu("Telefon\u00EDa M\u00F3vil");
+		mntmTelefoniaMovil.setIcon(new ImageIcon(Principal.class.getResource("/images/telefonia-movil.png")));
 		mntmTelefoniaMovil.setFont(new Font("Arial", Font.PLAIN, 12));
 		mnServicios.add(mntmTelefoniaMovil);
 
 		JMenuItem mntmLlamador = new JMenuItem("Llamador");
+		mntmLlamador.setIcon(new ImageIcon(Principal.class.getResource("/images/numerico-16.png")));
 		mntmLlamador.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(usuario.getListaTelefonos().size() == 0)
@@ -225,6 +243,7 @@ public class Principal extends JFrame {
 		mnServicios.add(mntmLlamador);
 
 		JMenuItem mntmRegistrarNuevoMovil = new JMenuItem("Registrar Nuevo M\u00F3vil");
+		mntmRegistrarNuevoMovil.setIcon(new ImageIcon(Principal.class.getResource("/images/telefonia-movil.png")));
 		mntmRegistrarNuevoMovil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RegistrarTelefonoMovil nuevoTelefono = new RegistrarTelefonoMovil(sistema, usuario);
@@ -239,6 +258,7 @@ public class Principal extends JFrame {
 		menuBar.add(mnOpciones);
 
 		JMenuItem mntmBorrarCuenta = new JMenuItem("Borrar Cuenta");
+		mntmBorrarCuenta.setIcon(new ImageIcon(Principal.class.getResource("/images/delete-16.png")));
 		mntmBorrarCuenta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				sistema.removeUsuario(usuario);
@@ -255,6 +275,7 @@ public class Principal extends JFrame {
 		menuBar.add(mnAyuda);
 
 		JMenuItem mntmAcercaDe = new JMenuItem("Acerca de");
+		mntmAcercaDe.setIcon(new ImageIcon(Principal.class.getResource("/images/informacion-16.png")));
 		mntmAcercaDe.setFont(new Font("Arial", Font.PLAIN, 12));
 		mntmAcercaDe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

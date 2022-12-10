@@ -23,6 +23,7 @@ import logic.Sistema;
 import javax.swing.SwingConstants;
 
 import auxiliar.Utils;
+import java.awt.Color;
 
 @SuppressWarnings("serial")
 public class CrearCuenta extends JDialog {
@@ -38,11 +39,12 @@ public class CrearCuenta extends JDialog {
 	private JRadioButton rdbtnEntidadNoEstatal;
 
 	public CrearCuenta(final Sistema sistema) {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/images/favicon.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(CrearCuenta.class.getResource("/images/anadir-32.png")));
 		setFont(new Font("Dialog", Font.PLAIN, 12));
 		setTitle("Cuenta Nueva");
-		setBounds(100, 100, 417, 328);
+		setBounds(100, 100, 417, 320);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(Color.WHITE);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
@@ -52,15 +54,17 @@ public class CrearCuenta extends JDialog {
 
 		{
 			JPanel panel = new JPanel();
-			panel.setBounds(10, 11, 380, 224);
+			panel.setBackground(Color.WHITE);
+			panel.setBounds(15, 11, 380, 224);
 			contentPanel.add(panel);
 			panel.setLayout(null);
 
 			{
 				JLabel lblUsuario = new JLabel("Usuario:");
+				lblUsuario.setForeground(new Color(0, 0, 0));
 				lblUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
 				lblUsuario.setFont(new Font("Arial", Font.PLAIN, 13));
-				lblUsuario.setBounds(10, 21, 152, 23);
+				lblUsuario.setBounds(82, 21, 80, 23);
 				panel.add(lblUsuario);
 			}
 			{
@@ -72,13 +76,15 @@ public class CrearCuenta extends JDialog {
 			}
 			{
 				JLabel lblContrasena = new JLabel("Contrase\u00F1a:");
+				lblContrasena.setForeground(new Color(0, 0, 0));
 				lblContrasena.setHorizontalAlignment(SwingConstants.RIGHT);
 				lblContrasena.setFont(new Font("Arial", Font.PLAIN, 13));
-				lblContrasena.setBounds(10, 59, 152, 23);
+				lblContrasena.setBounds(71, 59, 91, 23);
 				panel.add(lblContrasena);
 			}
 			{
 				JLabel lblConfirmarContrasena = new JLabel("Confirmar Contrase\u00F1a:");
+				lblConfirmarContrasena.setForeground(new Color(0, 0, 0));
 				lblConfirmarContrasena.setHorizontalAlignment(SwingConstants.RIGHT);
 				lblConfirmarContrasena.setFont(new Font("Arial", Font.PLAIN, 13));
 				lblConfirmarContrasena.setBounds(10, 95, 152, 23);
@@ -86,6 +92,7 @@ public class CrearCuenta extends JDialog {
 			}
 			{
 				JLabel lblTipoDeCuenta = new JLabel("Tipo de Cuenta:");
+				lblTipoDeCuenta.setForeground(new Color(0, 0, 0));
 				lblTipoDeCuenta.setHorizontalAlignment(SwingConstants.RIGHT);
 				lblTipoDeCuenta.setFont(new Font("Arial", Font.PLAIN, 13));
 				lblTipoDeCuenta.setBounds(10, 145, 152, 23);
@@ -95,18 +102,24 @@ public class CrearCuenta extends JDialog {
 			ButtonGroup btngroup = new ButtonGroup();
 
 			rdbtnPersonaNatural = new JRadioButton("Persona Natural");
+			rdbtnPersonaNatural.setForeground(new Color(0, 0, 0));
+			rdbtnPersonaNatural.setBackground(Color.WHITE);
 			rdbtnPersonaNatural.setFont(new Font("Arial", Font.PLAIN, 13));
 			rdbtnPersonaNatural.setBounds(183, 196, 165, 23);
 			panel.add(rdbtnPersonaNatural);
 			btngroup.add(rdbtnPersonaNatural);
 
 			rdbtnPersonaJuridica = new JRadioButton("Persona Jur\u00EDdica");
+			rdbtnPersonaJuridica.setForeground(new Color(0, 0, 0));
+			rdbtnPersonaJuridica.setBackground(Color.WHITE);
 			rdbtnPersonaJuridica.setFont(new Font("Arial", Font.PLAIN, 13));
 			rdbtnPersonaJuridica.setBounds(183, 144, 165, 23);
 			panel.add(rdbtnPersonaJuridica);
 			btngroup.add(rdbtnPersonaJuridica);
 
 			rdbtnEntidadNoEstatal = new JRadioButton("Entidad no Estatal");
+			rdbtnEntidadNoEstatal.setForeground(new Color(0, 0, 0));
+			rdbtnEntidadNoEstatal.setBackground(Color.WHITE);
 			rdbtnEntidadNoEstatal.setFont(new Font("Arial", Font.PLAIN, 13));
 			rdbtnEntidadNoEstatal.setBounds(183, 170, 165, 23);
 			panel.add(rdbtnEntidadNoEstatal);
@@ -121,10 +134,12 @@ public class CrearCuenta extends JDialog {
 			passwordField_1.setFont(new Font("Arial", Font.PLAIN, 13));
 			passwordField_1.setBounds(183, 95, 165, 23);
 			panel.add(passwordField_1);
+			
 		}
 		{
 			JPanel buttonPane = new JPanel();
-			buttonPane.setBounds(10, 246, 380, 32);
+			buttonPane.setBackground(Color.WHITE);
+			buttonPane.setBounds(15, 246, 380, 32);
 			contentPanel.add(buttonPane);
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			{
@@ -143,13 +158,13 @@ public class CrearCuenta extends JDialog {
 						if(userName.isEmpty() || password1.isEmpty() || password2.isEmpty())
 							errorMessage = "Rellene todos los campos";
 						else if(!password1.equals(password2))
-							errorMessage = "Las contrase�as no coinciden";
+							errorMessage = "Las contraseñas no coinciden";
 						else if(sistema.getUsuario(userName) != null) 
-							errorMessage = "El nombre de usuario ya est� tomado";						
+							errorMessage = "El nombre de usuario ya está tomado";						
 						else if(!Utils.validarNombreUsuario(userName))
-							errorMessage = "El nombre de usuario no es v�lido";
+							errorMessage = "El nombre de usuario no es válido";
 						else if(!Utils.validarNombreUsuario(password1))
-							errorMessage = "La contrase�a no es v�lida";						
+							errorMessage = "La contraseña no es válida";						
 						if(errorMessage != null)
 							Utils.launchError(errorMessage);
 
@@ -188,5 +203,4 @@ public class CrearCuenta extends JDialog {
 			}
 		}
 	}
-
 }

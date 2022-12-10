@@ -1,8 +1,11 @@
 package init;
 
-import logic.Llamada;
+import logic.CuentaNauta;
+import logic.PersonaNatural;
 import logic.Representante;
 import logic.Sistema;
+import logic.TelefonoFijo;
+import logic.TelefonoMovil;
 import gui.Login;
 
 public class Main {
@@ -12,21 +15,70 @@ public class Main {
 
 		Representante representante = new Representante("Alfredo", "Socarraz", "Perez", "1000", true);
 
-		sistem.addPersonaNatural("alejandro", "alejandro123", "Alejandro", "García", "Rodriguez", "1234567890", "XX/XX y XX No.XXX", "Playa", "La Habana");
-		sistem.getUsuario("alejandro").addTelefonoMovil("55395131");
-		sistem.getUsuario("alejandro").setAdministrador(true);
-		sistem.getTelefono("55395131").addLlamada(new Llamada("52953930", 8, "Camaguey", true, true));
-
+		sistem.addPersonaNatural("alejandro", "alejandro123", "Alejandro", "García", "Rodriguez", "1234567890", "44/53 y 57 No.5328", "Cárdenas", "Matanzas");
+		PersonaNatural alejandro = (PersonaNatural) sistem.getUsuario("alejandro");
+		alejandro.setAdministrador(true);
+		alejandro.addTelefonoMovil("55395131");
+		TelefonoMovil alejandromMovil = (TelefonoMovil) sistem.getTelefono("55395131");
+		alejandro.addTelefonoFijo("78781111");
+		TelefonoFijo alejandroFijo = (TelefonoFijo) sistem.getTelefono("78781111");
+		alejandro.addCuentaNauta("alejandro02");
+		CuentaNauta alejandroNauta = alejandro.getCuentasNauta().get(0);
+		
 		sistem.addPersonaNatural("julio", "julio123", "Julio", "López", "Quiros", "02092766721", "Pedro Pérez/Clavel y Mariano No.561", "Florida", "Camaguey");
-		sistem.getUsuario("julio").addTelefonoMovil("52953930");
-		sistem.getUsuario("julio").setAdministrador(true);
-		sistem.getTelefono("52953930").addLlamada(new Llamada("55395131", 15, "La Habana", true, true));
-
+		PersonaNatural julio = (PersonaNatural) sistem.getUsuario("julio");
+		julio.setAdministrador(true);
+		julio.addTelefonoMovil("52953930");
+		TelefonoMovil julioMovil = (TelefonoMovil) sistem.getTelefono("52953930");
+		julio.addTelefonoFijo("78783115");
+		TelefonoFijo julioFijo = (TelefonoFijo) sistem.getTelefono("78783115");
+		julio.addCuentaNauta("julio02");
+		CuentaNauta julioNauta = julio.getCuentasNauta().get(0);
+		
 		sistem.addEntidadNoEstatal("laMimosa", "lamimosa123", "La Mimosa", "Vedado", "La Habana", "10050", representante);
 		sistem.getUsuario("laMimosa").addTelefonoFijo("78671790");
+		
+		alejandroNauta.addNavegacionMensual(12.5, 14, 111, 67, 89);
+		alejandroNauta.addNavegacionMensual(12.5, 14, 111, 67, 89);
+		alejandroNauta.addNavegacionMensual(12.5, 14, 111, 67, 89);
+		alejandroNauta.addNavegacionMensual(12.5, 14, 111, 67, 89);
+		alejandromMovil.addLlamada(sistem, alejandro, "52953930", 8);
+		alejandromMovil.addLlamada(sistem, alejandro, "52953930", 54);
+		alejandromMovil.addLlamada(sistem, alejandro, "78671790", 23);
+		alejandromMovil.addLlamada(sistem, alejandro, "52953930", 85);
+		alejandromMovil.addLlamada(sistem, alejandro, "78671790", 90);
+		alejandromMovil.addLlamada(sistem, alejandro, "52953930", 12);
+		alejandromMovil.addLlamada(sistem, alejandro, "78671790", 53);
+		alejandroFijo.addLlamada(sistem, alejandro, "52953930", 53);
+		alejandroFijo.addLlamada(sistem, alejandro, "78671790", 32);
+		alejandroFijo.addLlamada(sistem, alejandro, "78671790", 75);
+		alejandroFijo.addLlamada(sistem, alejandro, "78671790", 97);
+		alejandroFijo.addLlamada(sistem, alejandro, "52953930", 07);
+		alejandroFijo.addLlamada(sistem, alejandro, "78671790", 23);
+		alejandroFijo.addLlamada(sistem, alejandro, "52953930", 98);
 
+		julioNauta.addNavegacionMensual(12.5, 14, 111, 67, 89);
+		julioNauta.addNavegacionMensual(12.5, 14, 111, 67, 89);
+		julioNauta.addNavegacionMensual(12.5, 14, 111, 67, 89);
+		julioNauta.addNavegacionMensual(12.5, 14, 111, 67, 89);
+		julioMovil.addLlamada(sistem, alejandro, "52953930", 8);
+		julioMovil.addLlamada(sistem, alejandro, "52953930", 54);
+		julioMovil.addLlamada(sistem, alejandro, "78671790", 23);
+		julioMovil.addLlamada(sistem, alejandro, "52953930", 85);
+		julioMovil.addLlamada(sistem, alejandro, "78671790", 90);
+		julioMovil.addLlamada(sistem, alejandro, "52953930", 12);
+		julioMovil.addLlamada(sistem, alejandro, "78671790", 53);
+		julioFijo.addLlamada(sistem, alejandro, "52953930", 53);
+		julioFijo.addLlamada(sistem, alejandro, "78671790", 32);
+		julioFijo.addLlamada(sistem, alejandro, "78671790", 75);
+		julioFijo.addLlamada(sistem, alejandro, "78671790", 97);
+		julioFijo.addLlamada(sistem, alejandro, "52953930", 07);
+		julioFijo.addLlamada(sistem, alejandro, "78671790", 23);
+		julioFijo.addLlamada(sistem, alejandro, "52953930", 98);
+		
 		Login login = new Login(sistem);
 		login.setVisible(true);
+		
 	}
 
 }

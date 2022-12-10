@@ -18,6 +18,7 @@ import java.awt.event.ActionEvent;
 import logic.PersonaNatural;
 import logic.Sistema;
 import logic.Usuario;
+import java.awt.Color;
 
 @SuppressWarnings("serial")
 public class RegistrarTelefonoMovil extends JFrame {
@@ -26,10 +27,11 @@ public class RegistrarTelefonoMovil extends JFrame {
 	private JTextField txtNumeroTelefono;
 
 	public RegistrarTelefonoMovil(final Sistema sistema, final Usuario usuario) {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/images/favicon.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(RegistrarTelefonoMovil.class.getResource("/images/smartphone-32.png")));
 		setTitle("Registrar Nuevo Telefono");
-		setBounds(100, 100, 350, 200);
+		setBounds(100, 100, 410, 200);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -55,7 +57,7 @@ public class RegistrarTelefonoMovil extends JFrame {
 			}
 		});
 		btnOk.setFont(new Font("Arial", Font.PLAIN, 12));
-		btnOk.setBounds(141, 135, 80, 25);
+		btnOk.setBounds(216, 135, 80, 25);
 		contentPane.add(btnOk);
 
 		JButton btnCancel = new JButton("Cancel");
@@ -65,19 +67,20 @@ public class RegistrarTelefonoMovil extends JFrame {
 			}
 		});
 		btnCancel.setFont(new Font("Arial", Font.PLAIN, 12));
-		btnCancel.setBounds(231, 135, 80, 25);
+		btnCancel.setBounds(306, 135, 80, 25);
 		contentPane.add(btnCancel);
 
 		txtNumeroTelefono = new JTextField();
 		txtNumeroTelefono.setFont(new Font("Arial", Font.PLAIN, 13));
 		txtNumeroTelefono.setColumns(10);
-		txtNumeroTelefono.setBounds(97, 78, 150, 29);
+		txtNumeroTelefono.setBounds(127, 78, 150, 29);
 		contentPane.add(txtNumeroTelefono);
 
 		JLabel lblIntroduzcaSuNuevo = new JLabel("Introduzca su nuevo n\u00FAmero de tel\u00E9fono m\u00F3vil:");
+		lblIntroduzcaSuNuevo.setForeground(Color.BLUE);
 		lblIntroduzcaSuNuevo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblIntroduzcaSuNuevo.setFont(new Font("Arial", Font.PLAIN, 13));
-		lblIntroduzcaSuNuevo.setBounds(25, 28, 294, 39);
+		lblIntroduzcaSuNuevo.setFont(new Font("Arial", Font.BOLD, 13));
+		lblIntroduzcaSuNuevo.setBounds(17, 28, 369, 39);
 		contentPane.add(lblIntroduzcaSuNuevo);
 	}
 }

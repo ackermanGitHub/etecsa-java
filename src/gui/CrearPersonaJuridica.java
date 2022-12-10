@@ -20,6 +20,7 @@ import javax.swing.SwingConstants;
 import auxiliar.Utils;
 import logic.Representante;
 import logic.Sistema;
+import java.awt.Color;
 
 
 @SuppressWarnings("serial")
@@ -38,10 +39,11 @@ public class CrearPersonaJuridica extends JDialog {
 	private JTextField txtID;
 
 	public CrearPersonaJuridica(final String userName, final String password, final Sistema sistema) {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/images/favicon.png")));
-		setTitle("Creando Cuenta de Persona Jur�dica");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/images/anadir-32.png")));
+		setTitle("Creando Cuenta de Persona Jurídica");
 		setBounds(100, 100, 388, 489);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(Color.WHITE);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
@@ -56,24 +58,28 @@ public class CrearPersonaJuridica extends JDialog {
 		txtNombreEmpresa.setColumns(10);
 
 		JLabel lblNombreEmpresa = new JLabel("Nombre de Empresa:");
+		lblNombreEmpresa.setForeground(new Color(0, 0, 0));
 		lblNombreEmpresa.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNombreEmpresa.setFont(new Font("Arial", Font.PLAIN, 13));
 		lblNombreEmpresa.setBounds(21, 54, 138, 23);
 		contentPanel.add(lblNombreEmpresa);
 
 		JLabel lblEntidad = new JLabel("Entidad:");
+		lblEntidad.setForeground(new Color(0, 0, 0));
 		lblEntidad.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblEntidad.setFont(new Font("Arial", Font.PLAIN, 13));
 		lblEntidad.setBounds(21, 85, 138, 23);
 		contentPanel.add(lblEntidad);
 
 		JLabel lblOrganismo = new JLabel("Organismo:");
+		lblOrganismo.setForeground(new Color(0, 0, 0));
 		lblOrganismo.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblOrganismo.setFont(new Font("Arial", Font.PLAIN, 13));
 		lblOrganismo.setBounds(21, 116, 138, 23);
 		contentPanel.add(lblOrganismo);
 
 		JLabel lblId = new JLabel("Direccion Postal:");
+		lblId.setForeground(new Color(0, 0, 0));
 		lblId.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblId.setFont(new Font("Arial", Font.PLAIN, 13));
 		lblId.setBounds(21, 147, 138, 23);
@@ -98,12 +104,14 @@ public class CrearPersonaJuridica extends JDialog {
 		contentPanel.add(txtDireccionPostal);
 
 		JLabel lblMunicipio = new JLabel("Municipio:");
+		lblMunicipio.setForeground(new Color(0, 0, 0));
 		lblMunicipio.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblMunicipio.setFont(new Font("Arial", Font.PLAIN, 13));
 		lblMunicipio.setBounds(21, 178, 138, 23);
 		contentPanel.add(lblMunicipio);
 
 		JLabel lblProvincia = new JLabel("Provincia:");
+		lblProvincia.setForeground(new Color(0, 0, 0));
 		lblProvincia.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblProvincia.setFont(new Font("Arial", Font.PLAIN, 13));
 		lblProvincia.setBounds(21, 209, 138, 23);
@@ -122,18 +130,21 @@ public class CrearPersonaJuridica extends JDialog {
 		contentPanel.add(txtProvincia);
 
 		JLabel lblIntroduzcaLosDatos = new JLabel("Introduzca los datos de su nueva cuenta");
+		lblIntroduzcaLosDatos.setForeground(new Color(0, 0, 0));
 		lblIntroduzcaLosDatos.setHorizontalAlignment(SwingConstants.CENTER);
 		lblIntroduzcaLosDatos.setFont(new Font("Arial", Font.PLAIN, 13));
 		lblIntroduzcaLosDatos.setBounds(33, 11, 290, 28);
 		contentPanel.add(lblIntroduzcaLosDatos);
 
 		JLabel lblRepresentante = new JLabel("Representante:");
+		lblRepresentante.setForeground(new Color(0, 0, 0));
 		lblRepresentante.setFont(new Font("Arial", Font.PLAIN, 13));
 		lblRepresentante.setHorizontalAlignment(SwingConstants.CENTER);
 		lblRepresentante.setBounds(95, 240, 165, 28);
 		contentPanel.add(lblRepresentante);
 
 		JLabel lblNombre = new JLabel("Nombre:");
+		lblNombre.setForeground(new Color(0, 0, 0));
 		lblNombre.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNombre.setFont(new Font("Arial", Font.PLAIN, 13));
 		lblNombre.setBounds(21, 279, 138, 23);
@@ -146,6 +157,7 @@ public class CrearPersonaJuridica extends JDialog {
 		contentPanel.add(txtNombre);
 
 		JLabel lblApellido = new JLabel("Apellido 1:");
+		lblApellido.setForeground(new Color(0, 0, 0));
 		lblApellido.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblApellido.setFont(new Font("Arial", Font.PLAIN, 13));
 		lblApellido.setBounds(21, 310, 138, 23);
@@ -158,6 +170,7 @@ public class CrearPersonaJuridica extends JDialog {
 		contentPanel.add(txtApellido_1);
 
 		JLabel lblApellido_1 = new JLabel("Apellido 2:");
+		lblApellido_1.setForeground(new Color(0, 0, 0));
 		lblApellido_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblApellido_1.setFont(new Font("Arial", Font.PLAIN, 13));
 		lblApellido_1.setBounds(21, 341, 138, 23);
@@ -170,6 +183,7 @@ public class CrearPersonaJuridica extends JDialog {
 		contentPanel.add(txtApellido_2);
 
 		JLabel lblId_1 = new JLabel("ID:");
+		lblId_1.setForeground(new Color(0, 0, 0));
 		lblId_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblId_1.setFont(new Font("Arial", Font.PLAIN, 13));
 		lblId_1.setBounds(21, 372, 138, 23);
@@ -182,7 +196,8 @@ public class CrearPersonaJuridica extends JDialog {
 		contentPanel.add(txtID);
 		{
 			JPanel buttonPane = new JPanel();
-			buttonPane.setBounds(20, 406, 332, 33);
+			buttonPane.setBackground(Color.WHITE);
+			buttonPane.setBounds(37, 406, 308, 33);
 			contentPanel.add(buttonPane);
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			{

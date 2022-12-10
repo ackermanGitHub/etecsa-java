@@ -1,7 +1,5 @@
 package datos;
 
-import gui.Login;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -36,7 +34,7 @@ public class DatosDeUsuario extends JFrame {
 
 	public DatosDeUsuario(ArrayList<Usuario> usuarios) {
 		setTitle("Datos Usuarios");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/images/favicon.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(DatosDeUsuario.class.getResource("/images/contactos-32.png")));
 		setBounds(100, 100, 524, 376);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);

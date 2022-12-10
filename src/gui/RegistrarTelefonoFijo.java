@@ -18,6 +18,7 @@ import java.awt.event.ActionEvent;
 import logic.PersonaNatural;
 import logic.Sistema;
 import logic.Usuario;
+import java.awt.Color;
 
 @SuppressWarnings("serial")
 public class RegistrarTelefonoFijo extends JFrame {
@@ -26,10 +27,11 @@ public class RegistrarTelefonoFijo extends JFrame {
 	private JTextField txtNumeroTelefono;
 
 	public RegistrarTelefonoFijo(final Sistema sistema, final Usuario usuario) {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/images/favicon.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(RegistrarTelefonoFijo.class.getResource("/images/anadir-32.png")));
 		setTitle("Registrar Nuevo Telefono");
-		setBounds(100, 100, 357, 200);
+		setBounds(100, 100, 424, 200);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -39,20 +41,22 @@ public class RegistrarTelefonoFijo extends JFrame {
 
 		txtNumeroTelefono = new JTextField();
 		txtNumeroTelefono.setFont(new Font("Arial", Font.PLAIN, 13));
-		txtNumeroTelefono.setBounds(122, 75, 150, 29);
+		txtNumeroTelefono.setBounds(134, 75, 150, 29);
 		contentPane.add(txtNumeroTelefono);
 		txtNumeroTelefono.setColumns(10);
 
 		JLabel lblIntroduzcaSuNuevo = new JLabel("Introduzca su nuevo n\u00FAmero de tel\u00E9fono fijo:");
-		lblIntroduzcaSuNuevo.setFont(new Font("Arial", Font.PLAIN, 13));
+		lblIntroduzcaSuNuevo.setForeground(Color.BLUE);
+		lblIntroduzcaSuNuevo.setFont(new Font("Arial", Font.BOLD, 13));
 		lblIntroduzcaSuNuevo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblIntroduzcaSuNuevo.setBounds(44, 25, 263, 39);
+		lblIntroduzcaSuNuevo.setBounds(27, 25, 364, 39);
 		contentPane.add(lblIntroduzcaSuNuevo);
 
 		final JLabel lblProvinciaNum = new JLabel(Utils.getProvinciaNum(usuario.getProvincia()) + " - ");
+		lblProvinciaNum.setForeground(Color.BLUE);
 		lblProvinciaNum.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblProvinciaNum.setFont(new Font("Arial", Font.PLAIN, 13));
-		lblProvinciaNum.setBounds(73, 75, 40, 29);
+		lblProvinciaNum.setFont(new Font("Arial", Font.BOLD, 13));
+		lblProvinciaNum.setBounds(84, 75, 40, 29);
 		contentPane.add(lblProvinciaNum);
 
 		JButton btnOk = new JButton("OK");
@@ -70,12 +74,12 @@ public class RegistrarTelefonoFijo extends JFrame {
 					usuario.addTelefonoFijo(numero);
 					dispose();					
 				} else 
-					Utils.launchError("Ese n�mero ya se encuentra registrado");
+					Utils.launchError("Ese número ya se encuentra registrado");
 
 			}
 		});
 		btnOk.setFont(new Font("Arial", Font.PLAIN, 12));
-		btnOk.setBounds(156, 135, 80, 25);
+		btnOk.setBounds(221, 135, 80, 25);
 		contentPane.add(btnOk);
 
 		JButton btnCancel = new JButton("Cancel");
@@ -85,7 +89,7 @@ public class RegistrarTelefonoFijo extends JFrame {
 			}
 		});
 		btnCancel.setFont(new Font("Arial", Font.PLAIN, 12));
-		btnCancel.setBounds(246, 135, 80, 25);
+		btnCancel.setBounds(311, 135, 80, 25);
 		contentPane.add(btnCancel);
 
 

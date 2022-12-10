@@ -1,6 +1,7 @@
 package logic;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class TelefonoFijo extends Telefono{
 
@@ -37,7 +38,7 @@ public class TelefonoFijo extends Telefono{
 	}
 
 	public void addLlamada(Sistema sistema, Usuario usuario, 
-			String numeroLlamado, double duracion, boolean usuarioCargado) {
+			String numeroLlamado, double duracion) {
 
 		Usuario usuarioLlamado = sistema.getUsuarioPorNumero(numeroLlamado);
 		Telefono telefonoLlamado = sistema.getTelefono(numeroLlamado);
@@ -48,12 +49,12 @@ public class TelefonoFijo extends Telefono{
 		boolean isLargaDistancia = !provinciaUsuario.equals(provinciaLlamada);
 
 		Llamada llamada;
-		if(usuarioCargado) {
-			llamada = new Llamada(numeroLlamado, duracion, provinciaLlamada, isLargaDistancia, true);
+		if(telefonoLlamado instanceof TelefonoFijo) {
+			llamada = new Llamada(numeroLlamado, duracion, provinciaLlamada, isLargaDistancia, true, new Date());
 			this.addLlamada(llamada);
 		}
 		else {
-			llamada = new Llamada(this.getNumero(), duracion, provinciaUsuario, isLargaDistancia, false);
+			llamada = new Llamada(this.getNumero(), duracion, provinciaUsuario, isLargaDistancia, false, new Date());
 			telefonoLlamado.addLlamada(llamada);
 		}
 

@@ -18,6 +18,7 @@ import java.awt.Toolkit;
 import logic.Sistema;
 import logic.Telefono;
 import logic.Usuario;
+import java.awt.Color;
 
 @SuppressWarnings("serial")
 public class LLamador extends JFrame {
@@ -27,10 +28,11 @@ public class LLamador extends JFrame {
 	private JTextField txtTelefono;
 
 	public LLamador(final Sistema sistema, final Usuario usuario, final Telefono telefono) {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/images/favicon.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(LLamador.class.getResource("/images/teclado-numérico-32.png")));
 		setTitle("Llamador");
 		setBounds(100, 100, 260, 407);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -172,7 +174,7 @@ public class LLamador extends JFrame {
 
 				Telefono telefonoLlamado = sistema.getTelefono(numero);
 				if(numero.isEmpty() && ultimaLlamada == null)
-					Utils.launchError("No ha introducido ning�n tel�fono");
+					Utils.launchError("No ha introducido ningún teléfono");
 				else if(numero.isEmpty() && ultimaLlamada != null)
 					txtTelefono.setText(ultimaLlamada);
 				else if(telefonoLlamado == null)

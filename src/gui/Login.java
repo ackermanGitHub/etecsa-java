@@ -35,7 +35,7 @@ public class Login extends JFrame {
 	public Login(final Sistema sistema) {
 		setResizable(false);
 		setAlwaysOnTop(true);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/images/favicon.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/images/login-32.png")));
 		setForeground(Color.WHITE);
 		setFont(new Font("Dialog", Font.PLAIN, 12));
 		setBackground(Color.WHITE);
@@ -53,7 +53,7 @@ public class Login extends JFrame {
 		JLabel lblUsuario = new JLabel("Usuario:");
 		lblUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblUsuario.setForeground(Color.BLACK);
-		lblUsuario.setFont(new Font("Arial", Font.BOLD, 15));
+		lblUsuario.setFont(new Font("Arial", Font.PLAIN, 15));
 		lblUsuario.setBounds(67, 33, 94, 23);
 		contentPane.add(lblUsuario);
 
@@ -66,7 +66,7 @@ public class Login extends JFrame {
 		JLabel lblContrasena = new JLabel("Contrase\u00F1a:");
 		lblContrasena.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblContrasena.setForeground(Color.BLACK);
-		lblContrasena.setFont(new Font("Arial", Font.BOLD, 15));
+		lblContrasena.setFont(new Font("Arial", Font.PLAIN, 15));
 		lblContrasena.setBounds(67, 85, 94, 23);
 		contentPane.add(lblContrasena);
 

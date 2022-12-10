@@ -1,7 +1,5 @@
 package datos;
 
-import gui.Login;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -37,7 +35,7 @@ public class DatosDeTelefono extends JFrame {
 
 	public DatosDeTelefono(Sistema sistema, ArrayList<Telefono> telefonos) {
 		setTitle("Datos Teléfonos");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/images/favicon.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(DatosDeTelefono.class.getResource("/images/telefono-32.png")));
 		setBounds(100, 100, 524, 376);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
