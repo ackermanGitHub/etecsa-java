@@ -60,7 +60,7 @@ public abstract class Usuario {
 		return this.userName;
 	}
 	public void setUserName(String userName) {
-		if(!Utils.validarNombre(userName))
+		if(!Utils.validarNombreUsuario(userName))
 			throw new IllegalArgumentException("El nombre de usuario no es válido");
 		else
 			this.userName = userName;			
@@ -70,7 +70,7 @@ public abstract class Usuario {
 		return this.password;
 	}
 	public void setPassword(String password) {
-		if(!Utils.validarNombre(password))
+		if(!Utils.validarNombreUsuario(password))
 			throw new IllegalArgumentException("La contraseña no es válida");
 		else
 			this.password = password;
@@ -100,7 +100,7 @@ public abstract class Usuario {
 		return provincia;
 	}
 	public void setProvincia(String provincia) {
-		if(!Utils.validarNombre(provincia))
+		if(!Utils.validarProvincia(provincia))
 			throw new IllegalArgumentException("La provincia no es válida");
 		else 
 			this.provincia = provincia;

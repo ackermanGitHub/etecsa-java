@@ -39,7 +39,7 @@ public class CrearCuenta extends JDialog {
 	private JRadioButton rdbtnEntidadNoEstatal;
 
 	public CrearCuenta(final Sistema sistema) {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(CrearCuenta.class.getResource("/images/anadir-32.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(CrearCuenta.class.getResource("/images/nuevo-usuario.png")));
 		setFont(new Font("Dialog", Font.PLAIN, 12));
 		setTitle("Cuenta Nueva");
 		setBounds(100, 100, 417, 320);
@@ -50,6 +50,7 @@ public class CrearCuenta extends JDialog {
 		contentPanel.setLayout(null);
 
 		setLocationRelativeTo(null);
+		setAlwaysOnTop(true);
 		setResizable(false);
 
 		{
@@ -163,7 +164,7 @@ public class CrearCuenta extends JDialog {
 							errorMessage = "El nombre de usuario ya está tomado";						
 						else if(!Utils.validarNombreUsuario(userName))
 							errorMessage = "El nombre de usuario no es válido";
-						else if(!Utils.validarNombreUsuario(password1))
+						else if(!Utils.validarPassword(password1))
 							errorMessage = "La contraseña no es válida";						
 						if(errorMessage != null)
 							Utils.launchError(errorMessage);
@@ -196,6 +197,8 @@ public class CrearCuenta extends JDialog {
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						dispose();
+						Login login = new Login(sistema);
+						login.setVisible(true);
 					}
 				});
 				cancelButton.setActionCommand("Cancel");

@@ -19,6 +19,7 @@ import logic.Telefono;
 import logic.TelefonoFijo;
 import logic.TelefonoMovil;
 import logic.Usuario;
+
 import java.awt.Color;
 
 @SuppressWarnings("serial")
@@ -26,9 +27,10 @@ public class LlamadaEnProceso extends JFrame {
 
 	private JPanel contentPane;
 	private double duracion = 1;
+	private final Timer timer;
 
 	public LlamadaEnProceso(final Sistema sistema, final Usuario usuario, final Telefono telefono, final String numeroLlamado) {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(LlamadaEnProceso.class.getResource("/images/telefono-sonando-32.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(LlamadaEnProceso.class.getResource("/images/llamada-en-proceso.png")));
 		setTitle(sistema.getUsuarioPorNumero(numeroLlamado).getNombre());
 		setBounds(100, 100, 260, 250);
 		contentPane = new JPanel();
@@ -38,6 +40,7 @@ public class LlamadaEnProceso extends JFrame {
 		contentPane.setLayout(null);
 
 		setLocationRelativeTo(null);
+		setAlwaysOnTop(true);
 		setResizable(false);
 
 		JLabel lblNumero = new JLabel("Número:");
@@ -94,9 +97,27 @@ public class LlamadaEnProceso extends JFrame {
 		lblUsuarioCargado.setBounds(131, 130, 80, 25);
 		contentPane.add(lblUsuarioCargado);
 
-		final Timer timer = new Timer(1000, new ActionListener(){
+		timer = new Timer(1000, new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				String strTiempo = String.valueOf(duracion);
+				Telefono telefonoLlamado = sistema.getTelefono(numeroLlamado);
+				if(telefono instanceof TelefonoMovil){
+					((TelefonoMovil) telefono).setSaldo(((TelefonoMovil) telefono).getSaldo() - 1);
+					if(((TelefonoMovil) telefono).getSaldo() == 0){
+						MostrarSaldo mostrarSaldo = new MostrarSaldo(0);
+						mostrarSaldo.setVisible(true);
+						dispose();
+						timer.stop();
+					}
+				} else if(telefonoLlamado instanceof TelefonoMovil){
+					((TelefonoMovil) telefonoLlamado).setSaldo(((TelefonoMovil) telefonoLlamado).getSaldo() - 1);
+					if(((TelefonoMovil) telefonoLlamado).getSaldo() == 0){
+						ErrorWindow errorWindow = new ErrorWindow("El telefono llamado se quedó sin saldo");
+						errorWindow.setVisible(true);
+						dispose();
+						timer.stop();
+					}
+				}
 				lblDuracionLlamada.setText(strTiempo);
 				duracion++;
 			}
@@ -110,6 +131,9 @@ public class LlamadaEnProceso extends JFrame {
 				timer.stop();
 
 				telefono.addLlamada(sistema, usuario, numeroLlamado, duracion);
+				
+				if( telefono instanceof TelefonoMovil && ((TelefonoMovil) telefono).getSaldo() < 0)
+					((TelefonoMovil) telefono).setSaldo(0);
 
 				dispose();
 			}

@@ -1,6 +1,8 @@
 package datos;
 
-import javax.swing.JFrame;
+import gui.AcercaDe;
+
+import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -10,7 +12,6 @@ import java.util.ArrayList;
 import java.util.EventObject;
 
 import javax.swing.DefaultCellEditor;
-import javax.swing.JMenuBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -23,19 +24,20 @@ import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
 
 @SuppressWarnings("serial")
-public class DatosDeTelefono extends JFrame {
+public class DatosDeTelefono extends JDialog {
 
 	private JPanel contentPane;
 	private JTable table;
-	private DatosDeTelefonoTableModel tableModel;
-	private JMenuBar menuBar;
+	private DatosDeTelefonoTM tableModel;
 	private JButton btnCerrar;
+	private JLabel lblTitle;
 
 	public DatosDeTelefono(Sistema sistema, ArrayList<Telefono> telefonos) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(AcercaDe.class.getResource("/images/datos-telefono.png")));
 		setTitle("Datos Teléfonos");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(DatosDeTelefono.class.getResource("/images/telefono-32.png")));
 		setBounds(100, 100, 524, 376);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
@@ -44,19 +46,16 @@ public class DatosDeTelefono extends JFrame {
 		contentPane.setLayout(null);
 
 		setLocationRelativeTo(null);
+		setAlwaysOnTop(true);
 		setResizable(false);
 
-		menuBar = new JMenuBar();
-		menuBar.setBackground(Color.LIGHT_GRAY);
-		menuBar.setBounds(0, 0, 528, 24);
-		contentPane.add(menuBar);
-
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 35, 488, 264);
+		scrollPane.setBounds(14, 35, 490, 265);
 		contentPane.add(scrollPane);
 
 		table = new JTable();
-		tableModel = new DatosDeTelefonoTableModel(sistema, telefonos);
+		table.setFont(new Font("Arial", Font.PLAIN, 13));
+		tableModel = new DatosDeTelefonoTM(sistema, telefonos);
 		table.setModel(tableModel);
 		scrollPane.setViewportView(table);
 
@@ -74,8 +73,12 @@ public class DatosDeTelefono extends JFrame {
 			}
 		});
 		btnCerrar.setFont(new Font("Arial", Font.PLAIN, 13));
-		btnCerrar.setBounds(417, 313, 81, 23);
+		btnCerrar.setBounds(429, 311, 75, 25);
 		contentPane.add(btnCerrar);
+		
+		lblTitle = new JLabel("Datos de los Tel\u00E9fonos:");
+		lblTitle.setFont(new Font("Arial", Font.PLAIN, 13));
+		lblTitle.setBounds(14, 5, 230, 25);
+		contentPane.add(lblTitle);
 	}
-
 }

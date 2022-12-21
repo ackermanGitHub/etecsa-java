@@ -1,6 +1,6 @@
 package gui;
 
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
@@ -21,13 +21,13 @@ import logic.Usuario;
 import java.awt.Color;
 
 @SuppressWarnings("serial")
-public class RegistrarTelefonoFijo extends JFrame {
+public class RegistrarTelefonoFijo extends JDialog {
 
 	private JPanel contentPane;
 	private JTextField txtNumeroTelefono;
 
 	public RegistrarTelefonoFijo(final Sistema sistema, final Usuario usuario) {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(RegistrarTelefonoFijo.class.getResource("/images/anadir-32.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(RegistrarTelefonoFijo.class.getResource("/images/nueva-cuenta.png")));
 		setTitle("Registrar Nuevo Telefono");
 		setBounds(100, 100, 424, 200);
 		contentPane = new JPanel();
@@ -37,6 +37,7 @@ public class RegistrarTelefonoFijo extends JFrame {
 		contentPane.setLayout(null);
 
 		setLocationRelativeTo(null);
+		setAlwaysOnTop(true);
 		setResizable(false);
 
 		txtNumeroTelefono = new JTextField();
@@ -46,16 +47,16 @@ public class RegistrarTelefonoFijo extends JFrame {
 		txtNumeroTelefono.setColumns(10);
 
 		JLabel lblIntroduzcaSuNuevo = new JLabel("Introduzca su nuevo n\u00FAmero de tel\u00E9fono fijo:");
-		lblIntroduzcaSuNuevo.setForeground(Color.BLUE);
-		lblIntroduzcaSuNuevo.setFont(new Font("Arial", Font.BOLD, 13));
+		lblIntroduzcaSuNuevo.setForeground(Color.BLACK);
+		lblIntroduzcaSuNuevo.setFont(new Font("Arial", Font.PLAIN, 13));
 		lblIntroduzcaSuNuevo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblIntroduzcaSuNuevo.setBounds(27, 25, 364, 39);
 		contentPane.add(lblIntroduzcaSuNuevo);
 
 		final JLabel lblProvinciaNum = new JLabel(Utils.getProvinciaNum(usuario.getProvincia()) + " - ");
-		lblProvinciaNum.setForeground(Color.BLUE);
+		lblProvinciaNum.setForeground(Color.BLACK);
 		lblProvinciaNum.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblProvinciaNum.setFont(new Font("Arial", Font.BOLD, 13));
+		lblProvinciaNum.setFont(new Font("Arial", Font.PLAIN, 13));
 		lblProvinciaNum.setBounds(84, 75, 40, 29);
 		contentPane.add(lblProvinciaNum);
 

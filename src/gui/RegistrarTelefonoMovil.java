@@ -1,6 +1,6 @@
 package gui;
 
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
@@ -21,13 +21,13 @@ import logic.Usuario;
 import java.awt.Color;
 
 @SuppressWarnings("serial")
-public class RegistrarTelefonoMovil extends JFrame {
+public class RegistrarTelefonoMovil extends JDialog {
 
 	private JPanel contentPane;
 	private JTextField txtNumeroTelefono;
 
 	public RegistrarTelefonoMovil(final Sistema sistema, final Usuario usuario) {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(RegistrarTelefonoMovil.class.getResource("/images/smartphone-32.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(RegistrarTelefonoMovil.class.getResource("/images/nueva-cuenta.png")));
 		setTitle("Registrar Nuevo Telefono");
 		setBounds(100, 100, 410, 200);
 		contentPane = new JPanel();
@@ -37,6 +37,7 @@ public class RegistrarTelefonoMovil extends JFrame {
 		contentPane.setLayout(null);
 
 		setLocationRelativeTo(null);
+		setAlwaysOnTop(true);
 		setResizable(false);
 
 		JButton btnOk = new JButton("OK");
@@ -77,9 +78,9 @@ public class RegistrarTelefonoMovil extends JFrame {
 		contentPane.add(txtNumeroTelefono);
 
 		JLabel lblIntroduzcaSuNuevo = new JLabel("Introduzca su nuevo n\u00FAmero de tel\u00E9fono m\u00F3vil:");
-		lblIntroduzcaSuNuevo.setForeground(Color.BLUE);
+		lblIntroduzcaSuNuevo.setForeground(Color.BLACK);
 		lblIntroduzcaSuNuevo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblIntroduzcaSuNuevo.setFont(new Font("Arial", Font.BOLD, 13));
+		lblIntroduzcaSuNuevo.setFont(new Font("Arial", Font.PLAIN, 13));
 		lblIntroduzcaSuNuevo.setBounds(17, 28, 369, 39);
 		contentPane.add(lblIntroduzcaSuNuevo);
 	}

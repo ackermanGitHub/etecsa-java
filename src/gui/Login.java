@@ -1,6 +1,6 @@
 package gui;
 
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -26,16 +26,14 @@ import java.awt.event.MouseEvent;
 import java.awt.Toolkit;
 
 @SuppressWarnings("serial")
-public class Login extends JFrame {
+public class Login extends JDialog {
 
 	private JPanel contentPane;
 	private JTextField txtUserName;
 	private JPasswordField txtUserPassword;
 
 	public Login(final Sistema sistema) {
-		setResizable(false);
-		setAlwaysOnTop(true);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/images/login-32.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/images/login.png")));
 		setForeground(Color.WHITE);
 		setFont(new Font("Dialog", Font.PLAIN, 12));
 		setBackground(Color.WHITE);
@@ -49,6 +47,8 @@ public class Login extends JFrame {
 		contentPane.setLayout(null);
 
 		setLocationRelativeTo(null);
+		setResizable(false);
+		setAlwaysOnTop(true);
 
 		JLabel lblUsuario = new JLabel("Usuario:");
 		lblUsuario.setHorizontalAlignment(SwingConstants.RIGHT);

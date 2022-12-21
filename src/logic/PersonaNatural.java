@@ -18,6 +18,13 @@ public class PersonaNatural extends Usuario{
 		else 
 			throw new IllegalArgumentException("Las personas naturales solo pueden tener 1 teléfono fijo");
 	}
+	
+	public void addCuentaNauta(String nickName) {
+		if(this.getCuentasNauta().size() > 0)
+			throw new IllegalArgumentException("Las personas naturales solo pueden tener 1 cuenta nauta");
+		else
+			this.cuentasNautas.add(new CuentaNauta(nickName));
+	}
 
 	public String getApellido1() {
 		return apellido1;

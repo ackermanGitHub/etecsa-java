@@ -9,7 +9,7 @@ public class CuentaNauta {
 	private ArrayList<NavegacionMensual> datosNavegacion = new ArrayList<NavegacionMensual>();
 
 	public CuentaNauta(String nickName) {
-		this.nickName = nickName;
+		this.setNickName(nickName);
 	}
 
 	public ArrayList<NavegacionMensual> getDatosNavegacion() {

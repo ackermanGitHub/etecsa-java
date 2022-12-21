@@ -19,6 +19,7 @@ import javax.swing.SwingConstants;
 
 import auxiliar.Utils;
 import logic.Sistema;
+
 import java.awt.Color;
 
 @SuppressWarnings("serial")
@@ -34,7 +35,7 @@ public class CrearPersonaNatural extends JDialog {
 	private JTextField txtProvincia;
 
 	public CrearPersonaNatural(final String userName, final String password, final Sistema sistema) {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/images/anadir-32.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(CrearEntidadNoEstatal.class.getResource("/images/nuevo-usuario.png")));
 		setTitle("Creando Cuenta de Persona Natural");
 		setBounds(100, 100, 329, 345);
 		getContentPane().setLayout(new BorderLayout());
@@ -44,6 +45,7 @@ public class CrearPersonaNatural extends JDialog {
 		contentPanel.setLayout(null);
 
 		setLocationRelativeTo(null);
+		setAlwaysOnTop(true);
 		setResizable(false);
 
 		txtNombre = new JTextField();
@@ -173,12 +175,12 @@ public class CrearPersonaNatural extends JDialog {
 						else if(!Utils.validarNombre(apellido2))
 							errorMessage = "El segundo apellido no es válido";
 						else if(!Utils.validarID(ID))
-							errorMessage = "El ID no es válido";	
+							errorMessage = "El ID no es válido, debe ser un número de 11 cifras";	
 						else if(!Utils.validarDireccion(direccion))
 							errorMessage = "La dirección no es válida";		
 						else if(!Utils.validarNombre(municipio))
 							errorMessage = "El municipio no es válido";	
-						else if(!Utils.validarNombre(provincia))
+						else if(!Utils.validarProvincia(provincia))
 							errorMessage = "La provincia no es válida";			
 						if(errorMessage != null)
 							Utils.launchError(errorMessage);
@@ -200,6 +202,8 @@ public class CrearPersonaNatural extends JDialog {
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						dispose();
+						Login login = new Login(sistema);
+						login.setVisible(true);
 					}
 				});
 				cancelButton.setActionCommand("Cancel");

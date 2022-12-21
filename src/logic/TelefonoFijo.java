@@ -1,7 +1,6 @@
 package logic;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class TelefonoFijo extends Telefono{
 
@@ -15,7 +14,12 @@ public class TelefonoFijo extends Telefono{
 		return this.facturas;
 	}
 	public void addFactura(double atrasoDePago) {
-		this.facturas.add(new FacturaMensual(atrasoDePago));
+		double atrasoAnterior = 0;
+		for(FacturaMensual factura : this.getFacturas()){
+			atrasoAnterior += factura.getAtrasoDePago();
+		}
+		this.facturas.add(new FacturaMensual(atrasoDePago + atrasoAnterior, 
+				this.getFacturas().size() + 1));
 	}
 
 	public void addLlamada(Llamada llamada){
@@ -50,11 +54,11 @@ public class TelefonoFijo extends Telefono{
 
 		Llamada llamada;
 		if(telefonoLlamado instanceof TelefonoFijo) {
-			llamada = new Llamada(numeroLlamado, duracion, provinciaLlamada, isLargaDistancia, true, new Date());
+			llamada = new Llamada(numeroLlamado, duracion, provinciaLlamada, isLargaDistancia, true);
 			this.addLlamada(llamada);
 		}
 		else {
-			llamada = new Llamada(this.getNumero(), duracion, provinciaUsuario, isLargaDistancia, false, new Date());
+			llamada = new Llamada(this.getNumero(), duracion, provinciaUsuario, isLargaDistancia, false);
 			telefonoLlamado.addLlamada(llamada);
 		}
 

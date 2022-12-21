@@ -11,14 +11,14 @@ public class Llamada {
 	private Date date;
 
 	public Llamada(String numero, double duracion, 
-			String provinciaLlamada, boolean largaDistancia, boolean saliente, Date date) {
+			String provinciaLlamada, boolean largaDistancia, boolean saliente) {
 		
 		this.numeroLlamado = numero;
 		this.duracion = duracion;
 		this.provinciaLlamada = provinciaLlamada;
 		this.largaDistancia = largaDistancia;
 		this.saliente = saliente;
-		this.date = date;
+		this.date = new Date();
 	}
 
 	public String getNumero() {

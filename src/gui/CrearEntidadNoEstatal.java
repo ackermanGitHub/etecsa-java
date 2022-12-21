@@ -20,6 +20,7 @@ import javax.swing.SwingConstants;
 import auxiliar.Utils;
 import logic.Representante;
 import logic.Sistema;
+
 import java.awt.Color;
 
 @SuppressWarnings("serial")
@@ -36,7 +37,7 @@ public class CrearEntidadNoEstatal extends JDialog {
 	private JTextField txtProvincia;
 
 	public CrearEntidadNoEstatal(final String userName, final String password, final Sistema sistema) {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(CrearEntidadNoEstatal.class.getResource("/images/anadir-32.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(CrearEntidadNoEstatal.class.getResource("/images/nuevo-usuario.png")));
 		setTitle("Creando Cuenta de Entidad no Estatal");
 		setBounds(100, 100, 350, 449);
 		getContentPane().setLayout(new BorderLayout());
@@ -46,6 +47,7 @@ public class CrearEntidadNoEstatal extends JDialog {
 		contentPanel.setLayout(null);
 
 		setLocationRelativeTo(null);
+		setAlwaysOnTop(true);
 		setResizable(false);
 
 		txtNombre = new JTextField();
@@ -208,15 +210,15 @@ public class CrearEntidadNoEstatal extends JDialog {
 						else if(!Utils.validarNombre(apellido2Repr))
 							errorMessage = "El segundo apellido del representante no es válido";
 						else if(!Utils.validarID(IDRepr))
-							errorMessage = "El ID del representante no es válido";				
+							errorMessage = "El ID del representante no es válido, debe ser un número de 11 cifras";				
 						else if(!Utils.validarNombre(nombreEmpresa))
 							errorMessage = "El nombre de la entidad no es válido";
 						else if(!Utils.validarNombre(municipio))
 							errorMessage = "El municipio no es válido";	
-						else if(!Utils.validarNombre(provincia))
+						else if(!Utils.validarProvincia(provincia))
 							errorMessage = "La provincia no es válida";			
-						else if(!Utils.validarDireccion(direccionPostal))
-							errorMessage = "La dirección postal no es válida";		
+						else if(!Utils.validarDireccionPostal(direccionPostal))
+							errorMessage = "La dirección postal no es válida, debe ser un número de 6 cifras";		
 						if(errorMessage != null)
 							Utils.launchError(errorMessage);
 
@@ -239,6 +241,8 @@ public class CrearEntidadNoEstatal extends JDialog {
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						dispose();
+						Login login = new Login(sistema);
+						login.setVisible(true);
 					}
 				});
 				cancelButton.setActionCommand("Cancel");

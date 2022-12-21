@@ -1,6 +1,6 @@
 package gui;
 
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
@@ -17,12 +17,12 @@ import javax.swing.JTextPane;
 import javax.swing.JScrollPane;
 
 @SuppressWarnings("serial")
-public class AcercaDe extends JFrame {
+public class AcercaDe extends JDialog {
 
 	private JPanel contentPane;
 
 	public AcercaDe() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/images/información-32.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(AcercaDe.class.getResource("/images/acerca-de.png")));
 		setFont(new Font("Dialog", Font.PLAIN, 12));
 		setTitle("Acerca de");
 		setBounds(100, 100, 450, 300);
@@ -33,6 +33,7 @@ public class AcercaDe extends JFrame {
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(null);
+		setAlwaysOnTop(true);
 		setContentPane(contentPane);
 
 
@@ -85,7 +86,8 @@ public class AcercaDe extends JFrame {
 		
 		JTextPane txtpnEnNuestroProyecto = new JTextPane();
 		txtpnEnNuestroProyecto.setFont(new Font("Arial", Font.PLAIN, 13));
-		scrollPane.setViewportView(txtpnEnNuestroProyecto);
 		txtpnEnNuestroProyecto.setText("En nuestro proyecto de curso elaboramos un sistema informatizado para el control de sus clientes, con el objetivo de mejorar la calidad de sus servicios y la atenci\u00F3n al cliente. Los servicios que se ofrecen son telefon\u00EDa fija, telefon\u00EDa m\u00F3vil y cuentas Nauta para correo electr\u00F3nico y navegaci\u00F3n en Internet. Los clientes se dividen en personas naturales, personas jur\u00EDdicas y entidades no estatales, y se registran sus datos en el sistema seg\u00FAn su tipo. Las personas naturales pueden tener un tel\u00E9fono fijo, dos tel\u00E9fonos m\u00F3viles y una cuenta Nauta, mientras que las personas jur\u00EDdicas pueden tener m\u00FAltiples tel\u00E9fonos fijos y m\u00F3viles, pero no cuentas Nauta. Las entidades no estatales pueden tener m\u00FAltiples tel\u00E9fonos fijos, m\u00F3viles y cuentas Nauta. El sistema registra las llamadas realizadas a trav\u00E9s de un interfaz llamador, y se guardan los datos de la llamada seg\u00FAn el tipo de origen (fijo o m\u00F3vil). De cada tel\u00E9fono fijo se registra su n\u00FAmero y el titular, y se genera una factura mensual que incluye tarifas fijas, llamadas locales y larga distancia, entre otros conceptos.");
+		txtpnEnNuestroProyecto.setEditable(false);
+		scrollPane.setViewportView(txtpnEnNuestroProyecto);
 	}
 }

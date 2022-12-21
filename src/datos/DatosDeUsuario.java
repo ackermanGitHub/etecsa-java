@@ -1,6 +1,6 @@
 package datos;
 
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.EventObject;
 
 import javax.swing.DefaultCellEditor;
-import javax.swing.JMenuBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -22,19 +21,20 @@ import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
 
 @SuppressWarnings("serial")
-public class DatosDeUsuario extends JFrame {
+public class DatosDeUsuario extends JDialog {
 
 	private JPanel contentPane;
 	private JTable table;
-	private DatosDeUsuarioTableModel tableModel;
-	private JMenuBar menuBar;
+	private DatosDeUsuarioTM tableModel;
 	private JButton btnCerrar;
+	private JLabel lblTitle;
 
 	public DatosDeUsuario(ArrayList<Usuario> usuarios) {
 		setTitle("Datos Usuarios");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(DatosDeUsuario.class.getResource("/images/contactos-32.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(DatosDeUsuario.class.getResource("/images/datos-usuario.png")));
 		setBounds(100, 100, 524, 376);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
@@ -43,19 +43,16 @@ public class DatosDeUsuario extends JFrame {
 		contentPane.setLayout(null);
 
 		setLocationRelativeTo(null);
+		setAlwaysOnTop(true);
 		setResizable(false);
 
-		menuBar = new JMenuBar();
-		menuBar.setBackground(Color.LIGHT_GRAY);
-		menuBar.setBounds(0, 0, 528, 24);
-		contentPane.add(menuBar);
-
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 35, 488, 264);
+		scrollPane.setBounds(15, 35, 488, 264);
 		contentPane.add(scrollPane);
 
 		table = new JTable();
-		tableModel = new DatosDeUsuarioTableModel(usuarios);
+		table.setFont(new Font("Arial", Font.PLAIN, 13));
+		tableModel = new DatosDeUsuarioTM(usuarios);
 		table.setModel(tableModel);
 		scrollPane.setViewportView(table);
 
@@ -73,8 +70,13 @@ public class DatosDeUsuario extends JFrame {
 			}
 		});
 		btnCerrar.setFont(new Font("Arial", Font.PLAIN, 13));
-		btnCerrar.setBounds(417, 313, 81, 23);
+		btnCerrar.setBounds(428, 311, 75, 25);
 		contentPane.add(btnCerrar);
+		
+		lblTitle = new JLabel("Datos de los Usuarios en el Sistema:");
+		lblTitle.setFont(new Font("Arial", Font.PLAIN, 13));
+		lblTitle.setBounds(15, 5, 231, 25);
+		contentPane.add(lblTitle);
 	}
 
 }

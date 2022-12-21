@@ -1,6 +1,6 @@
 package gui;
 
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
@@ -17,18 +17,21 @@ import java.awt.Toolkit;
 
 import logic.Sistema;
 import logic.Telefono;
+import logic.TelefonoFijo;
+import logic.TelefonoMovil;
 import logic.Usuario;
+
 import java.awt.Color;
 
 @SuppressWarnings("serial")
-public class LLamador extends JFrame {
+public class LLamador extends JDialog {
 	
 	static private String ultimaLlamada = null;
 	private JPanel contentPane;
 	private JTextField txtTelefono;
 
 	public LLamador(final Sistema sistema, final Usuario usuario, final Telefono telefono) {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(LLamador.class.getResource("/images/teclado-numérico-32.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(LLamador.class.getResource("/images/llamador.png")));
 		setTitle("Llamador");
 		setBounds(100, 100, 260, 407);
 		contentPane = new JPanel();
@@ -38,9 +41,11 @@ public class LLamador extends JFrame {
 		contentPane.setLayout(null);
 
 		setLocationRelativeTo(null);
+		setAlwaysOnTop(true);
 		setResizable(false);
 
 		txtTelefono = new JTextField();
+		txtTelefono.setEditable(false);
 		txtTelefono.setFont(new Font("Arial", Font.BOLD, 14));
 		txtTelefono.setBounds(40, 25, 113, 40);
 		contentPane.add(txtTelefono);
@@ -177,10 +182,21 @@ public class LLamador extends JFrame {
 					Utils.launchError("No ha introducido ningún teléfono");
 				else if(numero.isEmpty() && ultimaLlamada != null)
 					txtTelefono.setText(ultimaLlamada);
-				else if(telefonoLlamado == null)
+				else if(numero.equals("*222#") && telefono instanceof TelefonoMovil){
+					double saldo = (double)((TelefonoMovil)telefono).getSaldo();
+					MostrarSaldo mostrarSaldo = new MostrarSaldo(saldo);
+					mostrarSaldo.setVisible(true);
+				} else if(telefonoLlamado == null)
 					Utils.launchError("El telefono llamado no se encuentra registrado en el sistema");
 				else if(sistema.getUsuarioPorNumero(numero) == usuario)
 					Utils.launchError("No te puedes llamar a ti mismo");
+				else if(telefono instanceof TelefonoMovil 
+						&& ((TelefonoMovil) telefono).getSaldo() <= 0)
+					Utils.launchError("No te queda saldo restante");
+				else if(telefono instanceof TelefonoFijo 
+						&& sistema.getTelefono(numero) instanceof TelefonoMovil
+						&& ((TelefonoMovil) sistema.getTelefono(numero)).getSaldo() <= 0)
+					Utils.launchError("El número llamado no tiene saldo");
 				else {
 					LlamadaEnProceso llamadaEnProceso = new LlamadaEnProceso(sistema, usuario, telefono, numero);
 					llamadaEnProceso.setVisible(true);
